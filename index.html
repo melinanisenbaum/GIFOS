@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"  type="text/css" href="./styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <title>GIFOS</title>
+    </head>
+    <body>
+        <nav class="nav">
+            <figure class="logo">
+                <img class="logoMobile" src="./images/logo-mobile.svg" alt="logo">
+                <img class="logoDesktop" src="./images/logo-desktop.svg" alt="logo">
+            </figure>
+            <form  class="searchOnNav">
+                <picture class="iconSearchOnNav">
+                    <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
+                </picture>
+                <input type="search" class="mySearchOnNav" placeholder='Busca GIFOS y mas' name="q">
+
+            </form>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="icons">
+                <img class="fa-bars" src="./images/burger.svg" alt="menu">
+                <img class="fa-times" src="./images/close.svg">
+            </label>
+            <ul class="topnav">
+                <li>
+                    <a href="#">Modo Nocturno</a>
+                </li>
+                <li class='lineBreak'>
+                    <a href="#">Favoritos</a>
+                </li>
+                <li>
+                    <a href="#">Mis GIFOS</a>
+                </li>
+            </ul>
+            <button class="createButton">
+                <img class="createImgButton" src="./images/button-crear-gifo.svg" alt="createButton">
+            </button>
+        </nav>
+        <header class="header">
+            <h1>Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
+            <picture class="ilustraHeader">
+                <img src="./images/ilustra_header.svg" alt="busca gifos y mas" width="273px" height="130px">
+            </picture>
+            <form id="search">
+                <div class="searchContainer">
+                    <figure class="iconSearch" id="iconSearch">
+                        <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
+                    </figure>
+                    <figure class="iconSearchGrey">
+                        <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
+                    </figure>
+                    <figure class="iconClose">
+                        <img src="./images/close.svg" alt="close" width="14px" height="14px">
+                    </figure>
+                    <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
+                    <ul class="tags" id="tagsContainer">
+                        <!--<li class="datatag">sugerencia
+                            <figure class="IconSearchGrey">
+                                <img class="IconSearchImg" src="./images/icon-search.svg" alt="search" width="15.8px" height="15.8px">
+                            </figure>
+                        </li>
+                        <li class="datatag">sugerencia</li>
+                        <li class="datatag">sugerencia</li>
+                        <li class="datatag">sugerencia</li>-->
+                    </ul>
+                </div>
+            </form>
+            <div class="wordTrends" id="wordTrends">
+                <h2 class="trending">Trending:</h2>
+                <p class="themes" id="themes"></p>
+            </div>   
+            <section class="searchSection" id="searchSection">
+                <h2 class="searchTitle" id="searchTitle"></h2>
+                <ul class="searchUl" id="searchUl">
+                    <!--<li class="card">
+                            <figure class= "gifFigure">
+                                <imgclass="imgFig" src="" >
+                                <img class="imgHover">
+                                <figcaption class="figcaption">
+                                    <span class="username">User</span>
+                                    <span class="title">Titulo GIFO</span>
+                                <figcaption>
+                            </figure>
+                        <div class="searchButtons">
+                            <button class="favouriteButton" type="button" title="favourite">
+                                <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                            </button>
+                            <button class="downloadButton" type="button" title="download">
+                                <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
+                            </button>
+                            <button class="maxButton" type="button" title="maximaze">
+                                <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
+                            </button>
+                        </div>
+                    </li>-->
+                </ul>
+                <button class="showMore" id="showMore" type="button" title="showMore">
+                    <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
+                </button>
+                <figure class="errorFig">
+                    <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">
+                    <figcaption class="errorCaption">Intenta con otra busqueda</figcaption>
+                </figure>
+            </section>
+        </header>
+        <main>
+            <section class="trendGifos">
+                <h2 class="trendTitle">Trending GIFOS</h2>
+                <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
+                <div class="carouselContainer">    
+                    <button class="prevButton" type="button" title="previous">
+                        <img class="buttonSlider" src="./images/button-slider-left.svg" width= "40px" height="40px">
+                    </button>
+                    <ul class="carousel" id="carousel" aria-label="carousel">
+                        <!--<li class="card">
+                            <figure class= "gifFigure">
+                                <img class="gifImg" src="" >
+                                <img imgHover>
+                                <figcaption>
+                                    <span class="user">User</span>
+                                    <span class="title">Titulo GIFO</span>
+                                </fig>
+                            </figure>
+                            <div class="gifButton">
+                                <button class="favouriteButton" type="button" title="favourite">
+                                    <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                                </button>
+                                <button class="downloadButton" type="button" title="download">
+                                    <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
+                                </button>
+                                <button class="maxButton" type="button" title="maximaze">
+                                    <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
+                                </button>
+                            </div>
+                        </li>-->
+                    </ul>
+                    <button class="nextButton" type="button" title="next">
+                        <img class="buttonSlider" src="./images/button-slider-right.svg" width= "40px" height="40px">
+                    </button>
+                </div>
+            </section>
+            <section class="popUp">
+                <button class="closePopUp" type="button" title="close">
+                    <img class="closeIcon" src="">
+                </button>
+                <button class="prevButton" type="button" title="previous">
+                    <img class="buttonSlider" src="./images/button-slider-left.svg" width= "40px" height="40px">
+                </button>
+                <figure class="cardPopUp">
+                    <img class="gifPopImg" src="" >
+                    <span class="user">User</span>
+                    <span class="title">Titulo GIFO</span>
+                </figure>
+                <div class="gifButton">
+                    <button class="favouriteButton" type="button" title="favourite">
+                        <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                    </button>
+                    <button class="downloadButton" type="button" title="download">
+                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
+                    </button>
+                </div>
+                <button class="nextButton" type="button" title="next">
+                    <img class="buttonSlider" src="./images/button-slider-right.svg" width= "40px" height="40px">
+                </button>  
+            </section>
+        </main>
+        <footer>
+            <span class="social">Compartir en:</span>
+            <div class='socialIcons'>    
+                <a class= "imgContainer" target="_blank" href="https://www.facebook.com/" title="facebook" width="20px" height="20px">
+                    <img src="./images/icon_facebook.svg" class="facebook">
+                </a>
+                <a class= "imgContainer"target="_blank" href="https://twitter.com/" title="twitter" width="18px" height="16.2px">
+                    <img src="./images/icon-twitter.svg" class="twitter">
+                </a>
+                <a class= "imgContainer" target="_blank" href="https://www.instagram.com/" title="instagram">
+                    <img src="./images/icon_instagram.svg" class="instagram" alt="instagram" width="18px" height="18px">
+                </a>
+            </div>
+            <span class="rights">© GIFOS 2020 All Rights Reserved.</span>
+        </footer>
+        <script src="./scripts/main.js"></script>
+    </body>

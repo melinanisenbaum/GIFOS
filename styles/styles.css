@@ -1,0 +1,726 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap);
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body {
+    width: 100vw;
+    border-top: 5px solid #572EE5;
+    border-bottom: 5px solid #572EE5;
+    background: #FFFFFF;
+}
+.nav {
+    position: relative;
+    height: 95px;
+    padding-top: 29px;
+    padding-bottom: 17px;
+}
+.logo {
+    position: absolute;
+    left: 22px;
+}
+.logoMobile {
+    width: 56px;
+    height: 49px;
+}
+.logoDesktop {
+    display: none;
+}
+.searchOnNav {
+    display: none;
+}
+.checkbox {
+    position: absolute;
+    top: 47px;
+    right: 26px;
+    opacity: 0;
+}
+.icons {
+    cursor: pointer;
+}
+.icons .fa-bars {
+    width: 15px;
+    height: 14px;
+    position: absolute;
+    right: 26px;
+    top: 47px;
+}
+.icons .fa-times {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 47px;
+    right: 27px;
+}
+.topnav {
+    display: none;
+    padding-top: 17px;
+    position: absolute;
+    top: 95px;
+    width: 100vw;
+    height: 100vw;
+    overflow: visible;/* no tapa todo el alto de la pantalla*/
+    font-family: 'Montserrat', sans-serif;
+    background: #572EE5;
+    opacity: 90%;
+    line-height: 55px;
+    font-size: 16px;
+    font-weight: 700;
+    z-index: 2;
+}
+.topnav li {
+    text-align: center;
+    text-justify: center;
+}
+/*.lineBreak {
+}*/
+
+.topnav li a{
+    color: #FFFFFF;
+}
+.topnav li a:hover{
+    border-bottom: 2px solid #5ED7C6;
+}
+.topnav li a:active{
+    color: #9CAFC3;
+    border: none;/*me sigue mostrando el borde de abajo*/
+}
+.nav input:checked ~ .topnav {
+    display: flex;
+    flex-direction: column;
+}
+.nav input:checked ~ .icons .fa-bars {
+    display: none;
+}
+.nav input:not(:checked) ~ .icons .fa-times {
+    display:none;
+}
+nav input:checked ~ .header {
+    display: none;/*no funciona*/
+}
+.createButton {
+    display: none;
+    background: none;
+    border: 0;
+}
+header {
+    padding-top: 7px;
+    padding-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    padding-bottom: 31px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: #572EE5;
+    line-height: 33px;
+    text-align: center;
+    max-width: 286px;
+}
+.headerBreak {
+    display: none;
+}
+.wordGifos {
+    color: #50E3C2;
+}
+.searchContainer {
+    width: 334px;
+    min-height: 50px;
+    border: 1px solid #572EE5;
+    border-radius: 27px;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 19px;
+    padding-left: 55px;
+    padding-top: 13.8px;
+}
+.mySearch {
+    width: 215px;
+    font-size: 16px;
+    text-align: left;
+    color: #9CAFC3;
+    border: 0;
+    outline: none;
+    background-color: #FFFFFF;
+}
+.mySearch:focus {
+    background-color: #FFFFFF;
+}
+/*.header input:active {
+    background-color: #FFFFFF;
+}*/
+.tags {
+    display: flex;
+    flex-direction: column;
+    width: 215px;
+    color: #9CAFC3;
+}
+.iconSearch {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+}
+.iconSearchGrey {
+    position: absolute;
+    top: 13px;
+    left: 21px;
+    color: #9CAFC3;/*no funciona*/
+    height: 20px;
+    width: 20px;
+    display: none;
+}
+.iconClose {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    display: none;
+    height: 14px;
+    width: 14px;
+}
+.miniIconSearchGrey {
+    width: 15.8px;
+    height: 15.8px;
+    color: #9CAFC3;
+    position: absolute;
+    top: 13px;
+    left: 21px;
+}
+.trending {
+    padding-top: 31px;
+    line-height: 25px;
+    padding-bottom: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #572EE5;
+}
+.themes {
+    line-height: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color:#572EE5;
+    width: 225px;
+    text-align: center;
+    padding-bottom: 45px;
+}
+.searchSection {
+    padding-top: 43px 0px 29px 0px;
+}
+.searchTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #572EE5;
+    font-size: 25px;
+    line-height: 40px;
+    padding-bottom: 38px;
+    text-align: center;
+}
+.searchUl {
+    padding-right: 21px;
+    padding-left: 21px;
+    padding-bottom: 57px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.searchSection .card {
+    position: relative;
+}
+.searchSection .gifFigure {
+    width: 156px;
+    height: 120px;
+    margin-bottom: 21px;
+    position: relative;
+}
+.searchSection .gifImg {
+    width: 156px;
+    height: 120px;
+}
+.searchSection .imgHover {
+    display: none;
+}
+.searchSection .figcaption {
+    display: none;
+}
+.searchSection .gifButtons {
+    display: none;
+}
+.showMore {
+    display: none;
+    border: none;
+    background-color: #FFFFFF;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 79px;
+    outline: none;
+}
+.errorFig {
+    display: none;
+    padding-top: 71px;
+    padding-bottom: 120px;
+    text-align: center;
+}
+.errorImg {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 29px;
+}
+.errorCaption {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    line-height: 25px;
+    font-weight: 700;
+    color: #50E3C2 ;
+}
+.trendGifos {
+    padding-top: 46px;
+    padding-bottom: 82px;
+    background-color: #F3F5F8;
+}
+.trendTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #572EE5;
+    font-size: 20px;
+    line-height: 30px;
+    padding-bottom: 7px;
+    text-align: center;
+}
+.look {
+    display: block;
+    padding-bottom: 32px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    color: #000000;
+    text-align: center;
+}
+.carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 22px;
+    overflow: hidden;
+}
+.prevButton {
+    display: none;
+}
+.carousel .gifImg {
+    margin-right: 22px;
+    width: 243px;
+    height: 187px;
+    border: none;
+}
+.carousel .figcaption {
+    display: none;
+}
+.carousel .gifButtons {
+    display: none;
+}
+.nextButton {
+    display: none;
+}
+.popUp {
+    display: none;
+}
+footer {
+    height: 196px;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 400;
+    padding-top: 47px;
+    padding-bottom: 23px;
+}
+.social {
+    display: block;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+}
+.socialIcons {
+    padding: 23px 0 47.8px 0;
+    display: block;
+    text-align: center;
+}
+.imgContainer {
+    margin-right: 19px;
+}
+.imgContainer:last-child {
+    margin-right: 0;
+}
+.facebook .twitter .instagram {
+    color: #CDD6E0;
+}
+.facebook:hover {
+    color: #572EE5;
+}
+.twitter:hover {
+    color: #572EE5;
+}
+.instagram:hover {
+    color: #572EE5;
+}
+.rights {
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+    text-align: center;
+}
+@media all and (min-width: 970px) {
+    .nav {
+        height: 90px;
+        padding: 0 10.8% 0 10.8%;
+        width: 100vw;
+        display: inline-grid;
+        grid-template-columns: 68px 10.55% 334px 10.64% 1fr 54px;
+        align-items: center;
+        position: sticky;/*no funciona*/
+    }
+    /*haver nav sticky con js y lleva buscador y no boton mas*/
+    .logo {/*no funciona el cambio de tama~no de la imagen*/
+        position: static;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .logoMobile {
+        display: none;
+    }
+    .logoDesktop {
+        display: block;
+        width: 68px;
+        height: 60px;
+    }
+    .searchOnNav {
+        display: none;
+        grid-column-start: 3;
+        grid-column-end: 4;
+        width: 334px;
+        height: 50px;
+        border: 1px solid #572EE5;
+        border-radius: 27px;
+        position: relative;
+    }
+    .mySearchOnNav {
+        position: absolute;
+        top: 13.8px;
+        left: 55px;
+        width: 215px;
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        line-height: 19px;
+        text-align: left;
+        color: #9CAFC3;
+        border: 0;
+        }
+    .iconSearchOnNav {
+        position: absolute;
+        top: 13px;
+        right: 20px;
+    }
+    .checkbox {
+        display: none;
+    }
+    .icons {
+        display: none;
+    }
+    .topnav {/*corregir posicion de los li, ojo responsivo se sale por fuera de pantalla*/
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        grid-column-start: 5;
+        grid-column-end: 6;
+        width: 100%;
+        height: 90px;
+        background: #FFFFFF;
+        opacity: 100%;
+        line-height: 16px;
+        font-size: 13px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .topnav li:first-child {
+        margin-right: 41.5px;
+    }    
+    .topnav li:last-child {
+        margin-right: 59.5px;
+        margin-left: 50px;
+    } 
+    .topnav li a{
+        color: #572EE5;
+        opacity: 100%; /*no queda fuerte si pongo opacidad del fondo a 50%*/
+    }
+    .createButton {
+        display: block;
+        grid-column-start: 6;
+        grid-column-end: 7;
+        /*width: 54px;
+        height: 54px;
+        background-image: url("./images/button-crear-gifo.svg");
+        background-size: contain;*/
+    }
+    .createImgButton {
+        width: 54px;
+        height: 54px;
+    }  
+    .createImgButton:active {
+        /*cambia logo*/
+    }
+    /*.createImgButton {
+        width: 100%;
+    }*/
+    header {
+        padding-top: 76px;
+        padding-bottom: 95px;
+    }
+    h1 {
+        padding-bottom: 24px;
+        font-size: 35px;
+        line-height: 50px;
+        text-align: center;
+        max-width: 934px;
+    }
+    .headerBreak {
+        display: block;
+    }
+    .search {
+        width: 551px;
+    }
+    .mySearch {
+        line-height: 19px;
+        text-align: left;
+        border: 0;
+    }
+    .iconSearch {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+    .trending {
+        padding-top: 73px;
+        padding-bottom: 7px;
+        font-size: 18px;
+    }
+    .themes {
+        font-size: 16px;
+        width: auto;
+        text-align: center;
+    }
+    .searchSection {
+        padding-top: 89px;
+    }
+    .searchTitle{
+        font-size: 35px;
+        line-height: 30px;
+        padding-bottom: 60px;
+        text-transform: capitalize;
+    }
+    .searchUl {
+        padding-right: 156px;
+        padding-left: 157px;
+        padding-bottom: 78px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .searchSection .gifFigure {
+        width: 260px;
+        height: 200px;
+        margin-bottom: 31px;
+        position: relative;
+    }
+    .searchSection .gifImg {
+        width: 260px;
+        height: 200px;
+    }
+    .searchSection .imgHover {
+        display: none;
+        width: 260px;
+        height: 200px;
+        background-color: #572EE5;
+        opacity: 70%;
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .searchSection .figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 2;
+        width: 260px;
+        height: 200px;
+    }
+    .username {
+        width: 37%;
+        height: 8.5%;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        position: absolute;
+        top: 66%;
+        left: 4.6%;
+    }
+    .title {
+        position: absolute;
+        top: 77%;
+        left: 4.6%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 19px;
+        height: 20%;
+        width: 90%;
+    }
+    .gifButtons {
+        display: none;
+        height: 32px;
+        z-index: 2;
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+    .favButton, .downloadButton, .maxButton {
+        opacity: 0.7;
+        border-radius: 6px;
+        background-color: #FFFFFF;
+        width: 32px;
+        height: 32px;
+        margin-right: 11px;
+    }
+    .gifFigure:hover + .gifButtons {
+        display: block;
+    }
+    .gifFigure:hover > .imgHover {
+        display: block;
+    }
+    .gifFigure:hover > .figcaption {
+        display: block;
+    }
+    .trendGifos {
+        padding: 67px 6.5% 182px 6.5%;
+    }
+    .trendTitle {
+        font-size: 25px;
+        padding-bottom: 12px;
+    }
+    .look {
+        padding-bottom: 53px;
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .carouselContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;/*no esta funcionando el centrado*/
+        margin-left: auto;
+    }
+    .prevButton {
+        display: inline;
+        border: none;
+        background-color: #F3F5F8;
+        margin-right: 22px;
+    }
+    .buttonSlider {
+        width: 40px;
+        height: 40px;
+    }
+    .carousel {
+        width: 1125px;
+        overflow: hidden;
+        padding-left: 0;
+    }
+    .carousel .card {
+        width: 357px;
+        height: 275px;
+        margin-right: 25px;
+        position: relative;s
+    }
+    .carousel .gifFigure {
+        position: relative;
+    }
+    .carousel .gifImg {
+        width: 357px;
+        height: 275px;
+        position: relative;
+    }
+    .carousel .imgHover {
+        display: none;
+        width: 357px;
+        height: 275px;
+        background-color: #572EE5;
+        opacity: 70%;
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .carousel .figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 2;
+        width: 357px;
+        height: 275px;
+    }
+    .carousel .gifButtons {
+        display: noness;
+        height: 32px;
+        z-index: 2;
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+    .nextButton {
+        border: none;
+        display: inline;
+        background-color: #F3F5F8;
+        margin-left: 25px;
+    }
+    footer {
+        height: 116px;
+        padding: 49.5px 10.8% 51.4px 10.8%;
+        display: block;
+    }
+    .social {
+        display: inline;
+        font-size: 13px;
+        line-height: 15px;
+        text-align: center;
+    }
+    .socialIcons {
+        padding: 0;
+        display: inline;
+    }
+    .imgContainer {
+        margin-left: 20px;
+    }
+    .rights {
+        font-size: 13px;
+        line-height: 15px;
+        display: inline;
+        text-align: center;
+        float: right;
+    }
+    /*no anda el hover de trenging!!!!!!!!!!!!!!1*/
