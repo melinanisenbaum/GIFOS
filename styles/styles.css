@@ -195,6 +195,9 @@ h1 {
     top: 13px;
     left: 21px;
 }
+.wordTrends {
+    text-align: center;
+}
 .trending {
     padding-top: 31px;
     line-height: 25px;

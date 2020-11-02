@@ -28,13 +28,13 @@ async function showTags(event) {
     const data = results.data;
     console.log (data);
     console.log(q);
-    renderTags(results.data,tagsContainer);
+    renderTags(data,tagsContainer);
 }
 
 showTags();
 
-function renderTags(list, container) {
-    container.innerHTML = '';
+function renderTags(list, tagsContainer) {
+    tagsContainer.innerHTML = "";
     list.forEach (item => {
         const li = document.createElement('li');
         const figure = document.createElement('figure')
@@ -51,6 +51,7 @@ function renderTags(list, container) {
         container.appendChild('li');
     })
 }
+
 const getSearchUrl = input => {
     return `https://api.giphy.com/v1/gifs/search?q=${input}&api_key=${apiKey}&limit=12`;
 }
