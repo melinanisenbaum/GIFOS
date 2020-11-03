@@ -47,21 +47,19 @@
             </picture>
             <form id="search">
                 <div class="searchContainer">
-                    <figure class="iconSearch" id="iconSearch">
-                        <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
-                    </figure>
-                    <figure class="iconSearchGrey">
-                        <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
+                    <figure class="mainIconSearch" id="iconSearch">
+                        <img src="./images/icon-search.svg" alt="search">
                     </figure>
                     <figure class="iconClose">
-                        <img src="./images/close.svg" alt="close" width="14px" height="14px">
+                        <img src="./images/close.svg" alt="close">
                     </figure>
                     <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
-                    <ul class="tags" id="tagsContainer">
-                        <!--<li class="datatag">sugerencia
-                            <figure class="IconSearchGrey">
+                    <ul class="tagsContainer" id="tagsContainer">
+                        <!--<li class="datatag">
+                            <figure class="IconSearch">
                                 <img class="IconSearchImg" src="./images/icon-search.svg" alt="search" width="15.8px" height="15.8px">
                             </figure>
+                            <span class="tag">
                         </li>
                         <li class="datatag">sugerencia</li>
                         <li class="datatag">sugerencia</li>
@@ -72,7 +70,8 @@
             <div class="wordTrends" id="wordTrends">
                 <h2 class="trending">Trending:</h2>
                 <p class="themes" id="themes"></p>
-            </div>   
+            </div>
+            <!--<div class="line"></div>-->   
             <section class="searchSection" id="searchSection">
                 <h2 class="searchTitle" id="searchTitle"></h2>
                 <ul class="searchUl" id="searchUl">
@@ -85,10 +84,14 @@
                                     <span class="title">Titulo GIFO</span>
                                 <figcaption>
                             </figure>
-                        <div class="searchButtons">
-                            <button class="favouriteButton" type="button" title="favourite">
-                                <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                            </button>
+                        <div class="buttonsContainer">
+                            <button class="favButton" type="button" title="favourite">
+                                
+                                    <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                                    <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
+                                    <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
+                                
+                                </button>
                             <button class="downloadButton" type="button" title="download">
                                 <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
                             </button>
@@ -99,7 +102,12 @@
                     </li>-->
                 </ul>
                 <button class="showMore" id="showMore" type="button" title="showMore">
-                    <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
+                    <figure class="showMoreFig">
+                        <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
+                    </figure>
+                    <figure class="showMoreFigHover">
+                        <img class="verIcon" src="./images/CTA-ver-mas-hover.svg" width="127px" height="50px">
+                    </figure>
                 </button>
                 <figure class="errorFig">
                     <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">

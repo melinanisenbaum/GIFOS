@@ -1,3 +1,4 @@
+const header = document.getElementById('header');
 const form = document.getElementById('search');
 const input = document.getElementById('mySearch');
 const lens = document.getElementById('iconSearch');
@@ -5,6 +6,7 @@ const searchSection = document.getElementById('searchSection');
 const searchUl = document.getElementById('searchUl');
 const tagsUl = document.getElementById('tags');
 const tagsContainer = document.getElementById('tagsContainer');
+const moreButton = document.getElementById('showMore');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
 
@@ -13,8 +15,6 @@ const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12";
 input.addEventListener('keyup', showTags);
 form.addEventListener('submit', showResult);
 lens.addEventListener('click', showResult);
-
-//showMoreButton.addEventListener('click', showMore);
 
 const getTagsUrl = (q) => {
     return `https://api.giphy.com/v1/gifs/search/tags?api_key=${apiKey}&q=${q}&limit=4`;
@@ -39,21 +39,24 @@ function renderTags(list, tagsContainer) {
         const li = document.createElement('li');
         const figure = document.createElement('figure')
         const img = document.createElement('img');
+        const span = document.createElement('span');
 
         li.className = 'dataTag';
-        li.textContent = item.name;
         figure.className = 'iconSearch';
         img.className = 'iconSearchImg';
         img.src = './images/icon-search.svg';
-
-        li.appendChild('figure');/*tira error*/
-        figure.appendChild('img');
-        container.appendChild('li');
+        span.className = 'tag';
+        span.textContent = item.name;
+        
+        li.appendChild(figure);
+        li.appendChild(span)
+        figure.appendChild(img);
+        tagsContainer.appendChild(li);
     })
 }
 
-const getSearchUrl = input => {
-    return `https://api.giphy.com/v1/gifs/search?q=${input}&api_key=${apiKey}&limit=12`;
+const getSearchUrl = (input, limit=12, offset=0) => {
+    return `https://api.giphy.com/v1/gifs/search?q=${input}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
 }
 
 async function showResult(event) {
@@ -75,6 +78,7 @@ async function showResult(event) {
     const errorFig = document.getElementById('errorFigure');
     
     if(results.data.length) {
+        showLine(header);
         showTitle(newKeyword, h2);
         renderResult(results.data, searchUl);
         showMoreButton();
@@ -84,6 +88,13 @@ async function showResult(event) {
     };
 }
 
+function showLine(container) {
+    const line = document.createElement('div');
+
+    line.className = 'line';
+
+    container.appendChild(line);
+}
 function showTitle(newKeyword, h2){
     h2.textContent = newKeyword;
 }
@@ -100,6 +111,8 @@ function renderResult(list, container) {
         const buttonsContainer = document.createElement('div');
         const favButton = document.createElement('button');
         const favIcon = document.createElement('img');
+        const favIconHover = document.createElement('img');
+        const favIconActive = document.createElement('img');
         const downloadButton = document.createElement('button');
         const downloadIcon = document.createElement('img');
         const maxButton = document.createElement('button');
@@ -119,6 +132,10 @@ function renderResult(list, container) {
         favButton.className = 'favButton';
         favIcon.className = 'favIcon';
         favIcon.src = './images/icon-fav.svg';
+        favIconHover.className = 'favIconHover';
+        favIconHover.src = './images/icon-fav-hover.svg';
+        favIconActive.className = 'favIconActive';
+        favIconActive.src = './images/icon-fav-active.svg';
         downloadButton.className = 'downloadButton';
         downloadIcon.className = 'downloadIcon';
         downloadIcon.src = './images/icon-download.svg';
@@ -137,22 +154,38 @@ function renderResult(list, container) {
         buttonsContainer.appendChild(downloadButton);
         buttonsContainer.appendChild(maxButton);
         favButton.appendChild(favIcon);
+        favButton.appendChild(favIconHover);
+        favButton.appendChild(favIconActive);
         downloadButton.appendChild(downloadIcon);
         maxButton.appendChild(maxIcon);
-        container.appendChild(li);        
+        container.appendChild(li);
+        
+        //favIcon.addEventListener('onmouseover', changeHoverImg);
+        //favIconHover.addEventListener('mouseenter', changeActiveImg);
     })
 }
+
+moreButton.addEventListener('click', showMoreResult);
 
 function showMoreButton(){
     document.getElementById('showMore').style.display="block";
 }
+
+let offset = 0
+const limit = 12
+
+async function showMoreResult(){
+    searchUl.innerHTML = "";
+    const q = input.value;
+    const url = getSearchUrl(q, limit, offset+=12);
+    const response = await fetch(url);
+    const results = await response.json();  
+    renderResult(results.data, searchUl);
+}   
+
 function showErrorFigure(){
     errorFig.style.display="block";
 }
-
-//async function showMore() {
-
-//}
 
 //trend words
 
@@ -188,3 +221,13 @@ async function showTrendings() {
     console.log(results);
     renderResult(results.data, carousel);
 }
+
+/*function changeHoverImg() {
+    favIcon.style.display="none";
+    favIconActive.style.display="block";
+}
+
+function changeActiveImg() {
+    favIconActive.style.display="none";
+    favIconHover.style.display="block";
+}*/

@@ -97,7 +97,7 @@ body {
     display: none;
 }
 .nav input:not(:checked) ~ .icons .fa-times {
-    display:none;
+    display: none;
 }
 nav input:checked ~ .header {
     display: none;/*no funciona*/
@@ -139,10 +139,11 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 19px;
-    padding-left: 55px;
     padding-top: 13.8px;
+    padding-right: 60px;
 }
 .mySearch {
+    margin-left: 54px;
     width: 215px;
     font-size: 16px;
     text-align: left;
@@ -154,46 +155,57 @@ h1 {
 .mySearch:focus {
     background-color: #FFFFFF;
 }
+.mySearch::-ms-clear{/*no funciona!!!!*/
+    display: none;
+}
 /*.header input:active {
     background-color: #FFFFFF;
 }*/
-.tags {
+.tagsContainer {
     display: flex;
     flex-direction: column;
     width: 215px;
     color: #9CAFC3;
+    padding-top: 14px;
+    padding-bottom: 18px;
 }
-.iconSearch {
+.dataTag {
+    display: flex;
+    flex-direction: row;
+    width: 215px;
+    padding-left: 21px;
+}
+.mainIconSearch {
     position: absolute;
     top: 13px;
     right: 20px;
     height: 20px;
     width: 20px;
 }
-.iconSearchGrey {
-    position: absolute;
-    top: 13px;
-    left: 21px;
-    color: #9CAFC3;/*no funciona*/
-    height: 20px;
-    width: 20px;
-    display: none;
+.iconSearch {
+    width: 15.8px;
+    height: 15.8px;
+    color: #9CAFC3;
+    margin-right: 14.6px;
+}
+.tag {
+    font-size: 16px;
+    line-height: 19px;
 }
 .iconClose {
     position: absolute;
     top: 13px;
-    right: 20px;
+    right: 23px;
     display: none;
     height: 14px;
     width: 14px;
 }
-.miniIconSearchGrey {
-    width: 15.8px;
-    height: 15.8px;
-    color: #9CAFC3;
-    position: absolute;
-    top: 13px;
+.mySearch:focus ~ .iconSearch {/*no funciona*/
     left: 21px;
+    color: #9CAFC3;
+}
+.mySearch:focus ~ .iconClose {
+    display: block;
 }
 .wordTrends {
     text-align: center;
@@ -216,6 +228,12 @@ h1 {
     width: 225px;
     text-align: center;
     padding-bottom: 45px;
+}
+.header .line {
+    width: 338px;
+    height: 0.1px;
+    opacity: 0.5;
+    border: 1px solid #9CAFC3;
 }
 .searchSection {
     padding-top: 43px 0px 29px 0px;
@@ -268,6 +286,16 @@ h1 {
     margin-left: auto;
     padding-bottom: 79px;
     outline: none;
+    height: 50px;
+}
+.showMoreFigHover {
+    display: none;
+}
+.showMore:hover > .showMoreFig {
+    display: none;
+}
+.showMore:hover > .showMoreFigHover {
+    display: block;
 }
 .errorFig {
     display: none;
@@ -508,9 +536,10 @@ footer {
         border: 0;
     }
     .iconSearch {
-        position: absolute;
         top: 15px;
-        right: 20px;
+    }
+    .iconClose {
+        top: 15px;
     }
     .trending {
         padding-top: 73px;
@@ -609,6 +638,8 @@ footer {
         width: 32px;
         height: 32px;
         margin-right: 11px;
+        border: none;
+        position: relative;
     }
     .gifFigure:hover + .gifButtons {
         display: block;
@@ -619,6 +650,38 @@ footer {
     .gifFigure:hover > .figcaption {
         display: block;
     }
+       
+    .favIcon {
+        display: block;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .favIconActive {
+        display: none;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .favIconHover {
+        display: none;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .favButton:hover > .favIcon {/*no funciona*/
+        display: none;
+    }
+    .favButton:hover > .favIconHover {
+        display: block;
+    }
+
     .trendGifos {
         padding: 67px 6.5% 182px 6.5%;
     }
