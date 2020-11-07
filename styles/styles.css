@@ -106,15 +106,16 @@ nav input:checked ~ .header {
     display: none;
     background: none;
     border: 0;
+    cursor: pointer;
 }
-header {
+.header {
     padding-top: 7px;
     padding-bottom: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-h1 {
+.mainTitle{
     padding-bottom: 31px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -124,27 +125,46 @@ h1 {
     text-align: center;
     max-width: 286px;
 }
-.headerBreak {
+/*.headerBreak {
     display: none;
-}
+}*/
 .wordGifos {
     color: #50E3C2;
 }
+.ilustraHeader {
+    width: 273px;
+    height: 130px;
+}
+.ilustraHeaderImg {
+    width: 273px;
+    height: 130px;
+}
+.search {
+    width: 334px;
+    height: fit-content;
+}
 .searchContainer {
     width: 334px;
-    min-height: 50px;
     border: 1px solid #572EE5;
     border-radius: 27px;
     position: relative;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 19px;
-    padding-top: 13.8px;
     padding-right: 60px;
+    display: flex;
+    flex-direction: column;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
 }
 .mySearch {
     margin-left: 54px;
     width: 215px;
+    height: 50px;
     font-size: 16px;
     text-align: left;
     color: #9CAFC3;
@@ -155,19 +175,14 @@ h1 {
 .mySearch:focus {
     background-color: #FFFFFF;
 }
-.mySearch::-ms-clear{/*no funciona!!!!*/
-    display: none;
-}
-/*.header input:active {
-    background-color: #FFFFFF;
-}*/
 .tagsContainer {
     display: flex;
     flex-direction: column;
-    width: 215px;
+    width: 500px;
     color: #9CAFC3;
     padding-top: 14px;
     padding-bottom: 18px;
+    display: none;
 }
 .dataTag {
     display: flex;
@@ -181,6 +196,7 @@ h1 {
     right: 20px;
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }
 .iconSearch {
     width: 15.8px;
@@ -200,9 +216,8 @@ h1 {
     height: 14px;
     width: 14px;
 }
-.mySearch:focus ~ .iconSearch {/*no funciona*/
+.mySearch:focus ~ .mainIconSearch {
     left: 21px;
-    color: #9CAFC3;
 }
 .mySearch:focus ~ .iconClose {
     display: block;
@@ -227,16 +242,17 @@ h1 {
     color:#572EE5;
     width: 225px;
     text-align: center;
-    padding-bottom: 45px;
 }
-.header .line {
+
+.searchSection {
+    padding-top: 43px 0px 29px 0px;
+}
+.searchSection .line {
     width: 338px;
     height: 0.1px;
     opacity: 0.5;
     border: 1px solid #9CAFC3;
-}
-.searchSection {
-    padding-top: 43px 0px 29px 0px;
+    display: none;
 }
 .searchTitle{
     font-family: 'Montserrat', sans-serif;
@@ -250,7 +266,6 @@ h1 {
 .searchUl {
     padding-right: 21px;
     padding-left: 21px;
-    padding-bottom: 57px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -284,9 +299,11 @@ h1 {
     background-color: #FFFFFF;
     margin-right: auto;
     margin-left: auto;
+    padding-top: 57px;
     padding-bottom: 79px;
     outline: none;
     height: 50px;
+    cursor: pointer;
 }
 .showMoreFigHover {
     display: none;
@@ -513,11 +530,11 @@ footer {
     /*.createImgButton {
         width: 100%;
     }*/
-    header {
+    .header {
         padding-top: 76px;
         padding-bottom: 95px;
     }
-    h1 {
+    .mainTitle {
         padding-bottom: 24px;
         font-size: 35px;
         line-height: 50px;
@@ -530,8 +547,11 @@ footer {
     .search {
         width: 551px;
     }
+    .searchContainer {
+        width: 551px;
+    }
     .mySearch {
-        line-height: 19px;
+        width: 300px;
         text-align: left;
         border: 0;
     }
@@ -563,7 +583,6 @@ footer {
     .searchUl {
         padding-right: 156px;
         padding-left: 157px;
-        padding-bottom: 78px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -640,6 +659,7 @@ footer {
         margin-right: 11px;
         border: none;
         position: relative;
+        cursor: pointer;
     }
     .gifFigure:hover + .gifButtons {
         display: block;
@@ -650,7 +670,6 @@ footer {
     .gifFigure:hover > .figcaption {
         display: block;
     }
-       
     .favIcon {
         display: block;
         width: 32px;
@@ -675,13 +694,18 @@ footer {
         top: 0;
         left: 0;
     }
-    .favButton:hover > .favIcon {/*no funciona*/
-        display: none;
-    }
-    .favButton:hover > .favIconHover {
+    .favButton .favIcon:hover ~ .favIconHover {/*no funciona*/
         display: block;
     }
-
+    .favButton:hover ~ .favIconHover {/*no funciona*/
+        display: block;
+    }
+    .favButton:active ~ .favIconActive {/*no funciona*/
+        display: block;
+    }
+    .showMore {
+        padding-top: 78px;
+    }
     .trendGifos {
         padding: 67px 6.5% 182px 6.5%;
     }
@@ -705,16 +729,32 @@ footer {
         display: inline;
         border: none;
         background-color: #F3F5F8;
-        margin-right: 22px;
+        margin-right: 20px;
+        cursor: pointer;
+        outline: none;
+        /*user-select: none; se ve grisado cuando lo clickeo*/
     }
     .buttonSlider {
         width: 40px;
         height: 40px;
     }
+    .buttonSliderHover {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: none;
+    }
+    .buttonSlider:hover {
+        display: none;
+    }
+    .buttonSlider:hover ~ .buttonSliderHover {
+        display: block;
+    }
     .carousel {
         width: 1125px;
         overflow: hidden;
         padding-left: 0;
+        justify-content: space-between;
     }
     .carousel .card {
         width: 357px;
@@ -762,18 +802,21 @@ footer {
         border: none;
         display: inline;
         background-color: #F3F5F8;
-        margin-left: 25px;
+        margin-left: 23px;
+        cursor: pointer;
+        outline: none;
     }
     footer {
         height: 116px;
-        padding: 49.5px 10.8% 51.4px 10.8%;
-        display: block;
+        padding: 49.5px 10.8% 0 10.8%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
-    .social {
+    .social {/*no esta centrado en vertical*/
         display: inline;
         font-size: 13px;
         line-height: 15px;
-        text-align: center;
     }
     .socialIcons {
         padding: 0;

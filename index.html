@@ -41,9 +41,9 @@
             </button>
         </nav>
         <header class="header">
-            <h1>Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
+            <h1 class="mainTitle">Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
             <picture class="ilustraHeader">
-                <img src="./images/ilustra_header.svg" alt="busca gifos y mas" width="273px" height="130px">
+                <img class="ilustraHeaderImg" src="./images/ilustra_header.svg" alt="busca gifos y mas">
             </picture>
             <form id="search">
                 <div class="searchContainer">
@@ -69,10 +69,9 @@
             </form>
             <div class="wordTrends" id="wordTrends">
                 <h2 class="trending">Trending:</h2>
-                <p class="themes" id="themes"></p>
             </div>
-            <!--<div class="line"></div>-->   
             <section class="searchSection" id="searchSection">
+                <div class="line" id="searchLine"></div>
                 <h2 class="searchTitle" id="searchTitle"></h2>
                 <ul class="searchUl" id="searchUl">
                     <!--<li class="card">
@@ -120,8 +119,9 @@
                 <h2 class="trendTitle">Trending GIFOS</h2>
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
                 <div class="carouselContainer">    
-                    <button class="prevButton" type="button" title="previous">
+                    <button class="prevButton" id="prevButton" type="button" title="previous">
                         <img class="buttonSlider" src="./images/button-slider-left.svg" width= "40px" height="40px">
+                        <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg" width= "40px" height="40px">
                     </button>
                     <ul class="carousel" id="carousel" aria-label="carousel">
                         <!--<li class="card">
@@ -133,7 +133,7 @@
                                     <span class="title">Titulo GIFO</span>
                                 </fig>
                             </figure>
-                            <div class="gifButton">
+                            <div class="gifButtons">
                                 <button class="favouriteButton" type="button" title="favourite">
                                     <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
                                 </button>
@@ -146,8 +146,9 @@
                             </div>
                         </li>-->
                     </ul>
-                    <button class="nextButton" type="button" title="next">
+                    <button class="nextButton" id="nextButton" type="button" title="next">
                         <img class="buttonSlider" src="./images/button-slider-right.svg" width= "40px" height="40px">
+                        <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg" width= "40px" height="40px">
                     </button>
                 </div>
             </section>
@@ -177,8 +178,8 @@
             </section>
         </main>
         <footer>
-            <span class="social">Compartir en:</span>
             <div class='socialIcons'>    
+                <span class="social">Compartir en:</span>
                 <a class= "imgContainer" target="_blank" href="https://www.facebook.com/" title="facebook" width="20px" height="20px">
                     <img src="./images/icon_facebook.svg" class="facebook">
                 </a>

@@ -7,6 +7,7 @@ const searchUl = document.getElementById('searchUl');
 const tagsUl = document.getElementById('tags');
 const tagsContainer = document.getElementById('tagsContainer');
 const moreButton = document.getElementById('showMore');
+const closeSearch = document.getElementById('iconClose');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
 
@@ -21,6 +22,7 @@ const getTagsUrl = (q) => {
 }
 
 async function showTags(event) {
+    tagsContainer.innerHTML = "";
     const q = input.value;
     const url = getTagsUrl(q);
     const response = await fetch(url);
@@ -52,7 +54,23 @@ function renderTags(list, tagsContainer) {
         li.appendChild(span)
         figure.appendChild(img);
         tagsContainer.appendChild(li);
+
+        li.addEventListener('click', autocomplete);
+
+        tagsContainer.style.display = 'block';
     })
+}
+
+function autocomplete(event) {
+    input.value = event.target.textContent;
+    showResult(event);
+    tagsContainer.style.display = 'none';
+}
+
+//closeSearch.addEventListener("click", ()=> {close(closeSearch)&(input.value = "")})
+
+function close(search){
+    search.classList.add("searchContainer");/*no entiendo*/
 }
 
 const getSearchUrl = (input, limit=12, offset=0) => {
@@ -61,7 +79,9 @@ const getSearchUrl = (input, limit=12, offset=0) => {
 
 async function showResult(event) {
     event.preventDefault();
-
+    
+    //searchUl.style.display = 'block';
+    
     const images = searchUl.querySelectorAll('li');
     
     if (images.length > 0) {
@@ -78,23 +98,24 @@ async function showResult(event) {
     const errorFig = document.getElementById('errorFigure');
     
     if(results.data.length) {
-        showLine(header);
+        showLine();
         showTitle(newKeyword, h2);
         renderResult(results.data, searchUl);
         showMoreButton();
+
     } else {
+        showLine();
         showTitle(newKeyword, h2);
         showErrorFigure();
     };
 }
 
-function showLine(container) {
-    const line = document.createElement('div');
+function showLine() {
+    const line = document.getElementById('searchLine');
 
-    line.className = 'line';
-
-    container.appendChild(line);
+    line.style.display = 'block';
 }
+
 function showTitle(newKeyword, h2){
     h2.textContent = newKeyword;
 }
@@ -158,24 +179,20 @@ function renderResult(list, container) {
         favButton.appendChild(favIconActive);
         downloadButton.appendChild(downloadIcon);
         maxButton.appendChild(maxIcon);
-        container.appendChild(li);
-        
-        //favIcon.addEventListener('onmouseover', changeHoverImg);
-        //favIconHover.addEventListener('mouseenter', changeActiveImg);
+        container.appendChild(li); 
     })
 }
 
 moreButton.addEventListener('click', showMoreResult);
 
-function showMoreButton(){
-    document.getElementById('showMore').style.display="block";
+function showMoreButton() {
+    document.getElementById('showMore').style.display='block';
 }
 
 let offset = 0
 const limit = 12
 
 async function showMoreResult(){
-    searchUl.innerHTML = "";
     const q = input.value;
     const url = getSearchUrl(q, limit, offset+=12);
     const response = await fetch(url);
@@ -196,9 +213,23 @@ async function showWordTrends(){
     const response = await fetch(url);
     const results = await response.json();
     const firstResults = results.data.splice(0,5);
+    console.log(firstResults);
     const p = document.createElement("p");
     p.innerText = firstResults;
     p.className = "themes";
+
+    function capitalize(str) {
+        str = str.split(" ");
+        
+        for (var i = 0, x = str.length; i < x; i++) {
+            str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+        }
+        
+        return str.join(" ");
+    }
+
+    capitalize(firstResults);
+
     wordTrends.appendChild(p);
 }
 
@@ -231,3 +262,23 @@ function changeActiveImg() {
     favIconActive.style.display="none";
     favIconHover.style.display="block";
 }*/
+
+const carouselSize = carousel.getBoundingClientRect();
+const displacement = carouselSize.width/3;
+
+function scrollLeft(event) {
+    event.preventDefault();
+    carousel.scrollLeft += displacement;
+}
+
+function scrollRight(event) {
+    event.preventDefault();
+    carousel.scrollRight += displacement;
+}
+
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+
+prevButton.addEventListener('click', scrollLeft);
+nextButton.addEventListener('click', scrollRight);
+
