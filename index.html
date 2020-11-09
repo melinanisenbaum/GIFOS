@@ -18,7 +18,6 @@
                     <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
                 </picture>
                 <input type="search" class="mySearchOnNav" placeholder='Busca GIFOS y mas' name="q">
-
             </form>
             <input type="checkbox" class="checkbox" id="checkbox">
             <label for="checkbox" class="icons">
@@ -28,12 +27,15 @@
             <ul class="topnav">
                 <li>
                     <a href="#">Modo Nocturno</a>
+                    <div class="line"></div>
                 </li>
-                <li class='lineBreak'>
+                <li>
                     <a href="#">Favoritos</a>
+                    <div class="line"></div>
                 </li>
                 <li>
                     <a href="#">Mis GIFOS</a>
+                    <div class="line"></div>
                 </li>
             </ul>
             <button class="createButton">
@@ -178,17 +180,28 @@
             </section>
         </main>
         <footer>
-            <div class='socialIcons'>    
-                <span class="social">Compartir en:</span>
-                <a class= "imgContainer" target="_blank" href="https://www.facebook.com/" title="facebook" width="20px" height="20px">
-                    <img src="./images/icon_facebook.svg" class="facebook">
-                </a>
-                <a class= "imgContainer"target="_blank" href="https://twitter.com/" title="twitter" width="18px" height="16.2px">
-                    <img src="./images/icon-twitter.svg" class="twitter">
-                </a>
-                <a class= "imgContainer" target="_blank" href="https://www.instagram.com/" title="instagram">
-                    <img src="./images/icon_instagram.svg" class="instagram" alt="instagram" width="18px" height="18px">
-                </a>
+            <div class='socialIcons'>
+                <span class="share">Compartir en:</span>
+                <div class="icons">
+                    <figure class= "imgContainer">
+                        <a target="_blank" href="https://www.facebook.com/" title="facebook">
+                            <img src="./images/icon_facebook.svg" class="facebook">
+                            <img src="./images/icon_facebook_hover.svg" class="facebookHover">
+                        </a>
+                    </figure>
+                    <figure class= "imgContainer">
+                        <a class= "imgContainer" target="_blank" href="https://twitter.com/" title="twitter">
+                            <img src="./images/icon-twitter.svg" class="twitter">
+                            <img src="./images/icon-twitter-hover.svg" class="twitterHover">
+                        </a>
+                    </figure>
+                    <figure class= "imgContainer">
+                        <a class= "imgContainer" target="_blank" href="https://www.instagram.com/" title="instagram">
+                            <img src="./images/icon_instagram.svg" class="instagram" alt="instagram">
+                            <img src="./images/icon_instagram-hover.svg" class="instagramHover" alt="instagram">
+                        </a>
+                    </figure>
+                </div>
             </div>
             <span class="rights">© GIFOS 2020 All Rights Reserved.</span>
         </footer>

@@ -7,7 +7,7 @@ const searchUl = document.getElementById('searchUl');
 const tagsUl = document.getElementById('tags');
 const tagsContainer = document.getElementById('tagsContainer');
 const moreButton = document.getElementById('showMore');
-const closeSearch = document.getElementById('iconClose');
+const closeButton = document.getElementById('iconClose');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
 
@@ -67,7 +67,7 @@ function autocomplete(event) {
     tagsContainer.style.display = 'none';
 }
 
-//closeSearch.addEventListener("click", ()=> {close(closeSearch)&(input.value = "")})
+//closeButton.addEventListener("click", ()=> {close(search)&(input.value = "")})
 
 function close(search){
     search.classList.add("searchContainer");/*no entiendo*/
@@ -118,6 +118,7 @@ function showLine() {
 
 function showTitle(newKeyword, h2){
     h2.textContent = newKeyword;
+    h2.style.display = 'block';
 }
 
 function renderResult(list, container) {
@@ -212,23 +213,18 @@ async function showWordTrends(){
     const url = `https://api.giphy.com/v1/trending/searches?api_key=${apiKey}`;
     const response = await fetch(url);
     const results = await response.json();
-    const firstResults = results.data.splice(0,5);
+    const firstResults = results.data.slice(0,5);
     console.log(firstResults);
+        
+    /*for (let i = 0; i < elementos.length; i++) {
+        let elemento = firstResults.split(',');
+        elemento[i].addEventListener('click', showResults);
+    }*/
+
     const p = document.createElement("p");
-    p.innerText = firstResults;
+    p.innerText = firstResults.join(', ');
     p.className = "themes";
 
-    function capitalize(str) {
-        str = str.split(" ");
-        
-        for (var i = 0, x = str.length; i < x; i++) {
-            str[i] = str[i][0].toUpperCase() + str[i].substr(1);
-        }
-        
-        return str.join(" ");
-    }
-
-    capitalize(firstResults);
 
     wordTrends.appendChild(p);
 }
@@ -280,5 +276,8 @@ const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 
 prevButton.addEventListener('click', scrollLeft);
+//prevButton.addEventListener('touchstart', scrollLeft);
 nextButton.addEventListener('click', scrollRight);
+//nextButton.addEventListener('touchend', scrollLeft);
+
 

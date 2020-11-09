@@ -76,9 +76,6 @@ body {
     text-align: center;
     text-justify: center;
 }
-/*.lineBreak {
-}*/
-
 .topnav li a{
     color: #FFFFFF;
 }
@@ -88,6 +85,13 @@ body {
 .topnav li a:active{
     color: #9CAFC3;
     border: none;/*me sigue mostrando el borde de abajo*/
+}
+.topnav .line {
+    width: 41px;
+    opacity: 0.5;
+    border: 0.5px solid #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
 }
 .nav input:checked ~ .topnav {
     display: flex;
@@ -125,9 +129,6 @@ nav input:checked ~ .header {
     text-align: center;
     max-width: 286px;
 }
-/*.headerBreak {
-    display: none;
-}*/
 .wordGifos {
     color: #50E3C2;
 }
@@ -189,6 +190,7 @@ input[type="search"]::-webkit-search-results-decoration {
     flex-direction: row;
     width: 215px;
     padding-left: 21px;
+    cursor: pointer;
 }
 .mainIconSearch {
     position: absolute;
@@ -216,10 +218,11 @@ input[type="search"]::-webkit-search-results-decoration {
     height: 14px;
     width: 14px;
 }
-.mySearch:focus ~ .mainIconSearch {
+.mySearch:active ~ .mainIconSearch {
     left: 21px;
+    right: 0px;
 }
-.mySearch:focus ~ .iconClose {
+.mySearch:active ~ .iconClose {
     display: block;
 }
 .wordTrends {
@@ -248,11 +251,15 @@ input[type="search"]::-webkit-search-results-decoration {
     padding-top: 43px 0px 29px 0px;
 }
 .searchSection .line {
-    width: 338px;
-    height: 0.1px;
+    width: 157px;
     opacity: 0.5;
-    border: 1px solid #9CAFC3;
+    border: 0.5px solid #9CAFC3;
+    background-color: #9CAFC3;
     display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    margin-bottom: 43px;
 }
 .searchTitle{
     font-family: 'Montserrat', sans-serif;
@@ -262,6 +269,7 @@ input[type="search"]::-webkit-search-results-decoration {
     line-height: 40px;
     padding-bottom: 38px;
     text-align: center;
+    display: none;
 }
 .searchUl {
     padding-right: 21px;
@@ -303,6 +311,7 @@ input[type="search"]::-webkit-search-results-decoration {
     padding-bottom: 79px;
     outline: none;
     height: 50px;
+    width: 127px;
     cursor: pointer;
 }
 .showMoreFigHover {
@@ -385,40 +394,84 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
 }
 footer {
-    height: 196px;
     font-family: 'Roboto',sans-serif;
     font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
     padding-top: 47px;
     padding-bottom: 23px;
 }
-.social {
-    display: block;
-    font-size: 15px;
-    line-height: 18px;
+.socialIcons {
     text-align: center;
 }
-.socialIcons {
-    padding: 23px 0 47.8px 0;
-    display: block;
-    text-align: center;
+.icons {
+    padding: 23px 0 48px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .imgContainer {
+    width: 20px;
+    height: 20px;
     margin-right: 19px;
+    position: relative;
 }
 .imgContainer:last-child {
     margin-right: 0;
 }
-.facebook .twitter .instagram {
-    color: #CDD6E0;
+.facebook {
+    width: 20px;
+    height: 20px;
+}
+.facebookHover {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
 }
 .facebook:hover {
-    color: #572EE5;
+    display: none;
+}
+.facebook:hover ~ .facebookHover {
+    display: block;
+}
+.twitter {
+    width: 18px;
+    height: 16.2px;
+}
+.twitterHover {
+    width: 18px;
+    height: 16.2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
 }
 .twitter:hover {
-    color: #572EE5;
+    display: none;
+}
+.twitter:hover ~ .twitterHover {
+    display: block;
+}
+.instagram {
+    width: 18px;
+    height: 18px;
+}
+.instagramHover {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
 }
 .instagram:hover {
-    color: #572EE5;
+    display: none;
+}
+.instagram:hover ~ .instagramHover {
+    display: block;
 }
 .rights {
     font-size: 14px;
@@ -511,6 +564,9 @@ footer {
         color: #572EE5;
         opacity: 100%; /*no queda fuerte si pongo opacidad del fondo a 50%*/
     }
+    .topnav .line {
+        display: none;
+    }
     .createButton {
         display: block;
         grid-column-start: 6;
@@ -572,7 +628,12 @@ footer {
         text-align: center;
     }
     .searchSection {
-        padding-top: 89px;
+    }
+    .searchSection .line {
+        width: 338px;
+        display: none;
+        margin-top: 55px;
+        margin-bottom: 82px;  
     }
     .searchTitle{
         font-size: 35px;
@@ -808,28 +869,30 @@ footer {
     }
     footer {
         height: 116px;
-        padding: 49.5px 10.8% 0 10.8%;
+        padding-top: 49.5px;
+        padding-bottom: 51.5px;
+        padding-left: 10.8%;
+        padding-right: 11%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-    .social {/*no esta centrado en vertical*/
-        display: inline;
-        font-size: 13px;
-        line-height: 15px;
-    }
     .socialIcons {
-        padding: 0;
         display: inline;
+        text-align: start;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        width: 500px;
     }
-    .imgContainer {
-        margin-left: 20px;
+    .icons {
+        padding: 0;
+        width: 95px;
+        height: 20px;
+        display: inline-block;
     }
     .rights {
         font-size: 13px;
         line-height: 15px;
-        display: inline;
-        text-align: center;
-        float: right;
+        text-align: right;
     }
-    /*no anda el hover de trenging!!!!!!!!!!!!!!1*/
