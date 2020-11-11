@@ -152,7 +152,6 @@ nav input:checked ~ .header {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 19px;
-    padding-right: 60px;
     display: flex;
     flex-direction: column;
 }
@@ -182,7 +181,7 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 500px;
     color: #9CAFC3;
     padding-top: 14px;
-    padding-bottom: 18px;
+    padding-bottom: 8px;
     display: none;
 }
 .dataTag {
@@ -190,6 +189,7 @@ input[type="search"]::-webkit-search-results-decoration {
     flex-direction: row;
     width: 215px;
     padding-left: 21px;
+    padding-bottom: 10px;
     cursor: pointer;
 }
 .mainIconSearch {
@@ -206,10 +206,6 @@ input[type="search"]::-webkit-search-results-decoration {
     color: #9CAFC3;
     margin-right: 14.6px;
 }
-.tag {
-    font-size: 16px;
-    line-height: 19px;
-}
 .iconClose {
     position: absolute;
     top: 13px;
@@ -217,12 +213,26 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
     height: 14px;
     width: 14px;
+    cursor: pointer;
 }
-.mySearch:active ~ .mainIconSearch {
+.searchContainer .line {
+    width: 92%;
+    opacity: 0.5;
+    border: 0.5px solid #9CAFC3;
+    background-color: #9CAFC3;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.tag {
+    font-size: 16px;
+    line-height: 19px;
+}
+.mySearch:focus ~ .mainIconSearch {
     left: 21px;
     right: 0px;
 }
-.mySearch:active ~ .iconClose {
+.mySearch:focus ~ .iconClose {
     display: block;
 }
 .wordTrends {
@@ -246,7 +256,6 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 225px;
     text-align: center;
 }
-
 .searchSection {
     padding-top: 43px 0px 29px 0px;
 }
@@ -299,6 +308,18 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
 }
 .searchSection .gifButtons {
+    display: none;
+}
+.favButton, .downloadButton, .maxButton {
+    cursor: pointer;/*no funciona*/
+}
+.favIcon {
+    display: block;
+}
+.favIconHover {
+    display: none;
+}
+.favIconActive {
     display: none;
 }
 .showMore {
@@ -534,7 +555,7 @@ footer {
     .checkbox {
         display: none;
     }
-    .icons {
+    .icons .fa-bars, .icons .fa-times {
         display: none;
     }
     .topnav {/*corregir posicion de los li, ojo responsivo se sale por fuera de pantalla*/
@@ -722,7 +743,7 @@ footer {
         position: relative;
         cursor: pointer;
     }
-    .gifFigure:hover + .gifButtons {
+    .gifFigure:hover > .gifButtons {
         display: block;
     }
     .gifFigure:hover > .imgHover {
@@ -755,13 +776,10 @@ footer {
         top: 0;
         left: 0;
     }
-    .favButton .favIcon:hover ~ .favIconHover {/*no funciona*/
-        display: block;
+    .favButton:hover > .favIcon {
+        display: none;
     }
-    .favButton:hover ~ .favIconHover {/*no funciona*/
-        display: block;
-    }
-    .favButton:active ~ .favIconActive {/*no funciona*/
+    .favButton:hover > .favIconHover {
         display: block;
     }
     .showMore {
@@ -805,10 +823,16 @@ footer {
         height: 40px;
         border: none;
     }
-    .buttonSlider:hover {
+    .prevButton:hover > .buttonSlider{
         display: none;
     }
-    .buttonSlider:hover ~ .buttonSliderHover {
+    .prevButton:hover > .buttonSliderHover{
+        display: block;
+    }
+    .nextButton:hover > .buttonSlider {
+        display: none;
+    }
+    .nextButton:hover > .buttonSliderHover{
         display: block;
     }
     .carousel {

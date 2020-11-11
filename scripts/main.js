@@ -8,12 +8,14 @@ const tagsUl = document.getElementById('tags');
 const tagsContainer = document.getElementById('tagsContainer');
 const moreButton = document.getElementById('showMore');
 const closeButton = document.getElementById('iconClose');
+const errorFig = document.getElementById('errorFigure');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
 
 //Barra de busqueda
 
 input.addEventListener('keyup', showTags);
+form.addEventListener('submit', ()=> {close(search)&(input.value = "")});
 form.addEventListener('submit', showResult);
 lens.addEventListener('click', showResult);
 
@@ -36,7 +38,9 @@ async function showTags(event) {
 showTags();
 
 function renderTags(list, tagsContainer) {
+    const division = document.getElementById('tagsLine');    
     tagsContainer.innerHTML = "";
+
     list.forEach (item => {
         const li = document.createElement('li');
         const figure = document.createElement('figure')
@@ -57,6 +61,7 @@ function renderTags(list, tagsContainer) {
 
         li.addEventListener('click', autocomplete);
 
+        division.style.display = 'block';
         tagsContainer.style.display = 'block';
     })
 }
@@ -67,7 +72,7 @@ function autocomplete(event) {
     tagsContainer.style.display = 'none';
 }
 
-//closeButton.addEventListener("click", ()=> {close(search)&(input.value = "")})
+closeButton.addEventListener('click', ()=> {close(search)&(input.value = "")});
 
 function close(search){
     search.classList.add("searchContainer");/*no entiendo*/
@@ -79,8 +84,6 @@ const getSearchUrl = (input, limit=12, offset=0) => {
 
 async function showResult(event) {
     event.preventDefault();
-    
-    //searchUl.style.display = 'block';
     
     const images = searchUl.querySelectorAll('li');
     
@@ -95,8 +98,7 @@ async function showResult(event) {
     console.log(results);
 
     const h2 = document.getElementById('searchTitle');
-    const errorFig = document.getElementById('errorFigure');
-    
+       
     if(results.data.length) {
         showLine();
         showTitle(newKeyword, h2);
@@ -128,9 +130,9 @@ function renderResult(list, container) {
         const img = document.createElement('img');
         const imgHover = document.createElement('img');
         const figcaption =document.createElement('figcaption');
+        const buttonsContainer = document.createElement('div');
         const user = document.createElement('span');
         const title = document.createElement('span');
-        const buttonsContainer = document.createElement('div');
         const favButton = document.createElement('button');
         const favIcon = document.createElement('img');
         const favIconHover = document.createElement('img');
@@ -166,12 +168,12 @@ function renderResult(list, container) {
         maxIcon.src = './images/icon-max.svg';
 
         li.appendChild(figure);
+        figure.appendChild(buttonsContainer);
         figure.appendChild(img);
         figure.appendChild(imgHover);
         figure.appendChild(figcaption);
         figcaption.appendChild(user);
         figcaption.appendChild(title);
-        li.appendChild(buttonsContainer);
         buttonsContainer.appendChild(favButton);
         buttonsContainer.appendChild(downloadButton);
         buttonsContainer.appendChild(maxButton);
@@ -180,7 +182,46 @@ function renderResult(list, container) {
         favButton.appendChild(favIconActive);
         downloadButton.appendChild(downloadIcon);
         maxButton.appendChild(maxIcon);
-        container.appendChild(li); 
+        container.appendChild(li);
+
+        // cuando se pulsa en "agregar a favoritos"
+        favButton.addEventListener('click', addToFavourites);
+
+        async function addToFavourites(event) {
+            event.preventDefault();
+            
+            const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${key}`;
+            const response = await fetch(url);
+            const results = await response.json();
+            console.log(results);
+            
+            let gifInfo = {
+                id: results.data.id,
+                url: results.data.images.original.url,
+                title: results.data.title,
+                user: results.data.username,
+            };
+        
+            // leemos los favoritos del localStorage
+            let myfavourites = localStorage.getItem('myFavourites') || '[]';
+            myfavourites = JSON.parse(myfavourites);
+            console.log(myfavourites);
+            
+            // buscamos el producto en la lista de favoritos
+            let newFav = myfavourites.findIndex(function(item) { return item.id == gifInfo.id; });
+            if (newFav > -1) {
+                // si está, lo quitamos
+                myfavourites.splice(newFav, 1);
+                console.log('existe')
+            } else {
+                // si no está, lo añadimos
+                myfavourites.push(gifInfo);
+                console.log('anadido')
+                }
+                
+                // guardamos la lista de favoritos 
+            localStorage.setItem('myfavourites', JSON.stringify(myfavourites));
+        };
     })
 }
 
@@ -249,15 +290,13 @@ async function showTrendings() {
     renderResult(results.data, carousel);
 }
 
-/*function changeHoverImg() {
-    favIcon.style.display="none";
-    favIconActive.style.display="block";
-}
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
 
-function changeActiveImg() {
-    favIconActive.style.display="none";
-    favIconHover.style.display="block";
-}*/
+prevButton.addEventListener('click', scrollLeft);
+//prevButton.addEventListener('touchstart', scrollLeft);
+nextButton.addEventListener('click', scrollRight);
+//nextButton.addEventListener('touchend', scrollLeft);
 
 const carouselSize = carousel.getBoundingClientRect();
 const displacement = carouselSize.width/3;
@@ -267,17 +306,30 @@ function scrollLeft(event) {
     carousel.scrollLeft += displacement;
 }
 
-function scrollRight(event) {
+function scrollRight(event) { /*no funciona*/
     event.preventDefault();
     carousel.scrollRight += displacement;
 }
 
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
 
-prevButton.addEventListener('click', scrollLeft);
-//prevButton.addEventListener('touchstart', scrollLeft);
-nextButton.addEventListener('click', scrollRight);
-//nextButton.addEventListener('touchend', scrollLeft);
+/*position = 0;
+width = 385;
+count = 1;
+listElements = carousel.querySelectorAll('li');
+
+prevButton.addEventListener('click', () => {
+    position = Math.min(possition + width * count, 0)
+    carousel.style.marginLeft = position + 'px'
+})
+
+nextButton.addEventListener('click', () => {
+    position = Math.max(position - width * count, width * (listElems.length - 3))
+    carousel.style.marginLeft = position + 'px'
+})*/
+
+//favoritos
+
+
+
 
 

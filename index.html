@@ -49,13 +49,14 @@
             </picture>
             <form id="search">
                 <div class="searchContainer">
+                    <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
                     <figure class="mainIconSearch" id="iconSearch">
                         <img src="./images/icon-search.svg" alt="search">
                     </figure>
-                    <figure class="iconClose">
+                    <figure class="iconClose" id="iconClose">
                         <img src="./images/close.svg" alt="close">
                     </figure>
-                    <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
+                    <div class="line" id="tagsLine"></div>
                     <ul class="tagsContainer" id="tagsContainer">
                         <!--<li class="datatag">
                             <figure class="IconSearch">
@@ -84,22 +85,21 @@
                                     <span class="username">User</span>
                                     <span class="title">Titulo GIFO</span>
                                 <figcaption>
+                                <div class="gifButtons'>
+                                    <button class="favButton" type="button" title="favourite">
+                                            <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
+                                            <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
+                                        
+                                        </button>
+                                    <button class="downloadButton" type="button" title="download">
+                                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
+                                    </button>
+                                    <button class="maxButton" type="button" title="maximaze">
+                                        <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
+                                    </button>
+                                </div>
                             </figure>
-                        <div class="buttonsContainer">
-                            <button class="favButton" type="button" title="favourite">
-                                
-                                    <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                    <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
-                                    <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
-                                
-                                </button>
-                            <button class="downloadButton" type="button" title="download">
-                                <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                            </button>
-                            <button class="maxButton" type="button" title="maximaze">
-                                <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
-                            </button>
-                        </div>
                     </li>-->
                 </ul>
                 <button class="showMore" id="showMore" type="button" title="showMore">
