@@ -9,8 +9,44 @@ const tagsContainer = document.getElementById('tagsContainer');
 const moreButton = document.getElementById('showMore');
 const closeButton = document.getElementById('iconClose');
 const errorFig = document.getElementById('errorFigure');
+const mode = document.getElementById('mode');
+const mainStyle = document.getElementById('mainStyle');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
+
+//modo light/dark
+
+mode.addEventListener('click', changeMode);
+
+let theme = 'lightMode';
+
+if (localStorage.theme != undefined) {
+    theme = localStorage.mode;
+}
+
+mainStyle.href = '.styles/'+ theme +'.css';
+
+if (theme === 'lightMode') {
+    mode.innerHTML = 'Modo Nocturno';
+};
+if (mode === 'dark') {
+    mode.innerHTML = 'Modo Diurno';
+}
+
+function changeMode() {
+    if (theme === 'lightMode') {
+        mainStyle. href='./styles/darkMode.css';
+        theme = 'darkMode';
+        mode.innerHTML = 'Modo Diurno';
+        //localStorage.modeColor = mode;
+    }
+    if (theme === 'darkMode') {
+        mainStyle. href='./styles/lightMode.css';
+        theme = 'lightMode';
+        mode.innerHTML = 'Modo Nocturno';
+        //localStorage.modeColor = mode;
+    }
+}
 
 //Barra de busqueda
 
@@ -190,16 +226,12 @@ function renderResult(list, container) {
         async function addToFavourites(event) {
             event.preventDefault();
             
-            const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${key}`;
-            const response = await fetch(url);
-            const results = await response.json();
-            console.log(results);
-            
+
             let gifInfo = {
-                id: results.data.id,
-                url: results.data.images.original.url,
-                title: results.data.title,
-                user: results.data.username,
+                id: item.id,
+                url: item.images.original.url,
+                title: item.title,
+                user: item.username,
             };
         
             // leemos los favoritos del localStorage
@@ -208,7 +240,7 @@ function renderResult(list, container) {
             console.log(myfavourites);
             
             // buscamos el producto en la lista de favoritos
-            let newFav = myfavourites.findIndex(function(item) { return item.id == gifInfo.id; });
+            let newFav = myfavourites.findIndex(function(item) { return item.id === gifInfo.id; });
             if (newFav > -1) {
                 // si está, lo quitamos
                 myfavourites.splice(newFav, 1);
@@ -220,7 +252,7 @@ function renderResult(list, container) {
                 }
                 
                 // guardamos la lista de favoritos 
-            localStorage.setItem('myfavourites', JSON.stringify(myfavourites));
+            localStorage.setItem('myfavourites', JSON.stringify(newFav));
         };
     })
 }

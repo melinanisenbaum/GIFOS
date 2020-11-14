@@ -9,9 +9,10 @@
 }
 body {
     width: 100vw;
-    border-top: 5px solid #572EE5;
-    border-bottom: 5px solid #572EE5;
-    background: #FFFFFF;
+    border-top: 5px solid #000000;
+    border-bottom: 5px solid #000000;
+    background: #37383C;
+    color: #FFFFFF;
 }
 .nav {
     position: relative;
@@ -65,8 +66,8 @@ body {
     height: 100vw;
     overflow: visible;/* no tapa todo el alto de la pantalla*/
     font-family: 'Montserrat', sans-serif;
-    background: #572EE5;
-    opacity: 90%;
+    background: #000000;
+    opacity: 100%;
     line-height: 55px;
     font-size: 16px;
     font-weight: 700;
@@ -124,7 +125,6 @@ nav input:checked ~ .header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 25px;
-    color: #572EE5;
     line-height: 33px;
     text-align: center;
     max-width: 286px;
@@ -146,7 +146,7 @@ nav input:checked ~ .header {
 }
 .searchContainer {
     width: 334px;
-    border: 1px solid #572EE5;
+    border: 1px solid #FFFFFF;
     border-radius: 27px;
     position: relative;
     font-family: 'Roboto', sans-serif;
@@ -167,10 +167,10 @@ input[type="search"]::-webkit-search-results-decoration {
     height: 50px;
     font-size: 16px;
     text-align: left;
-    color: #9CAFC3;
+    color: #000000 ;
     border: 0;
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #6B7989 ;
 }
 .mySearch:focus {
     background-color: #FFFFFF;
@@ -203,7 +203,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .iconSearch {
     width: 15.8px;
     height: 15.8px;
-    color: #9CAFC3;
+    color: #FFFFFF;
     margin-right: 14.6px;
 }
 .iconClose {
@@ -245,14 +245,12 @@ input[type="search"]::-webkit-search-results-decoration {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 700;
-    color: #572EE5;
 }
 .themes {
     line-height: 25px;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color:#572EE5;
     width: 225px;
     text-align: center;
 }
@@ -273,7 +271,6 @@ input[type="search"]::-webkit-search-results-decoration {
 .searchTitle{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: #572EE5;
     font-size: 25px;
     line-height: 40px;
     padding-bottom: 38px;
@@ -304,22 +301,10 @@ input[type="search"]::-webkit-search-results-decoration {
 .searchSection .imgHover {
     display: none;
 }
-.searchSection .figcaption {
+.figcaption {
     display: none;
 }
-.searchSection .gifButtons {
-    display: none;
-}
-.favButton, .downloadButton, .maxButton {
-    cursor: pointer;/*no funciona*/
-}
-.favIcon {
-    display: block;
-}
-.favIconHover {
-    display: none;
-}
-.favIconActive {
+.gifButtons {
     display: none;
 }
 .showMore {
@@ -365,12 +350,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .trendGifos {
     padding-top: 46px;
     padding-bottom: 82px;
-    background-color: #F3F5F8;
+    background-color: #222326;
 }
 .trendTitle {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: #572EE5;
     font-size: 20px;
     line-height: 30px;
     padding-bottom: 7px;
@@ -390,7 +374,7 @@ input[type="search"]::-webkit-search-results-decoration {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding-left: 22px;
+    margin-left: 22px;
     overflow: hidden;
 }
 .prevButton {
@@ -401,12 +385,6 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 243px;
     height: 187px;
     border: none;
-}
-.carousel .figcaption {
-    display: none;
-}
-.carousel .gifButtons {
-    display: none;
 }
 .nextButton {
     display: none;
@@ -530,7 +508,7 @@ footer {
         grid-column-end: 4;
         width: 334px;
         height: 50px;
-        border: 1px solid #572EE5;
+        border: 1px solid #FFFFFF;
         border-radius: 27px;
         position: relative;
     }
@@ -567,7 +545,7 @@ footer {
         grid-column-end: 6;
         width: 100%;
         height: 90px;
-        background: #FFFFFF;
+        background: #37383C;
         opacity: 100%;
         line-height: 16px;
         font-size: 13px;
@@ -582,7 +560,6 @@ footer {
         margin-left: 50px;
     } 
     .topnav li a{
-        color: #572EE5;
         opacity: 100%; /*no queda fuerte si pongo opacidad del fondo a 50%*/
     }
     .topnav .line {
@@ -685,7 +662,7 @@ footer {
         width: 260px;
         height: 200px;
         background-color: #572EE5;
-        opacity: 70%;
+        opacity: 60%;
         z-index: 1;
         position: absolute;
         top: 0;
@@ -707,7 +684,6 @@ footer {
         font-weight: 400;
         font-size: 15px;
         line-height: 18px;
-        color: #FFFFFF;
         position: absolute;
         top: 66%;
         left: 4.6%;
@@ -719,18 +695,12 @@ footer {
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
         font-weight: 700;
-        color: #FFFFFF;
         line-height: 19px;
         height: 20%;
         width: 90%;
     }
     .gifButtons {
         display: none;
-        height: 32px;
-        z-index: 2;
-        position: absolute;
-        top: 10px;
-        right: 0;
     }
     .favButton, .downloadButton, .maxButton {
         opacity: 0.7;
@@ -741,10 +711,15 @@ footer {
         margin-right: 11px;
         border: none;
         position: relative;
-        cursor: pointer;
+        cursor: pointer;/*no funciona*/
     }
     .gifFigure:hover > .gifButtons {
         display: block;
+        height: 32px;
+        z-index: 2;
+        position: absolute;
+        top: 10px;
+        right: 0;
     }
     .gifFigure:hover > .imgHover {
         display: block;
@@ -807,7 +782,7 @@ footer {
     .prevButton {
         display: inline;
         border: none;
-        background-color: #F3F5F8;
+        background-color: #222326;
         margin-right: 20px;
         cursor: pointer;
         outline: none;
@@ -875,18 +850,10 @@ footer {
         width: 357px;
         height: 275px;
     }
-    .carousel .gifButtons {
-        display: noness;
-        height: 32px;
-        z-index: 2;
-        position: absolute;
-        top: 10px;
-        right: 0;
-    }
     .nextButton {
         border: none;
         display: inline;
-        background-color: #F3F5F8;
+        background-color: #222326;
         margin-left: 23px;
         cursor: pointer;
         outline: none;
@@ -913,7 +880,6 @@ footer {
         padding: 0;
         width: 95px;
         height: 20px;
-        display: inline-block;
     }
     .rights {
         font-size: 13px;
