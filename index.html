@@ -3,26 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"  type="text/css" id="mainStyle" href="./styles/lightMode.css">
+        <link rel="stylesheet"  type="text/css" id="mainStyle" href="./styles/main.css">
+        <link rel="stylesheet"  type="text/css" id="themeStyle" href="./styles/lightMode.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <title>GIFOS</title>
     </head>
     <body>
         <nav class="nav">
             <figure class="logo">
-                <img class="logoMobile" src="./images/logo-mobile.svg" alt="logo">
-                <img class="logoDesktop" src="./images/logo-desktop.svg" alt="logo">
+                <img class="logoMobile light" src="./images/logo-mobile.svg" alt="logo">
+                <img class="logoDesktop light" src="./images/logo-desktop.svg" alt="logo">
+                <img class="logoMobile dark" src="./images/logo-mobile-modo-noct.svg" alt="logo">
+                <img class="logoDesktop dark" src="./images/logo-desktop-modo-noc.svg" alt="logo">        
             </figure>
             <form  class="searchOnNav">
-                <picture class="iconSearchOnNav">
-                    <img src="./images/icon-search.svg" alt="search" width="20px" height="20px">
-                </picture>
+                <figure class="iconSearchOnNav">
+                    <img class="light" src="./images/icon-search.svg" alt="search">
+                    <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">  
+                </figure>
                 <input type="search" class="mySearchOnNav" placeholder='Busca GIFOS y mas' name="q">
             </form>
             <input type="checkbox" class="checkbox" id="checkbox">
             <label for="checkbox" class="icons">
-                <img class="fa-bars" src="./images/burger.svg" alt="menu">
-                <img class="fa-times" src="./images/close.svg">
+                <img class="fa-bars light" src="./images/burger.svg" alt="menu">
+                <img class="fa-bars dark" src="./images/burger-modo-noct.svg" alt="menu">
+                <img class="fa-times light" src="./images/close.svg">
+                <img class="fa-times dark" src="./images/close-modo-noct.svg">
             </label>
             <ul class="topnav">
                 <li >
@@ -39,7 +45,12 @@
                 </li>
             </ul>
             <button class="createButton">
-                <img class="createImgButton" src="./images/button-crear-gifo.svg" alt="createButton">
+                <img class="createImgButton light" src="./images/button-crear-gifo.svg" alt="createButton">
+                <img class="createImgButtonHover light" src="./images/button-crear-gifo-hover.svg" alt="createButton">
+                <img class="createImgButtonActive light" src="./images/CTA-crear-gifo-active.svg" alt="createButton">
+                <img class="createImgButton dark" src="./images/CTA-crear-gifo-modo-noc.svg" alt="createButton">
+                <img class="createImgButtonHover dark" src="./images/CTA-crear-gifo-hover-modo-noc.svg" alt="createButton">
+                <img class="createImgButtonActive dark" src="./images/CTA-crear-gifo-active-modo-noc.svg" alt="createButton">
             </button>
         </nav>
         <header class="header">
@@ -51,10 +62,13 @@
                 <div class="searchContainer">
                     <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
                     <figure class="mainIconSearch" id="iconSearch">
-                        <img src="./images/icon-search.svg" alt="search">
+                        <img class="light" src="./images/icon-search.svg" alt="search">
+                        <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">
                     </figure>
                     <figure class="iconClose" id="iconClose">
-                        <img src="./images/close.svg" alt="close">
+                        <img class="light" src="./images/close.svg" alt="close">
+                        <img class="dark" src="./images/close-modo-noct.svg" alt="close">
+                        <img class="dark" src="./images/button-close-hover-modo-noc.svg" alt="close">
                     </figure>
                     <div class="line" id="tagsLine"></div>
                     <ul class="tagsContainer" id="tagsContainer">
@@ -79,7 +93,7 @@
                 <ul class="searchUl" id="searchUl">
                     <!--<li class="card">
                             <figure class= "gifFigure">
-                                <imgclass="imgFig" src="" >
+                                <img class="imgFig" src="" >
                                 <img class="imgHover">
                                 <figcaption class="figcaption">
                                     <span class="username">User</span>
@@ -110,13 +124,53 @@
                         <img class="verIcon" src="./images/CTA-ver-mas-hover.svg" width="127px" height="50px">
                     </figure>
                 </button>
-                <figure class="errorFig">
+                <figure class="errorFig" id="errorFigure">
                     <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">
                     <figcaption class="errorCaption">Intenta con otra busqueda</figcaption>
                 </figure>
             </section>
         </header>
         <main>
+            <section class="favouritesSection" id="favouritesSection">
+                <figure class="favLogo">
+                    <img class="favLogo" src="./images/icon-favoritos.svg">
+                </figure>
+                <h2 class="favouritesTitle" id="favouritesTitle">Favoritos</h2>
+                <ul class="favouritesUl" id="favouritesUl">
+                    <!--<li class="card">
+                            <figure class= "gifFigure">
+                                <imgclass="imgFig" src="" >
+                                <img class="imgHover">
+                                <figcaption class="figcaption">
+                                    <span class="username">User</span>
+                                    <span class="title">Titulo GIFO</span>
+                                <figcaption>
+                                <div class="gifButtons'>
+                                    <button class="favButton" type="button" title="favourite">
+                                            <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
+                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
+                                            <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
+                                        
+                                        </button>
+                                    <button class="downloadButton" type="button" title="download">
+                                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
+                                    </button>
+                                    <button class="maxButton" type="button" title="maximaze">
+                                        <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
+                                    </button>
+                                </div>
+                            </figure>
+                    </li>-->
+                </ul>
+                <button class="showMore" id="showMoreFav" type="button" title="showMore">
+                    <figure class="showMoreFig">
+                        <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
+                    </figure>
+                    <figure class="showMoreFigHover">
+                        <img class="verIcon" src="./images/CTA-ver-mas-hover.svg" width="127px" height="50px">
+                    </figure>
+                </button>
+            </section>
             <section class="trendGifos">
                 <h2 class="trendTitle">Trending GIFOS</h2>
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>

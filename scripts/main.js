@@ -10,7 +10,7 @@ const moreButton = document.getElementById('showMore');
 const closeButton = document.getElementById('iconClose');
 const errorFig = document.getElementById('errorFigure');
 const mode = document.getElementById('mode');
-const mainStyle = document.getElementById('mainStyle');
+const themeStyle = document.getElementById('themeStyle');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
 
@@ -20,34 +20,30 @@ mode.addEventListener('click', changeMode);
 
 let theme = 'lightMode';
 
-if (localStorage.theme != undefined) {
-    theme = localStorage.mode;
+if (localStorage.getItem("theme") != null) {
+    theme = localStorage.getItem("theme");
+    setMode();
 }
-
-mainStyle.href = '.styles/'+ theme +'.css';
-
-if (theme === 'lightMode') {
-    mode.innerHTML = 'Modo Nocturno';
-};
-if (mode === 'dark') {
-    mode.innerHTML = 'Modo Diurno';
-}
-
 function changeMode() {
     if (theme === 'lightMode') {
-        mainStyle. href='./styles/darkMode.css';
         theme = 'darkMode';
-        mode.innerHTML = 'Modo Diurno';
-        //localStorage.modeColor = mode;
     }
-    if (theme === 'darkMode') {
-        mainStyle. href='./styles/lightMode.css';
+    else if (theme === 'darkMode') {
         theme = 'lightMode';
-        mode.innerHTML = 'Modo Nocturno';
-        //localStorage.modeColor = mode;
-    }
+    }    
+    setMode();
 }
-
+function setMode() {
+    if (theme === 'lightMode') {
+        themeStyle. href='./styles/lightMode.css';
+        mode.innerHTML = 'Modo Nocturno';
+    }
+    else if (theme === 'darkMode') {
+        themeStyle. href='./styles/darkMode.css';
+        mode.innerHTML = 'Modo Diurno';
+    }    
+    localStorage.setItem("theme", theme);
+}
 //Barra de busqueda
 
 input.addEventListener('keyup', showTags);
@@ -179,6 +175,7 @@ function renderResult(list, container) {
         const maxIcon = document.createElement('img');
         
         li.className = 'card';
+        /*li. dataset*/
         figure.className = 'gifFigure';
         img.className = 'gifImg';
         img.src = item.images.original.url;

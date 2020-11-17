@@ -9,10 +9,12 @@
 }
 body {
     width: 100vw;
-    border-top: 5px solid #000000;
-    border-bottom: 5px solid #000000;
-    background: #37383C;
-    color: #FFFFFF;
+    border-top: 5px solid #572EE5;
+    border-bottom: 5px solid #572EE5;
+    background: #FFFFFF;
+}
+.dark {
+    display: none;
 }
 .nav {
     position: relative;
@@ -66,8 +68,8 @@ body {
     height: 100vw;
     overflow: visible;/* no tapa todo el alto de la pantalla*/
     font-family: 'Montserrat', sans-serif;
-    background: #000000;
-    opacity: 100%;
+    background: #572EE5;
+    opacity: 90%;
     line-height: 55px;
     font-size: 16px;
     font-weight: 700;
@@ -125,6 +127,7 @@ nav input:checked ~ .header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 25px;
+    color: #572EE5;
     line-height: 33px;
     text-align: center;
     max-width: 286px;
@@ -146,7 +149,7 @@ nav input:checked ~ .header {
 }
 .searchContainer {
     width: 334px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #572EE5;
     border-radius: 27px;
     position: relative;
     font-family: 'Roboto', sans-serif;
@@ -167,10 +170,10 @@ input[type="search"]::-webkit-search-results-decoration {
     height: 50px;
     font-size: 16px;
     text-align: left;
-    color: #000000 ;
+    color: #9CAFC3;
     border: 0;
     outline: none;
-    background-color: #37383C ;
+    background-color: #FFFFFF;
 }
 .mySearch:focus {
     background-color: #FFFFFF;
@@ -203,7 +206,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .iconSearch {
     width: 15.8px;
     height: 15.8px;
-    color: #FFFFFF;
+    color: #9CAFC3;
     margin-right: 14.6px;
 }
 .iconClose {
@@ -245,12 +248,14 @@ input[type="search"]::-webkit-search-results-decoration {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 700;
+    color: #572EE5;
 }
 .themes {
     line-height: 25px;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 500;
+    color:#572EE5;
     width: 225px;
     text-align: center;
 }
@@ -271,6 +276,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .searchTitle{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+    color: #572EE5;
     font-size: 25px;
     line-height: 40px;
     padding-bottom: 38px;
@@ -338,7 +344,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .errorImg {
     width: 150px;
     height: 150px;
-    margin-bottom: 29px;
+    margin-bottom: 29px;/*ojo!!!*/
 }
 .errorCaption {
     font-family: 'Montserrat', sans-serif;
@@ -347,14 +353,64 @@ input[type="search"]::-webkit-search-results-decoration {
     font-weight: 700;
     color: #50E3C2 ;
 }
+.favouritesSection {
+    display: none;
+}
+.favLogo {
+    width: 28px;
+    height: 21px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 7px;
+    margin-top: 5px;
+}
+.favLogoImg {
+    width: 28px;
+    height: 21px;
+}
+.favouritesTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #572EE5;
+    font-size: 20px;
+    line-height: 30px;
+    padding-bottom: 38px;
+    text-align: center;
+}
+.favouritesUl {
+    padding-right: 21px;
+    padding-left: 21px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.favouritesSection .card {
+    position: relative;
+}
+.favouritesSection .gifFigure {
+    width: 156px;
+    height: 120px;
+    margin-bottom: 21px;
+    position: relative;
+}
+.favouritesSection .gifImg {
+    width: 156px;
+    height: 120px;
+}
+.favouritesSection .imgHover {
+    display: none;
+}
 .trendGifos {
     padding-top: 46px;
     padding-bottom: 82px;
-    background-color: #222326;
+    background-color: #F3F5F8;
 }
 .trendTitle {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+    color: #572EE5;
     font-size: 20px;
     line-height: 30px;
     padding-bottom: 7px;
@@ -367,7 +423,7 @@ input[type="search"]::-webkit-search-results-decoration {
     font-weight: 400;
     font-size: 16px;
     line-height: 23px;
-    color: #FFFFFF;
+    color: #000000;
     text-align: center;
 }
 .carousel {
@@ -508,7 +564,7 @@ footer {
         grid-column-end: 4;
         width: 334px;
         height: 50px;
-        border: 1px solid #FFFFFF;
+        border: 1px solid #572EE5;
         border-radius: 27px;
         position: relative;
     }
@@ -529,6 +585,8 @@ footer {
         position: absolute;
         top: 13px;
         right: 20px;
+        width: 20px;
+        height: 20px;
     }
     .checkbox {
         display: none;
@@ -545,7 +603,7 @@ footer {
         grid-column-end: 6;
         width: 100%;
         height: 90px;
-        background: #37383C;
+        background: #FFFFFF;
         opacity: 100%;
         line-height: 16px;
         font-size: 13px;
@@ -560,6 +618,7 @@ footer {
         margin-left: 50px;
     } 
     .topnav li a{
+        color: #572EE5;
         opacity: 100%; /*no queda fuerte si pongo opacidad del fondo a 50%*/
     }
     .topnav .line {
@@ -577,8 +636,18 @@ footer {
     .createImgButton {
         width: 54px;
         height: 54px;
-    }  
-    .createImgButton:active {
+    }
+    .createImgButtonHover {
+        width: 54px;
+        height: 54px;
+        display: none;
+    }
+    .createImgButtonActive {
+        width: 54px;
+        height: 54px;
+        display: none;
+    }
+    .createButton:active {
         /*cambia logo*/
     }
     /*.createImgButton {
@@ -625,8 +694,6 @@ footer {
         width: auto;
         text-align: center;
     }
-    .searchSection {
-    }
     .searchSection .line {
         width: 338px;
         display: none;
@@ -662,7 +729,7 @@ footer {
         width: 260px;
         height: 200px;
         background-color: #572EE5;
-        opacity: 60%;
+        opacity: 70%;
         z-index: 1;
         position: absolute;
         top: 0;
@@ -684,6 +751,7 @@ footer {
         font-weight: 400;
         font-size: 15px;
         line-height: 18px;
+        color: #FFFFFF;
         position: absolute;
         top: 66%;
         left: 4.6%;
@@ -695,12 +763,14 @@ footer {
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
         font-weight: 700;
+        color: #FFFFFF;
         line-height: 19px;
         height: 20%;
         width: 90%;
     }
     .gifButtons {
         display: none;
+        z-index: 10;
     }
     .favButton, .downloadButton, .maxButton {
         opacity: 0.7;
@@ -712,11 +782,11 @@ footer {
         border: none;
         position: relative;
         cursor: pointer;/*no funciona*/
+        z-index: 20;
     }
     .gifFigure:hover > .gifButtons {
         display: block;
         height: 32px;
-        z-index: 2;
         position: absolute;
         top: 10px;
         right: 0;
@@ -760,6 +830,47 @@ footer {
     .showMore {
         padding-top: 78px;
     }
+    .favouritesSection {
+        padding-top: 5px 0px 78px 0px;
+        display: block;
+    }
+    .favLogo {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 8px;
+        margin-top: 11px;
+        width: 28px;
+        height: 21px;
+    }
+    .favLogoImg {
+        width: 28px;
+        height: 21px;
+    }
+    .favouritesTitle {
+        font-size: 25px;
+        padding-bottom: 36px;
+    }
+    .favouritesUl {
+        padding-right: 157px;
+        padding-left: 156px;
+    }
+    .favouritesSection .card {
+        position: relative;
+    }
+    .favouritesSection .gifFigure {
+        width: 260px;
+        height: 200px;
+        margin-bottom: 31px;
+        position: relative;
+    }
+    .favouritesSection .gifImg {
+        width: 260px;
+        height: 200px;
+    }
+    .favouritesSection .imgHover {
+        display: none;
+    }
     .trendGifos {
         padding: 67px 6.5% 182px 6.5%;
     }
@@ -782,7 +893,7 @@ footer {
     .prevButton {
         display: inline;
         border: none;
-        background-color: #222326;
+        background-color: #F3F5F8;
         margin-right: 20px;
         cursor: pointer;
         outline: none;
@@ -853,7 +964,7 @@ footer {
     .nextButton {
         border: none;
         display: inline;
-        background-color: #222326;
+        background-color: #F3F5F8;
         margin-left: 23px;
         cursor: pointer;
         outline: none;
