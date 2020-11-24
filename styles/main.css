@@ -12,6 +12,7 @@ body {
     border-top: 5px solid #572EE5;
     border-bottom: 5px solid #572EE5;
     background: #FFFFFF;
+    color: #572EE5;
 }
 .dark {
     display: none;
@@ -25,13 +26,11 @@ body {
 .logo {
     position: absolute;
     left: 22px;
-}
-.logoMobile {
     width: 56px;
     height: 49px;
-}
-.logoDesktop {
-    display: none;
+    background-image: url("../images/logo-mobile.svg");
+    background-repeat: no-repeat;
+    cursor: pointer; 
 }
 .searchOnNav {
     display: none;
@@ -127,7 +126,6 @@ nav input:checked ~ .header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 25px;
-    color: #572EE5;
     line-height: 33px;
     text-align: center;
     max-width: 286px;
@@ -166,7 +164,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .mySearch {
     margin-left: 54px;
-    width: 215px;
+    width: 230px;
     height: 50px;
     font-size: 16px;
     text-align: left;
@@ -177,6 +175,8 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .mySearch:focus {
     background-color: #FFFFFF;
+    color: #000000;
+    cursor: pointer;
 }
 .tagsContainer {
     display: flex;
@@ -202,6 +202,7 @@ input[type="search"]::-webkit-search-results-decoration {
     height: 20px;
     width: 20px;
     cursor: pointer;
+    /*background-image: url("../images/icon-search.svg");*/
 }
 .iconSearch {
     width: 15.8px;
@@ -211,7 +212,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .iconClose {
     position: absolute;
-    top: 13px;
+    top: 17px;
     right: 23px;
     display: none;
     height: 14px;
@@ -234,6 +235,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .mySearch:focus ~ .mainIconSearch {
     left: 21px;
     right: 0px;
+}
+.mySearch:focus  .mainIconSearch.lens {/*como pongo este selector*/
+    fill: #9CAFC3;
 }
 .mySearch:focus ~ .iconClose {
     display: block;
@@ -294,6 +298,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .searchSection .card {
     position: relative;
 }
+.gifFigure {
+    cursor: pointer;
+}
 .searchSection .gifFigure {
     width: 156px;
     height: 120px;
@@ -326,8 +333,19 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 127px;
     cursor: pointer;
 }
+.showMoreFig {
+    display: block;
+    width: 127px;
+    height: 50px;
+}
+.verIcon {
+    width: 127px;
+    height: 50px;
+}
 .showMoreFigHover {
     display: none;
+    width: 127px;
+    height: 50px;
 }
 .showMore:hover > .showMoreFig {
     display: none;
@@ -545,18 +563,16 @@ footer {
         position: sticky;/*no funciona*/
     }
     /*haver nav sticky con js y lleva buscador y no boton mas*/
-    .logo {/*no funciona el cambio de tama~no de la imagen*/
+    .logo {
         position: static;
         grid-column-start: 1;
         grid-column-end: 2;
-    }
-    .logoMobile {
-        display: none;
-    }
-    .logoDesktop {
-        display: block;
         width: 68px;
         height: 60px;
+        background-image: url("../images/logo-desktop.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
     }
     .searchOnNav {
         display: none;
@@ -628,31 +644,18 @@ footer {
         display: block;
         grid-column-start: 6;
         grid-column-end: 7;
-        /*width: 54px;
-        height: 54px;
-        background-image: url("./images/button-crear-gifo.svg");
-        background-size: contain;*/
-    }
-    .createImgButton {
         width: 54px;
         height: 54px;
+        background-image: url("../images/button-crear-gifo.svg");
+        background-size: cover;
+        cursor: pointer;
     }
-    .createImgButtonHover {
-        width: 54px;
-        height: 54px;
-        display: none;
-    }
-    .createImgButtonActive {
-        width: 54px;
-        height: 54px;
-        display: none;
+    .createButton:hover {
+        background-image: url("../images/CTA-crear-gifo-hover.svg");
     }
     .createButton:active {
-        /*cambia logo*/
-    }
-    /*.createImgButton {
-        width: 100%;
-    }*/
+        background-image: url("../images/CTA-crear-gifo-active.svg");
+    }/*es el mismo logo para los 3 css pero si lo dejo solo en el main no funciona*/
     .header {
         padding-top: 76px;
         padding-bottom: 95px;
@@ -674,7 +677,7 @@ footer {
         width: 551px;
     }
     .mySearch {
-        width: 300px;
+        width: 400px;
         text-align: left;
         border: 0;
     }
@@ -682,7 +685,7 @@ footer {
         top: 15px;
     }
     .iconClose {
-        top: 15px;
+        top: 17px;
     }
     .trending {
         padding-top: 73px;
@@ -770,7 +773,7 @@ footer {
     }
     .gifButtons {
         display: none;
-        z-index: 10;
+        z-index: 999;
     }
     .favButton, .downloadButton, .maxButton {
         opacity: 0.7;
@@ -797,35 +800,21 @@ footer {
     .gifFigure:hover > .figcaption {
         display: block;
     }
-    .favIcon {
-        display: block;
-        width: 32px;
-        height: 32px;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
     .favIconActive {
-        display: none;
         width: 32px;
         height: 32px;
         position: absolute;
         top: 0;
         left: 0;
     }
-    .favIconHover {
-        display: none;
-        width: 32px;
-        height: 32px;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .favButton:hover {
+        opacity: 1;
     }
-    .favButton:hover > .favIcon {
-        display: none;
+    .downloadButton:hover {
+        opacity: 1;
     }
-    .favButton:hover > .favIconHover {
-        display: block;
+    .maxButton:hover {
+        opacity: 1;
     }
     .showMore {
         padding-top: 78px;

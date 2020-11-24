@@ -10,11 +10,12 @@
     </head>
     <body>
         <nav class="nav">
-            <figure class="logo">
-                <img class="logoMobile light" src="./images/logo-mobile.svg" alt="logo">
-                <img class="logoDesktop light" src="./images/logo-desktop.svg" alt="logo">
-                <img class="logoMobile dark" src="./images/logo-mobile-modo-noct.svg" alt="logo">
-                <img class="logoDesktop dark" src="./images/logo-desktop-modo-noc.svg" alt="logo">        
+            <figure class="logo" href="">
+                 <!--<img class="logo-img" alt="logo">
+               <img class="logo mobile light" src="./images/logo-mobile.svg" alt="logo">
+                <img class="logo desktop light" src="./images/logo-desktop.svg" alt="logo">
+                <img class="logo mobile dark" src="./images/logo-mobile-modo-noct.svg" alt="logo">
+                <img class="logo desktop dark" src="./images/logo-desktop-modo-noc.svg" alt="logo">-->
             </figure>
             <form  class="searchOnNav">
                 <figure class="iconSearchOnNav">
@@ -44,14 +45,14 @@
                     <div class="line"></div>
                 </li>
             </ul>
-            <button class="createButton">
-                <img class="createImgButton light" src="./images/button-crear-gifo.svg" alt="createButton">
-                <img class="createImgButtonHover light" src="./images/button-crear-gifo-hover.svg" alt="createButton">
+            <figure class="createButton" href="">
+                <!--<img class="createImgButton light" src="./images/button-crear-gifo.svg" alt="createButton">
+                <img class="createImgButtonHover light" src="./images/CTA-crear-gifo-hover.svg" alt="createButton">
                 <img class="createImgButtonActive light" src="./images/CTA-crear-gifo-active.svg" alt="createButton">
                 <img class="createImgButton dark" src="./images/CTA-crear-gifo-modo-noc.svg" alt="createButton">
                 <img class="createImgButtonHover dark" src="./images/CTA-crear-gifo-hover-modo-noc.svg" alt="createButton">
-                <img class="createImgButtonActive dark" src="./images/CTA-crear-gifo-active-modo-noc.svg" alt="createButton">
-            </button>
+                <img class="createImgButtonActive dark" src="./images/CTA-crear-gifo-active-modo-noc.svg" alt="createButton">-->
+            </figure>
         </nav>
         <header class="header">
             <h1 class="mainTitle">Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
@@ -62,8 +63,27 @@
                 <div class="searchContainer">
                     <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
                     <figure class="mainIconSearch" id="iconSearch">
-                        <img class="light" src="./images/icon-search.svg" alt="search">
-                        <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">
+                        <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>icon-search</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs>
+                                <path d="M8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,10.4865245 16.3185332,12.3138839 15.1766205,13.7610573 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3165825,20.0976311 18.6834175,20.0976311 18.2928932,19.7071068 L18.2928932,19.7071068 L13.7610573,15.1766205 C12.3138839,16.3185332 10.4865245,17 8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 Z M8.5,2 C4.91014913,2 2,4.91014913 2,8.5 C2,12.0898509 4.91014913,15 8.5,15 C10.2704128,15 11.8755097,14.2921984 13.0477521,13.1441339 L13.0928932,13.0928932 C13.1090201,13.0767663 13.1255608,13.0613054 13.1424811,13.0465104 C14.2921984,11.8755097 15,10.2704128 15,8.5 C15,4.91014913 12.0898509,2 8.5,2 Z" id="path-1"></path>
+                            </defs>
+                            <g id="GIFOS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="00-UI-Kit" transform="translate(-637.000000, -518.000000)">
+                                    <g id="-Nav-Desktop-Sticky" transform="translate(0.000000, 479.000000)">
+                                        <g id="icon-search" transform="translate(637.000000, 39.000000)">
+                                            <mask id="mask-2" fill="white">
+                                                <use xlink:href="#path-1"></use>
+                                            </mask>
+                                            <use class="lens" fill="#572EE5" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        <!--<img class="light" src="./images/icon-search.svg" alt="search">
+                        <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">-->
                     </figure>
                     <figure class="iconClose" id="iconClose">
                         <img class="light" src="./images/close.svg" alt="close">
@@ -94,17 +114,10 @@
                     <!--<li class="card">
                             <figure class= "gifFigure">
                                 <img class="imgFig" src="" >
-                                <img class="imgHover">
-                                <figcaption class="figcaption">
-                                    <span class="username">User</span>
-                                    <span class="title">Titulo GIFO</span>
-                                <figcaption>
                                 <div class="gifButtons'>
                                     <button class="favButton" type="button" title="favourite">
                                             <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
-                                            <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
-                                        
+                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">                                   
                                         </button>
                                     <button class="downloadButton" type="button" title="download">
                                         <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
@@ -112,6 +125,12 @@
                                     <button class="maxButton" type="button" title="maximaze">
                                         <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
                                     </button>
+                                <img class="imgHover">
+                                <figcaption class="figcaption">
+                                    <span class="username">User</span>
+                                    <span class="title">Titulo GIFO</span>
+                                <figcaption>
+                                
                                 </div>
                             </figure>
                     </li>-->
@@ -164,10 +183,12 @@
                 </ul>
                 <button class="showMore" id="showMoreFav" type="button" title="showMore">
                     <figure class="showMoreFig">
-                        <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
+                        <img class="verIcon light" src="./images/CTA-ver-mas.svg">
+                        <img class="verIcon dark" src="./images/CTA-ver+-modo-noc.svg">
                     </figure>
                     <figure class="showMoreFigHover">
-                        <img class="verIcon" src="./images/CTA-ver-mas-hover.svg" width="127px" height="50px">
+                        <img class="verIcon light" src="./images/CTA-ver-mas-hover.svg">
+                        <img class="verIcon dark" src="./images/CTA-ver+hover-modo-noc.svg">
                     </figure>
                 </button>
             </section>
@@ -176,8 +197,9 @@
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
                 <div class="carouselContainer">    
                     <button class="prevButton" id="prevButton" type="button" title="previous">
-                        <img class="buttonSlider" src="./images/button-slider-left.svg" width= "40px" height="40px">
-                        <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg" width= "40px" height="40px">
+                        <img class="buttonSlider light" src="./images/button-slider-left.svg">
+                        <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
+                        <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">
                     </button>
                     <ul class="carousel" id="carousel" aria-label="carousel">
                         <!--<li class="card">
@@ -203,17 +225,21 @@
                         </li>-->
                     </ul>
                     <button class="nextButton" id="nextButton" type="button" title="next">
-                        <img class="buttonSlider" src="./images/button-slider-right.svg" width= "40px" height="40px">
-                        <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg" width= "40px" height="40px">
+                        <img class="buttonSlider light" src="./images/button-slider-right.svg">
+                        <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg">
+                        <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">
                     </button>
                 </div>
             </section>
             <section class="popUp">
                 <button class="closePopUp" type="button" title="close">
-                    <img class="closeIcon" src="">
+                    <img class="closeIcon light" src="">
+                    <img class="closeIcon dark" src="">
                 </button>
                 <button class="prevButton" type="button" title="previous">
-                    <img class="buttonSlider" src="./images/button-slider-left.svg" width= "40px" height="40px">
+                    <img class="buttonSlider" src="./images/button-slider-left.svg">
+                    <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
+                    <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">
                 </button>
                 <figure class="cardPopUp">
                     <img class="gifPopImg" src="" >
@@ -245,14 +271,15 @@
                     </figure>
                     <figure class= "imgContainer">
                         <a class= "imgContainer" target="_blank" href="https://twitter.com/" title="twitter">
-                            <img src="./images/icon-twitter.svg" class="twitter">
-                            <img src="./images/icon-twitter-hover.svg" class="twitterHover">
+                            <img class="twitter light" src="./images/icon-twitter.svg">
+                            <img class="twitterHover"src="./images/icon-twitter-hover.svg">
+                            <img class="twitter dark" src="./images/icon_twitter_noc.svg">
                         </a>
                     </figure>
                     <figure class= "imgContainer">
                         <a class= "imgContainer" target="_blank" href="https://www.instagram.com/" title="instagram">
-                            <img src="./images/icon_instagram.svg" class="instagram" alt="instagram">
-                            <img src="./images/icon_instagram-hover.svg" class="instagramHover" alt="instagram">
+                            <img class="instagram light" src="./images/icon_instagram.svg" alt="instagram">
+                            <img class="instagramHover light" src="./images/icon_instagram-hover.svg" alt="instagram">
                         </a>
                     </figure>
                 </div>

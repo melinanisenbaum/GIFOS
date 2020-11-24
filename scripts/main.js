@@ -6,6 +6,7 @@ const searchSection = document.getElementById('searchSection');
 const searchUl = document.getElementById('searchUl');
 const tagsUl = document.getElementById('tags');
 const tagsContainer = document.getElementById('tagsContainer');
+const tagsLine = document.getElementById('tagsLine');
 const moreButton = document.getElementById('showMore');
 const closeButton = document.getElementById('iconClose');
 const errorFig = document.getElementById('errorFigure');
@@ -35,7 +36,7 @@ function changeMode() {
 }
 function setMode() {
     if (theme === 'lightMode') {
-        themeStyle. href='./styles/lightMode.css';
+        themeStyle.href='./styles/lightMode.css';
         mode.innerHTML = 'Modo Nocturno';
     }
     else if (theme === 'darkMode') {
@@ -47,9 +48,11 @@ function setMode() {
 //Barra de busqueda
 
 input.addEventListener('keyup', showTags);
-form.addEventListener('submit', ()=> {close(search)&(input.value = "")});
+input.addEventListener('onfocus', () => {input.value = ''});/*no funciona*/
 form.addEventListener('submit', showResult);
-lens.addEventListener('click', showResult);
+form.addEventListener('submit', closeTags);/*no funciona*/
+closeButton.addEventListener('click', cleanSearch);/*no funciona*/
+lens.addEventListener('click', showResult);/*no funciona*/
 
 const getTagsUrl = (q) => {
     return `https://api.giphy.com/v1/gifs/search/tags?api_key=${apiKey}&q=${q}&limit=4`;
@@ -70,7 +73,6 @@ async function showTags(event) {
 showTags();
 
 function renderTags(list, tagsContainer) {
-    const division = document.getElementById('tagsLine');    
     tagsContainer.innerHTML = "";
 
     list.forEach (item => {
@@ -93,7 +95,7 @@ function renderTags(list, tagsContainer) {
 
         li.addEventListener('click', autocomplete);
 
-        division.style.display = 'block';
+        tagsLine.style.display = 'block';
         tagsContainer.style.display = 'block';
     })
 }
@@ -104,10 +106,13 @@ function autocomplete(event) {
     tagsContainer.style.display = 'none';
 }
 
-closeButton.addEventListener('click', ()=> {close(search)&(input.value = "")});
+function closeTags() {
+    tagsLine.style.display = 'none';
+    tagsContainer.style.display = 'none';
+}
 
-function close(search){
-    search.classList.add("searchContainer");/*no entiendo*/
+function cleanSearch() {
+    input.innerText = '';
 }
 
 const getSearchUrl = (input, limit=12, offset=0) => {
@@ -167,7 +172,7 @@ function renderResult(list, container) {
         const title = document.createElement('span');
         const favButton = document.createElement('button');
         const favIcon = document.createElement('img');
-        const favIconHover = document.createElement('img');
+        //const favIconHover = document.createElement('img');
         const favIconActive = document.createElement('img');
         const downloadButton = document.createElement('button');
         const downloadIcon = document.createElement('img');
@@ -189,8 +194,6 @@ function renderResult(list, container) {
         favButton.className = 'favButton';
         favIcon.className = 'favIcon';
         favIcon.src = './images/icon-fav.svg';
-        favIconHover.className = 'favIconHover';
-        favIconHover.src = './images/icon-fav-hover.svg';
         favIconActive.className = 'favIconActive';
         favIconActive.src = './images/icon-fav-active.svg';
         downloadButton.className = 'downloadButton';
@@ -211,48 +214,69 @@ function renderResult(list, container) {
         buttonsContainer.appendChild(downloadButton);
         buttonsContainer.appendChild(maxButton);
         favButton.appendChild(favIcon);
-        favButton.appendChild(favIconHover);
         favButton.appendChild(favIconActive);
         downloadButton.appendChild(downloadIcon);
         maxButton.appendChild(maxIcon);
         container.appendChild(li);
 
-        // cuando se pulsa en "agregar a favoritos"
-        favButton.addEventListener('click', addToFavourites);
-
-        async function addToFavourites(event) {
+        // para agregar a favoritos agregar a favoritos
+        if (screen.width < 970) {
+            li.addEventListener ('click', () => {
+                console.log('agregado a mis favoritos')
+            })
+        } else {
+            favButton.addEventListener('click', changeFavouriteState);
+        }
+        
+        async function changeFavouriteState(event) {
             event.preventDefault();
             
-
             let gifInfo = {
                 id: item.id,
                 url: item.images.original.url,
                 title: item.title,
                 user: item.username,
             };
-        
-            // leemos los favoritos del localStorage
-            let myfavourites = localStorage.getItem('myFavourites') || '[]';
-            myfavourites = JSON.parse(myfavourites);
-            console.log(myfavourites);
-            
-            // buscamos el producto en la lista de favoritos
-            let newFav = myfavourites.findIndex(function(item) { return item.id === gifInfo.id; });
+
+            //leer el local Storage
+            let myFavourites = localStorage.getItem('myFavourites') || '[]';
+            myFavourites = JSON.parse(myFavourites);
+            console.log(myFavourites);
+
+            // buscamos el id de newGifo en la lista de favoritos
+            let newFav = myFavourites.findIndex(function(item) { return item.id === gifInfo.id; });
             if (newFav > -1) {
                 // si está, lo quitamos
-                myfavourites.splice(newFav, 1);
+                myFavourites.splice(newFav, 1);
                 console.log('existe')
             } else {
                 // si no está, lo añadimos
-                myfavourites.push(gifInfo);
-                console.log('anadido')
+                myFavourites.push(gifInfo);
+                console.log('anadido');
+                console.log(gifInfo);
+                console.log(myFavourites);
                 }
-                
-                // guardamos la lista de favoritos 
+            // guardamos la lista de favoritos 
             localStorage.setItem('myfavourites', JSON.stringify(newFav));
-        };
+
+            changeIcon()
+
+            function changeIcon() {
+                let icon = favIcon;
+                
+                if (icon === favIcon) {
+                    icon = favIconActive;
+                    favIcon.style.display = 'none';
+                    favIconActive.style.display = 'block';
+                } else if (icon === favIconActive) {
+                    icon = favIcon;
+                    favIconActive.style.display = 'none';
+                    favIcon.style.display = 'block';
+                }    
+            }
+        }
     })
-}
+} 
 
 moreButton.addEventListener('click', showMoreResult);
 
@@ -339,26 +363,3 @@ function scrollRight(event) { /*no funciona*/
     event.preventDefault();
     carousel.scrollRight += displacement;
 }
-
-
-/*position = 0;
-width = 385;
-count = 1;
-listElements = carousel.querySelectorAll('li');
-
-prevButton.addEventListener('click', () => {
-    position = Math.min(possition + width * count, 0)
-    carousel.style.marginLeft = position + 'px'
-})
-
-nextButton.addEventListener('click', () => {
-    position = Math.max(position - width * count, width * (listElems.length - 3))
-    carousel.style.marginLeft = position + 'px'
-})*/
-
-//favoritos
-
-
-
-
-
