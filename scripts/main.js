@@ -47,7 +47,7 @@ function setMode() {
 }
 //Barra de busqueda
 
-input.addEventListener('keyup', showTags);
+input.addEventListener('keyup', _timer);
 input.addEventListener('onfocus', () => {input.value = ''});/*no funciona*/
 form.addEventListener('submit', showResult);
 form.addEventListener('submit', closeTags);/*no funciona*/
@@ -57,6 +57,16 @@ lens.addEventListener('click', showResult);/*no funciona*/
 const getTagsUrl = (q) => {
     return `https://api.giphy.com/v1/gifs/search/tags?api_key=${apiKey}&q=${q}&limit=4`;
 }
+
+let _timer = null;
+clearTimeout(_timer);
+_timer = setTimeout(function (event) {
+    if (event.keyCode !== 13) {
+        showTags();
+    } else if (event.keyCode === 13) {
+        closeTags();
+    }
+}, 300);
 
 async function showTags(event) {
     tagsContainer.innerHTML = "";
@@ -69,8 +79,6 @@ async function showTags(event) {
     console.log(q);
     renderTags(data,tagsContainer);
 }
-
-showTags();
 
 function renderTags(list, tagsContainer) {
     tagsContainer.innerHTML = "";
@@ -112,7 +120,7 @@ function closeTags() {
 }
 
 function cleanSearch() {
-    input.innerText = '';
+    input.value = '';
 }
 
 const getSearchUrl = (input, limit=12, offset=0) => {
