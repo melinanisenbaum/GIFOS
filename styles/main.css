@@ -232,15 +232,21 @@ input[type="search"]::-webkit-search-results-decoration {
     font-size: 16px;
     line-height: 19px;
 }
-.mySearch:focus ~ .mainIconSearch {
+
+
+.mySearch ~ .mainIconSearch.focus {/*no estiendo este selector*/
     left: 21px;
     right: 0px;
 }
-.mySearch:focus  .mainIconSearch.lens {/*como pongo este selector*/
+
+.mySearch:focus ~ .mainIconSearch {
+
+}
+.mySearch ~ .mainIconSearch.lens {/*como pongo este selector*/
     fill: #9CAFC3;
 }
-.mySearch:focus ~ .iconClose {
-    display: block;
+.mySearch ~ .iconClose.focus {
+    display: block;/*como pongo este selector*/
 }
 .wordTrends {
     text-align: center;
@@ -784,8 +790,14 @@ footer {
         margin-right: 11px;
         border: none;
         position: relative;
-        cursor: pointer;/*no funciona*/
+        cursor: pointer;
         z-index: 20;
+    }
+    .active {
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     .gifFigure:hover > .gifButtons {
         display: block;
@@ -800,13 +812,13 @@ footer {
     .gifFigure:hover > .figcaption {
         display: block;
     }
-    .favIconActive {
+    /*.favIconActive {
         width: 32px;
         height: 32px;
         position: absolute;
         top: 0;
         left: 0;
-    }
+    }*/
     .favButton:hover {
         opacity: 1;
     }
@@ -821,7 +833,7 @@ footer {
     }
     .favouritesSection {
         padding-top: 5px 0px 78px 0px;
-        display: block;
+        display: none;
     }
     .favLogo {
         display: block;
