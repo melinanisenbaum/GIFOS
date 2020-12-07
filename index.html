@@ -9,7 +9,7 @@
         <title>GIFOS</title>
     </head>
     <body>
-        <nav class="nav">
+        <nav class="nav" id="nav">
             <figure class="logo" href="">
                  <!--<img class="logo-img" alt="logo">
                <img class="logo mobile light" src="./images/logo-mobile.svg" alt="logo">
@@ -86,9 +86,9 @@
                         <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">-->
                     </figure>
                     <figure class="iconClose" id="iconClose">
-                        <img class="light" src="./images/close.svg" alt="close">
+                        <!--<img class="light" src="./images/close.svg" alt="close">
                         <img class="dark" src="./images/close-modo-noct.svg" alt="close">
-                        <img class="dark" src="./images/button-close-hover-modo-noc.svg" alt="close">
+                        <img class="dark" src="./images/button-close-hover-modo-noc.svg" alt="close">-->
                     </figure>
                     <div class="line" id="tagsLine"></div>
                     <ul class="tagsContainer" id="tagsContainer">
@@ -152,18 +152,15 @@
         <main>
             <section class="modal" id="modal">
                 <figure class="iconClose" id="closeModal">
-                    <!--<img class="light" src="./images/close.svg" alt="close">
-                    <img class="dark" src="./images/close-modo-noct.svg" alt="close">
-                    <img class="dark" src="./images/button-close-hover-modo-noc.svg" alt="close">-->
                 </figure>
-                <div class="modalContainer">    
+                <div class="modalContainer" id="modalContainer">    
                     <button class="prevButton"  type="button" title="previous">
                         <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
                         <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
                     </button>
                     <ul class="modalCarousel" id="modalCarousel" aria-label="carousel">
-                        <!--<li class="card">
+                        <li class="card">
                             <figure class= "gifFigure">
                                 <img class="gifImg" src="" >
                                 <img imgHover>
@@ -243,11 +240,12 @@
                 <h2 class="trendTitle">Trending GIFOS</h2>
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
                 <div class="carouselContainer">    
-                    <button class="prevButton" id="prevButton" type="button" title="previous">
-                        <img class="buttonSlider light" src="./images/button-slider-left.svg">
+                    <figure class="prevButton" id="prevButton" type="button" title="previous">
+                        <div class="prevSlider"></div>
+                        <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">
-                    </button>
+                        <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
+                        </figure>
                     <ul class="carousel" id="carousel" aria-label="carousel">
                         <!--<li class="card">
                             <figure class= "gifFigure">
@@ -277,33 +275,6 @@
                         <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">
                     </button>
                 </div>
-            </section>
-            <section class="popUp">
-                <button class="closePopUp" type="button" title="close">
-                    <img class="closeIcon light" src="">
-                    <img class="closeIcon dark" src="">
-                </button>
-                <button class="prevButton" type="button" title="previous">
-                    <img class="buttonSlider" src="./images/button-slider-left.svg">
-                    <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
-                    <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">
-                </button>
-                <figure class="cardPopUp">
-                    <img class="gifPopImg" src="" >
-                    <span class="user">User</span>
-                    <span class="title">Titulo GIFO</span>
-                </figure>
-                <div class="gifButton">
-                    <button class="favouriteButton" type="button" title="favourite">
-                        <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                    </button>
-                    <button class="downloadButton" type="button" title="download">
-                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                    </button>
-                </div>
-                <button class="nextButton" type="button" title="next">
-                    <img class="buttonSlider" src="./images/button-slider-right.svg" width= "40px" height="40px">
-                </button>  
             </section>
         </main>
         <footer>

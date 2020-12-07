@@ -210,13 +210,18 @@ input[type="search"]::-webkit-search-results-decoration {
     color: #9CAFC3;
     margin-right: 14.6px;
 }
-.iconClose {
+.searchContainer .iconClose {
     position: absolute;
     top: 17px;
     right: 23px;
     display: none;
     height: 14px;
     width: 14px;
+    cursor: pointer;
+}
+.iconClose {
+    background-image: url('../images/close.svg');
+    background-repeat: no-repeat;
     cursor: pointer;
 }
 .searchContainer .line {
@@ -232,13 +237,10 @@ input[type="search"]::-webkit-search-results-decoration {
     font-size: 16px;
     line-height: 19px;
 }
-
-
 .mySearch ~ .mainIconSearch.focus {/*no estiendo este selector*/
     left: 21px;
     right: 0px;
 }
-
 .mySearch:focus ~ .mainIconSearch {
 
 }
@@ -250,6 +252,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .wordTrends {
     text-align: center;
+}
+.themes {
+    cursor: pointer;
 }
 .trending {
     padding-top: 31px;
@@ -377,6 +382,40 @@ input[type="search"]::-webkit-search-results-decoration {
     font-weight: 700;
     color: #50E3C2 ;
 }
+.modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 90%;
+    background-color: #FFFFFF;
+    height: 100vw;
+    width: 100vw;
+    padding-top: 10%;
+}
+.modal .iconClose {
+    width: 13.8px;
+    height: 14px;
+    margin: 5px;
+    display: block;
+    position: absolute;
+    top: 59px;
+    right: 9.14%;
+}
+.modalContainer {
+    padding-top: 73px;
+}
+.modalContainer .prevButton, .modalContainer .nextButton{
+    display: none;
+}
+.modalCarousel .card .gifImg {
+    width: 318px;
+    height: 245px;
+}
+.modalCarousel .card .imgHover {
+    display: none;
+}
 .favouritesSection {
     display: none;
 }
@@ -467,9 +506,6 @@ input[type="search"]::-webkit-search-results-decoration {
     border: none;
 }
 .nextButton {
-    display: none;
-}
-.popUp {
     display: none;
 }
 footer {
@@ -831,6 +867,43 @@ footer {
     .showMore {
         padding-top: 78px;
     }
+    .modal {
+        /*display: block;
+        position: absolute;
+        top: 0;
+        left: 0;*/
+        z-index: 100;
+        opacity: 1;
+        /*background-color: #FFFFFF;
+        height: 100vw;
+        width: 100vw;
+        padding-top: 10%;*/
+    }
+    .modal .iconClose {
+        width: 15px;
+        height: 15px;
+        margin: 0px;
+        /*display: block;
+        position: absolute;*/
+        top: 66.4px;
+        right: 19%;
+    }
+    .modalContainer {
+        padding-top: 21%;
+    }
+    .modalContainer .prevButton, .modalContainer .nextButton{
+        display: inline;
+    }
+    .modalCarousel .card .gifImg {
+        width: 695px;
+        height: 385px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+    .modalCarousel .card .imgHover {
+        display: none;
+    }
     .favouritesSection {
         padding-top: 5px 0px 78px 0px;
         display: none;
@@ -898,11 +971,16 @@ footer {
         margin-right: 20px;
         cursor: pointer;
         outline: none;
+        padding-top: 117.2px;
         /*user-select: none; se ve grisado cuando lo clickeo*/
     }
-    .buttonSlider {
+    .prevSlider {
         width: 40px;
         height: 40px;
+        background-image: url('../images/button-slider-left.svg') ;
+    }
+    .prevSlider:hover {
+        background-image: url('../images/button-slider-left-hover.svg') ;
     }
     .buttonSliderHover {
         display: none;

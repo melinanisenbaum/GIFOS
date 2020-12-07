@@ -51,7 +51,7 @@ input.addEventListener('focus', focus);
 input.addEventListener('keyup', keyTimer);
 form.addEventListener('submit', showResult);
 lens.addEventListener('click', showResult);
-closeButton.addEventListener('click', cleanSearch);/*no funciona*/
+closeButton.addEventListener('click', cleanSearch);
 moreButton.addEventListener('click', showMoreResult);
 
 const getTagsUrl = (q) => {
@@ -223,8 +223,6 @@ function renderResult(list, container) {
         favButton.className = 'favButton';
         favIcon.className = 'favIcon';
         favIcon.src = './images/icon-fav.svg';
-        //favIconActive.className = 'favIconActive';
-        //favIconActive.src = './images/icon-fav-active.svg';
         downloadButton.className = 'downloadButton';
         downloadIcon.className = 'downloadIcon';
         downloadIcon.src = './images/icon-download.svg';
@@ -247,16 +245,6 @@ function renderResult(list, container) {
         maxButton.appendChild(maxIcon);
         container.appendChild(li);
 
-        // para agregar a favoritos agregar a favoritos
-        if (screen.width < 970) {
-            li.addEventListener ('click', () => {
-                console.log('agregado a mis favoritos')/*esto no va*/
-            })
-        } else {
-            favButton.addEventListener('click', changeFavouriteState);
-            downloadButton.addEventListener('click', download);
-        }
-        
         let gifInfo = {
             id: item.id,
             url: item.images.original.url,
@@ -264,77 +252,56 @@ function renderResult(list, container) {
             user: item.username,
         };
 
+        // para agregar a favoritos agregar a favoritos
+        if (screen.width < 970) {
+            li.addEventListener('touchend', getModal)
+        } else {
+            favButton.addEventListener('click', changeFavouriteState);
+            downloadButton.addEventListener('click', download);
+            maxButton.addEventListener('click', getModal);
+            maxButton.items = list;
+            maxButton.gifInfo = gifInfo;
+        }
+
         async function changeFavouriteState(event) {
             event.preventDefault();
           
             //leer el local Storage
             let myFavourites = localStorage.getItem('myFavourites') || '[]';
             myFavourites = JSON.parse(myFavourites);
-            console.log(myFavourites);/*lo veo pero no me los suma*/
 
             // buscamos el id de newGifo en la lista de favoritos
             let newFav = myFavourites.findIndex(function(item) { return item.id === gifInfo.id; });
             if (newFav > -1) {
                 // si está, lo quitamos
                 myFavourites.splice(newFav, 1);
-                console.log('existe')
+                console.log('existe');
+                changeIcon(0);
             } else {
                 // si no está, lo añadimos
                 myFavourites.push(gifInfo);
-                console.log('anadido');
-                console.log(gifInfo);
-                console.log(myFavourites);
+                changeIcon(1);
                 }
             // guardamos la lista de favoritos 
             localStorage.setItem('myFavourites', JSON.stringify(myFavourites));
-
-            changeIcon();
-
-            function changeIcon() {
-                var img = favIcon.src;
-
-                if (img) {
-                    favIcon.src = './images/icon-fav-active.svg';
-                } else if (!=img) {//no funciona
-                    favIcon.src = './images/icon-fav.svg';
-                    //favIcon.classList.add('active');
-                }
-            }
         }
 
-        // Get the modal
-        /*   var modal = document.getElementById("myModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks on the button, open the modal
-            btn.onclick = function() {
-            modal.style.display = "block";
+        function changeIcon(_state) {
+            if (_state == 0) {
+                favIcon.src = './images/icon-fav.svg';
+            } else if (_state == 1) {
+                favIcon.src = './images/icon-fav-active.svg';
             }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-            modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-}*/
-         
-        async function download (event) {
+        }
+        //download image
+        async function download (event) {//no funciona
             event.preventDefault();
 
             //create new a element
-            let a = document.createElement('a');
+            const a = document.createElement('a');
+            const response = await fetch(item.url);
             // get image as blob
-            let file = gifInfo.url.blob();/*no funciona*/
+            const file = response.blob();
             a.download = item.title;
             a.href = window.URL.createObjectURL(file);
             //store download url in javascript https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#JavaScript_access
@@ -345,6 +312,25 @@ function renderResult(list, container) {
         }
     })
 } 
+
+// modal
+const modal = document.getElementById('modal');
+const modalContainer = document.getElementById('modalContainer');
+const closeModal = document.getElementById('closeModal');
+
+function getModal(e) {//terminar
+    modal.style.display = 'block';
+    //nav.style.display = 'none';
+    //header.style.display = 'none';
+
+    renderResult(e.currentTarget.items, modalContainer);
+    console.log(e.currentTarget.items);
+}
+
+closeModal.addEventListener('click', function() {
+    modal.style.display = "none";
+    })
+
 
 function showMoreButton() {
     moreButton.style.display='block';
@@ -374,16 +360,18 @@ async function showWordTrends(){
     const response = await fetch(url);
     const results = await response.json();
     const firstResults = results.data.slice(0,5);
+    console.log(firstResults);
         
-    /*for (let i = 0; i < elementos.length; i++) {
-        let elemento = firstResults.split(',');
-        elemento[i].addEventListener('click', showResults);
-    }*/
+    for (let i = 0; i < firstResults.length; i++) {
+        firstResults[i] = firstResults[i].charAt(0).toUpperCase() + firstResults[i].slice(1);
+        //firstResults[i].addEventListener('click', showResults);
+        //terminar
+    }
 
     const p = document.createElement('p');
     p.innerText = firstResults.join(', ');
     p.className = "themes";
-    /*hacer un array con los elemonto por separado*/
+    
 
     wordTrends.appendChild(p);
 }
@@ -404,6 +392,7 @@ async function showTrendings() {
     const url = getTrendingsUrl();
     const response = await fetch(url);
     const results = await response.json();
+    //const object = createArray(object);
     renderResult(results.data, carousel);
 }
 
@@ -418,13 +407,12 @@ nextButton.addEventListener('click', nextGif);
 //nextButton.addEventListener('touchend', scrollLeft);
 
 const nCarousel = 20
-function createArray(object) {
+/*function createArray(object) {
     const indexes = Array.from(Array(nCarousel).keys())
     indexes.map(element => {
         getInfo(element, object, carousel)
     })
-}
-
+}*/
 position = 0;
 width = 26.74;
 count = 1;
@@ -439,34 +427,3 @@ function nextGif() {
     position = Math.max(position - width * count, width * (trendList.length - (nCarousel - 3)));
     carousel.style.marginLeft = position + 'vw';
 }
-/*
-
-const carouselSize = carousel.getBoundingClientRect();
-const displacement = carouselSize.width/3;
-
-function scrollLeft(event) {
-    event.preventDefault();
-    carousel.scrollLeft = displacement;
-    console.log(displacement);
-}
-
-function scrollRight(event) { 
-    event.preventDefault();
-    carousel.scrollRight += displacement;
-    console.log(displacement);
-}
-
-function trendings() {
-    fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}`)
-    .then(resp => resp.json())
-    .then(object => createArray(object))
-    .catch(error => console.error(error))
-}
-const carousel = document.getElementById('carousel')
-const nCarousel = 20
-function createArray(object) {
-    const indexes = Array.from(Array(nCarousel).keys())
-    indexes.map(element => {
-        getInfo(element, object, carousel)
-    })
-}*/

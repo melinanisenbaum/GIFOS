@@ -32,6 +32,9 @@ body {
 .iconSearch {
     color: #9CAFC3;
 }
+.iconClose {
+    background-image: url('../images/close.svg');
+}
 .showMore {
     /*background-color: #FFFFFF;*/
 }
@@ -65,6 +68,12 @@ body {
     }
     .prevButton {
         background-color: #F3F5F8;
+    }
+    .prevSlider {
+        background-image: url('../images/button-slider-left.svg') ;
+    }
+    .prevSlider:hover {
+        background-image: url('../images/button-slider-left-hover.svg') ;
     }
     .carousel .imgHover {
         background-color: #572EE5;
