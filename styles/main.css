@@ -318,11 +318,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .figcaption {
     display: none;
 }
-.searchSection .gifFigure {
+.searchSection .gifFigure, .my-gifos-section .gifFigure {
     width: 156px;
     height: 120px;
 }
-.searchSection .gifImg {
+.searchSection .gifImg, .my-gifos-section .gifFigure {
     width: 156px;
     height: 120px;
 }
@@ -450,23 +450,23 @@ input[type="search"]::-webkit-search-results-decoration {
 .modal .title {
     margin-top: 6px;
 }
-.favouritesSection {
+.favouritesSection, .my-gifos-section {
     display: none;
 }
-.favLogo {
+.section-logo {
     width: 28px;
     height: 21px;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 7px;
+    margin-top: 5px;
 }
-.favLogoImg {
+.section-img {
     width: 28px;
     height: 21px;
-    padding-bottom: 7px;
-    padding-top: 5px;
 }
-.favouritesTitle {
+.section-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #572EE5;
@@ -475,26 +475,30 @@ input[type="search"]::-webkit-search-results-decoration {
     padding-bottom: 38px;
     text-align: center;
 }
-.smile-favs {
+.empty-section {
     display: none;
-    padding-top: 71px;
+    padding-top: 111px;
     padding-bottom: 137px;
     text-align: center;
     margin-right: 35%;
     margin-left: 35%;
-    padding-left: ;
 }
-.smile-img {
+.empty-img {
     width: 150px;
     height: 150px;
+}
+.favouritesSection .empty-img {
     margin-bottom: 23.7px;
 }
-.smile-caption {
+.my-gifos-section .empty-img {
+    margin-bottom: 40px;s
+}
+.empty-caption {
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     line-height: 33px;
     font-weight: 700;
-    color: #50E3C2 ;
+    color: #50E3C2;
 }
 .trendGifos {
     padding-top: 46px;
@@ -794,27 +798,26 @@ footer {
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    .searchSection .gifFigure {
+    .gifFigure {
         width: 260px;
         height: 200px;
         margin-bottom: 31px;
-        position: relative;
-        cursor: pointer;
     }
     .searchSection .gifImg {
         width: 260px;
         height: 200px;
     }
-    .searchSection .imgHover {
-        display: none;
-        width: 260px;
-        height: 200px;
+    .imgHover {
         background-color: #572EE5;
         opacity: 70%;
         z-index: 1;
         position: absolute;
         top: 0;
         left: 0;
+    }
+    .searchSection .imgHover {
+        width: 260px;
+        height: 200px;
     }
     .searchSection .figcaption {
         position: absolute;
@@ -837,13 +840,13 @@ footer {
         left: 4.6%;
         color: #FFFFFF;
     }
-    .searchSection .gifFigure:hover > .gifButtons {
+    .gifFigure:hover > .gifButtons {
         display: block;
     }
-    .searchSection .gifFigure:hover > .imgHover {
+    .gifFigure:hover > .imgHover {
         display: block;
     }
-    .searchSection .gifFigure:hover > .figcaption {
+    .gifFigure:hover > .figcaption {
         display: block;
     }
     .trendGifos .gifButtons {
@@ -865,15 +868,6 @@ footer {
         position: relative;
         cursor: pointer;
         z-index: 20;
-    }
-    .trendGifos .gifFigure:hover > .gifButtons {
-        display: block;
-    }
-    .trendGifos .gifFigure:hover > .imgHover {
-        display: block;
-    }
-    .trendGifos .gifFigure:hover > .figcaption {
-        display: block;
     }
     .favButton:hover {
         opacity: 1;
@@ -914,9 +908,6 @@ footer {
         width: 695px;
         height: 385px;
     }
-    .modal .imgHover {
-        display: none;
-    }
     .modal .gifButtons {
         top: 407px;
         right: 0px;
@@ -925,11 +916,10 @@ footer {
         top: 412px;
         width: 450px;
     }
-    .favouritesSection {
-        padding-top: 5px 0px 78px 0px;
-        display: block;
+    .favouritesSection, .my-gifos-section {
+        padding: 0px 5% 0 5%;
     }
-    .favLogo {
+    .section-logo {
         display: block;
         margin-right: auto;
         margin-left: auto;
@@ -938,33 +928,25 @@ footer {
         width: 28px;
         height: 21px;
     }
-    .favLogoImg {
+    .section-img {
         width: 28px;
         height: 21px;
     }
-    .favouritesTitle {
+    .section-title {
         font-size: 25px;
         padding-bottom: 36px;
     }
-    .favouritesUl {
-        padding-right: 157px;
-        padding-left: 156px;
-    }
-    .favouritesSection .card {
-        position: relative;
-    }
-    .favouritesSection .gifFigure {
-        width: 260px;
-        height: 200px;
-        margin-bottom: 31px;
-        position: relative;
+    .list {
+        padding-right: 11%;
+        padding-left: 11%;
     }
     .favouritesSection .gifImg {
         width: 260px;
         height: 200px;
     }
     .favouritesSection .imgHover {
-        display: none;
+        width: 260px;
+        height: 200px;
     }
     .trendGifos {
         padding: 67px 6.5% 182px 6.5%;
@@ -1029,24 +1011,14 @@ footer {
         margin-right: 25px;
         position: relative;s
     }
-    .trendGifos .gifFigure {
-        position: relative;
-    }
     .trendGifos .gifImg {
         width: 357px;
         height: 275px;
         position: relative;
     }
     .trendGifos .imgHover {
-        display: none;
         width: 357px;
         height: 275px;
-        background-color: #572EE5;
-        opacity: 70%;
-        z-index: 1;
-        position: absolute;
-        top: 0;
-        left: 0;
     }
     .trendGifos .figcaption {
         position: absolute;

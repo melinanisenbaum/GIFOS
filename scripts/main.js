@@ -316,12 +316,12 @@ function renderResult(list, container) {
 } 
 //seccion favoritos
 
-const favourites = document.getElementById('favourites');
+const favouritesLi = document.getElementById('favourites');
 const favouritesSection = document.getElementById('favouritesSection');
 const favouritesUl = document.getElementById('favouritesUl');
 const noFavouritesYet = document.getElementById('emptyFavs');
 
-favourites.addEventListener('click', showFavourites);
+favouritesLi.addEventListener('click', showFavourites);
 
 async function showFavourites (event) {
     event.preventDefault();
@@ -341,10 +341,33 @@ async function showFavourites (event) {
         noFavouritesYet.style.display = 'block';
     }
 }
+//seccion misGifos
 
+const myGifosLi = document.getElementById('myGifosLi');
+const myGifosSection = document.getElementById('myGifosSection');
+const myGifosList = document.getElementById('myGifosList');
+const emptyMyGifos = document.getElementById('emptyMyGifos');
 
-//si esta vacio, mostrar div vacio
-//si esta lleno, mostrar resultados
+myGifosLi.addEventListener('click', showMyGifos);
+
+async function showMyGifos (event) {
+    event.preventDefault();
+
+    let myGifos = localStorage.getItem('myGifos') || '[]';
+    myGifos = JSON.parse(myGifos);
+
+    console.log(myGifos)//error
+
+    myGifosSection.style.display = 'block';
+
+    if (myGifos.length != 0) {
+        header.style.display = 'none',
+        renderResult(myGifos, myGifosList);
+        showMoreButton();
+    } else {
+        emptyMyGifos.style.display = 'block';
+    }
+}
 
 // modal HAY QUE BORRARLO Y VINCULARLO CON EL OTRO ARCHIVO
 const modal = document.getElementById('modal');
