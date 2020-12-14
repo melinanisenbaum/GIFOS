@@ -18,6 +18,7 @@ body {
     display: none;
 }
 .nav {
+    display: block;
     position: relative;
     height: 95px;
     padding-top: 29px;
@@ -217,12 +218,13 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
     height: 14px;
     width: 14px;
-    cursor: pointer;
 }
 .iconClose {
     background-image: url('../images/close.svg');
     background-repeat: no-repeat;
     cursor: pointer;
+    width: 15px;
+    height: 15px;
 }
 .searchContainer .line {
     width: 92%;
@@ -298,7 +300,7 @@ input[type="search"]::-webkit-search-results-decoration {
     text-align: center;
     display: none;
 }
-.searchUl {
+.list {
     padding-right: 21px;
     padding-left: 21px;
     display: flex;
@@ -306,26 +308,25 @@ input[type="search"]::-webkit-search-results-decoration {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.searchSection .card {
+.card {
     position: relative;
 }
 .gifFigure {
+    position: relative;
     cursor: pointer;
+}
+.figcaption {
+    display: none;
 }
 .searchSection .gifFigure {
     width: 156px;
     height: 120px;
-    margin-bottom: 21px;
-    position: relative;
 }
 .searchSection .gifImg {
     width: 156px;
     height: 120px;
 }
-.searchSection .imgHover {
-    display: none;
-}
-.figcaption {
+.imgHover {
     display: none;
 }
 .gifButtons {
@@ -337,32 +338,17 @@ input[type="search"]::-webkit-search-results-decoration {
     background-color: #FFFFFF;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 57px;
+    padding-top: 78px;
     padding-bottom: 79px;
     outline: none;
     height: 50px;
     width: 127px;
     cursor: pointer;
+    background-image: url("../images/CTA-ver-mas.svg");
+    background-repeat: no-repeat;
 }
-.showMoreFig {
-    display: block;
-    width: 127px;
-    height: 50px;
-}
-.verIcon {
-    width: 127px;
-    height: 50px;
-}
-.showMoreFigHover {
-    display: none;
-    width: 127px;
-    height: 50px;
-}
-.showMore:hover > .showMoreFig {
-    display: none;
-}
-.showMore:hover > .showMoreFigHover {
-    display: block;
+.showMore:hover {
+    background-image: url("../images/CTA-ver-mas-hover.svg");
 }
 .errorFig {
     display: none;
@@ -387,34 +373,82 @@ input[type="search"]::-webkit-search-results-decoration {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
-    opacity: 90%;
+    z-index: 100;
+    opacity: 1;
     background-color: #FFFFFF;
-    height: 100vw;
+    height: 100%;
     width: 100vw;
-    padding-top: 10%;
+    padding-top: 156px;
 }
 .modal .iconClose {
-    width: 13.8px;
-    height: 14px;
     margin: 5px;
     display: block;
     position: absolute;
-    top: 59px;
+    top: 64px;
     right: 9.14%;
 }
-.modalContainer {
-    padding-top: 73px;
+.modal .carouselContainer {
+    width: 318px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.modalContainer .prevButton, .modalContainer .nextButton{
-    display: none;
+.modal .gifFigure {
+    position: relative;
+    height: 350px;
 }
-.modalCarousel .card .gifImg {
+.modal .gifImg {
     width: 318px;
     height: 245px;
+    border: none;
+    margin-right: 0px;
 }
-.modalCarousel .card .imgHover {
+.modal .gifButtons {
+    display: block;
+    position: absolute;
+    top: 271px;
+    right: 0px;
+}
+.modal .favButton, .modal .downloadButton {
+    border: 1px solid #9CAFC3;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    width: 36px;
+    height: 36px;
+    margin-right: 11px;
+    position: relative;
+    cursor: pointer;
+    z-index: 20;
+}
+.modal .maxButton {
     display: none;
+}
+.modal .figcaption {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 259px;
+    left: 0px;
+    width: 200px;
+}
+.username {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+}
+.modal .username, .modal .title {
+    color: #000000;
+    position: relative;
+    left: 0px;
+}
+.modal .title {
+    margin-top: 6px;
 }
 .favouritesSection {
     display: none;
@@ -425,12 +459,12 @@ input[type="search"]::-webkit-search-results-decoration {
     display: block;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 7px;
-    margin-top: 5px;
 }
 .favLogoImg {
     width: 28px;
     height: 21px;
+    padding-bottom: 7px;
+    padding-top: 5px;
 }
 .favouritesTitle {
     font-family: 'Montserrat', sans-serif;
@@ -441,34 +475,32 @@ input[type="search"]::-webkit-search-results-decoration {
     padding-bottom: 38px;
     text-align: center;
 }
-.favouritesUl {
-    padding-right: 21px;
-    padding-left: 21px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.favouritesSection .card {
-    position: relative;
-}
-.favouritesSection .gifFigure {
-    width: 156px;
-    height: 120px;
-    margin-bottom: 21px;
-    position: relative;
-}
-.favouritesSection .gifImg {
-    width: 156px;
-    height: 120px;
-}
-.favouritesSection .imgHover {
+.smile-favs {
     display: none;
+    padding-top: 71px;
+    padding-bottom: 137px;
+    text-align: center;
+    margin-right: 35%;
+    margin-left: 35%;
+    padding-left: ;
+}
+.smile-img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 23.7px;
+}
+.smile-caption {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    line-height: 33px;
+    font-weight: 700;
+    color: #50E3C2 ;
 }
 .trendGifos {
     padding-top: 46px;
     padding-bottom: 82px;
     background-color: #F3F5F8;
+    display: block;
 }
 .trendTitle {
     font-family: 'Montserrat', sans-serif;
@@ -493,13 +525,15 @@ input[type="search"]::-webkit-search-results-decoration {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin-left: 22px;
     overflow: hidden;
+}
+.trendGifos .carousel {
+    margin-left: 22px;
 }
 .prevButton {
     display: none;
 }
-.carousel .gifImg {
+.trendGifos .gifImg {
     margin-right: 22px;
     width: 243px;
     height: 187px;
@@ -515,6 +549,7 @@ footer {
     line-height: 18px;
     padding-top: 47px;
     padding-bottom: 23px;
+    display: block;
 }
 .socialIcons {
     text-align: center;
@@ -726,7 +761,7 @@ footer {
     .iconSearch {
         top: 15px;
     }
-    .iconClose {
+    .searchContainer .iconClose {
         top: 17px;
     }
     .trending {
@@ -764,6 +799,7 @@ footer {
         height: 200px;
         margin-bottom: 31px;
         position: relative;
+        cursor: pointer;
     }
     .searchSection .gifImg {
         width: 260px;
@@ -790,12 +826,6 @@ footer {
         height: 200px;
     }
     .username {
-        width: 37%;
-        height: 8.5%;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        font-size: 15px;
-        line-height: 18px;
         color: #FFFFFF;
         position: absolute;
         top: 66%;
@@ -805,56 +835,46 @@ footer {
         position: absolute;
         top: 77%;
         left: 4.6%;
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        font-weight: 700;
         color: #FFFFFF;
-        line-height: 19px;
-        height: 20%;
-        width: 90%;
     }
-    .gifButtons {
+    .searchSection .gifFigure:hover > .gifButtons {
+        display: block;
+    }
+    .searchSection .gifFigure:hover > .imgHover {
+        display: block;
+    }
+    .searchSection .gifFigure:hover > .figcaption {
+        display: block;
+    }
+    .trendGifos .gifButtons {
         display: none;
         z-index: 999;
-    }
-    .favButton, .downloadButton, .maxButton {
-        opacity: 0.7;
-        border-radius: 6px;
-        background-color: #FFFFFF;
-        width: 32px;
-        height: 32px;
-        margin-right: 11px;
-        border: none;
-        position: relative;
-        cursor: pointer;
-        z-index: 20;
-    }
-    .active {
-        border: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .gifFigure:hover > .gifButtons {
-        display: block;
         height: 32px;
         position: absolute;
         top: 10px;
         right: 0;
     }
-    .gifFigure:hover > .imgHover {
-        display: block;
-    }
-    .gifFigure:hover > .figcaption {
-        display: block;
-    }
-    /*.favIconActive {
+    .favButton, .downloadButton, .maxButton {
+        opacity: 0.7;
+        border: 1px solid #9CAFC3;
+        border-radius: 6px;
+        background-color: #FFFFFF;
         width: 32px;
         height: 32px;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }*/
+        margin-right: 11px;
+        position: relative;
+        cursor: pointer;
+        z-index: 20;
+    }
+    .trendGifos .gifFigure:hover > .gifButtons {
+        display: block;
+    }
+    .trendGifos .gifFigure:hover > .imgHover {
+        display: block;
+    }
+    .trendGifos .gifFigure:hover > .figcaption {
+        display: block;
+    }
     .favButton:hover {
         opacity: 1;
     }
@@ -868,45 +888,46 @@ footer {
         padding-top: 78px;
     }
     .modal {
-        /*display: block;
-        position: absolute;
-        top: 0;
-        left: 0;*/
-        z-index: 100;
-        opacity: 1;
-        /*background-color: #FFFFFF;
-        height: 100vw;
-        width: 100vw;
-        padding-top: 10%;*/
+        height: 968px;
+        padding-top: 160px;
     }
     .modal .iconClose {
-        width: 15px;
-        height: 15px;
         margin: 0px;
-        /*display: block;
-        position: absolute;*/
         top: 66.4px;
         right: 19%;
     }
-    .modalContainer {
-        padding-top: 21%;
+    .modal .carouselContainer {
+        width: 825px;
     }
-    .modalContainer .prevButton, .modalContainer .nextButton{
-        display: inline;
+    .modal .nextButton, .modal .prevButton {
+        background-color: #FFFFFF;
+        padding-top: 172.5px;
     }
-    .modalCarousel .card .gifImg {
+    .modal .carousel {
+        width: 695px;
+        position: relative;
+    }
+    .modal .gifFigure {
+        height: 455px;
+    }
+    .modal .gifImg {
         width: 695px;
         height: 385px;
-        margin-right: auto;
-        margin-left: auto;
-
     }
-    .modalCarousel .card .imgHover {
+    .modal .imgHover {
         display: none;
+    }
+    .modal .gifButtons {
+        top: 407px;
+        right: 0px;
+    }
+    .modal .figcaption {
+        top: 412px;
+        width: 450px;
     }
     .favouritesSection {
         padding-top: 5px 0px 78px 0px;
-        display: none;
+        display: block;
     }
     .favLogo {
         display: block;
@@ -977,50 +998,46 @@ footer {
     .prevSlider {
         width: 40px;
         height: 40px;
-        background-image: url('../images/button-slider-left.svg') ;
+        background-image: url('../images/button-slider-left.svg');
     }
     .prevSlider:hover {
-        background-image: url('../images/button-slider-left-hover.svg') ;
-    }
-    .buttonSliderHover {
-        display: none;
-        width: 40px;
-        height: 40px;
+        background-image: url('../images/button-slider-left-hover.svg');
         border: none;
     }
-    .prevButton:hover > .buttonSlider{
-        display: none;
+    .nextSlider {
+        width: 40px;
+        height: 40px;
+        background-image: url('../images/button-slider-right.svg');
     }
-    .prevButton:hover > .buttonSliderHover{
-        display: block;
-    }
-    .nextButton:hover > .buttonSlider {
-        display: none;
-    }
-    .nextButton:hover > .buttonSliderHover{
-        display: block;
+    .nextSlider:hover {
+        background-image: url('../images/button-slider-right-hover.svg');
+        border: none;
     }
     .carousel {
-        width: 1125px;
         overflow: hidden;
         padding-left: 0;
         justify-content: space-between;
     }
-    .carousel .card {
+    .trendGifos .carousel {
+        margin-left: 0px;
+        width: 1125px;
+
+    }
+    .trendGifos .card {
         width: 357px;
         height: 275px;
         margin-right: 25px;
         position: relative;s
     }
-    .carousel .gifFigure {
+    .trendGifos .gifFigure {
         position: relative;
     }
-    .carousel .gifImg {
+    .trendGifos .gifImg {
         width: 357px;
         height: 275px;
         position: relative;
     }
-    .carousel .imgHover {
+    .trendGifos .imgHover {
         display: none;
         width: 357px;
         height: 275px;
@@ -1031,7 +1048,7 @@ footer {
         top: 0;
         left: 0;
     }
-    .carousel .figcaption {
+    .trendGifos .figcaption {
         position: absolute;
         top: 0;
         left: 0;
@@ -1047,7 +1064,9 @@ footer {
         margin-left: 23px;
         cursor: pointer;
         outline: none;
+        padding-top: 117.2px;
     }
+
     footer {
         height: 116px;
         padding-top: 49.5px;

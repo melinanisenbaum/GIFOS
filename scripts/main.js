@@ -83,8 +83,8 @@ async function showTags() {
     const response = await fetch(url);
     const results = await response.json();
     const data = results.data;
-    console.log (data);
-    console.log(q);
+    //console.log (data);
+    //console.log(q);
 
     if (results.data.length > 0) {
         tagsLine.style.display = 'block';
@@ -254,7 +254,7 @@ function renderResult(list, container) {
 
         // para agregar a favoritos agregar a favoritos
         if (screen.width < 970) {
-            li.addEventListener('touchend', getModal)
+            li.addEventListener('touchend', getModal)//????????
         } else {
             favButton.addEventListener('click', changeFavouriteState);
             downloadButton.addEventListener('click', download);
@@ -299,9 +299,11 @@ function renderResult(list, container) {
 
             //create new a element
             const a = document.createElement('a');
-            const response = await fetch(item.url);
+            const response = await fetch(item.url)//, init: {
+                //mode: 'no-cors',//no funciona!
+            //});
             // get image as blob
-            const file = response.blob();
+            const file = await response.blob();
             a.download = item.title;
             a.href = window.URL.createObjectURL(file);
             //store download url in javascript https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#JavaScript_access
@@ -312,27 +314,64 @@ function renderResult(list, container) {
         }
     })
 } 
+//seccion favoritos
 
-// modal
+const favourites = document.getElementById('favourites');
+const favouritesSection = document.getElementById('favouritesSection');
+const favouritesUl = document.getElementById('favouritesUl');
+const noFavouritesYet = document.getElementById('emptyFavs');
+
+favourites.addEventListener('click', showFavourites);
+
+async function showFavourites (event) {
+    event.preventDefault();
+
+    let myFavourites = localStorage.getItem('myFavourites') || '[]';
+    myFavourites = JSON.parse(myFavourites);
+
+    console.log(myfavourites)//error
+
+    favouritesSection.style.display = 'block';
+
+    if (myFavourites.length != 0) {
+        header.style.display = 'none',
+        renderResult(myFavourites, favouritesUl);
+        showMoreButton();
+    } else {
+        noFavouritesYet.style.display = 'block';
+    }
+}
+
+
+//si esta vacio, mostrar div vacio
+//si esta lleno, mostrar resultados
+
+// modal HAY QUE BORRARLO Y VINCULARLO CON EL OTRO ARCHIVO
 const modal = document.getElementById('modal');
-const modalContainer = document.getElementById('modalContainer');
+const trendingSection = document.getElementById('trendingSection')
+const modalCarousel = document.getElementById('modalCarousel');
 const closeModal = document.getElementById('closeModal');
+const footer = document.getElementById('footer');
 
 function getModal(e) {//terminar
     modal.style.display = 'block';
     //nav.style.display = 'none';
     //header.style.display = 'none';
+    trendingSection.style.display = 'none';
+    footer.style.display = 'none';
+    //funciona pero como hago para que se dirija arriba el scroll cuando abro? 
 
-    renderResult(e.currentTarget.items, modalContainer);
+    renderResult(e.currentTarget.items, modalCarousel);
     console.log(e.currentTarget.items);
 }
 
 closeModal.addEventListener('click', function() {
     modal.style.display = "none";
+    trendingSection.style.display = 'block';
+    footer.style.display = 'block';
     })
 
-
-function showMoreButton() {
+    function showMoreButton() {
     moreButton.style.display='block';
 }
 
@@ -397,7 +436,7 @@ async function showTrendings() {
 }
 
 //carousel
-
+/*
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 
@@ -406,24 +445,24 @@ prevButton.addEventListener('click', prevGif);
 nextButton.addEventListener('click', nextGif);
 //nextButton.addEventListener('touchend', scrollLeft);
 
-const nCarousel = 20
+//const nCarousel = 20
 /*function createArray(object) {
     const indexes = Array.from(Array(nCarousel).keys())
     indexes.map(element => {
         getInfo(element, object, carousel)
     })
 }*/
-position = 0;
-width = 26.74;
-count = 1;
-trendList = carousel.querySelectorAll('carousel');
+//position = 0;
+//width = 26.74;
+//count = 1;
+//trendList = carousel.querySelectorAll('carousel');
 
-function prevGif() {
-    position = Math.min(position + width * count, 0);
-    carousel.style.marginLeft = position + 'vw';
-}
+//function prevGif() {
+    //position = Math.min(position + width * count, 0);
+    //carousel.style.marginLeft = position + 'vw';
+//}
 
-function nextGif() {
-    position = Math.max(position - width * count, width * (trendList.length - (nCarousel - 3)));
-    carousel.style.marginLeft = position + 'vw';
-}
+//function nextGif() {
+    //position = Math.max(position - width * count, width * (trendList.length - (nCarousel - 3)));
+    //carousel.style.marginLeft = position + 'vw';
+//}

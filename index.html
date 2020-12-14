@@ -32,12 +32,12 @@
                 <img class="fa-times dark" src="./images/close-modo-noct.svg">
             </label>
             <ul class="topnav">
-                <li >
-                    <a id="mode" href="#">Modo Nocturno</a>
+                <li>
+                    <a id="mode" href="#">Modo Nocturno</a><!--es href queda vario? se ponen siendo que es dinamico en js?-->
                     <div class="line"></div>
                 </li>
                 <li>
-                    <a href="#">Favoritos</a>
+                    <a id="favourites" href="#">Favoritos</a>
                     <div class="line"></div>
                 </li>
                 <li>
@@ -110,10 +110,10 @@
             <section class="searchSection" id="searchSection">
                 <div class="line" id="searchLine"></div>
                 <h2 class="searchTitle" id="searchTitle"></h2>
-                <ul class="searchUl" id="searchUl">
+                <ul class="list" id="searchUl">
                     <!--<li class="card">
                             <figure class= "gifFigure">
-                                <img class="imgFig" src="" >
+                                <img class="imgFig" id.gifImg src="" >
                                 <div class="gifButtons'>
                                     <button class="favButton" type="button" title="favourite">
                                             <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
@@ -135,14 +135,8 @@
                             </figure>
                     </li>-->
                 </ul>
-                <button class="showMore" id="showMore" type="button" title="showMore">
-                    <figure class="showMoreFig">
-                        <img class="verIcon" src="./images/CTA-ver-mas.svg" width="127px" height="50px">
-                    </figure>
-                    <figure class="showMoreFigHover">
-                        <img class="verIcon" src="./images/CTA-ver-mas-hover.svg" width="127px" height="50px">
-                    </figure>
-                </button>
+                <figure class="showMore" id="showMore" type="button" title="showMore">
+                </figure>
                 <figure class="errorFig" id="errorFigure">
                     <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">
                     <figcaption class="errorCaption">Intenta con otra busqueda</figcaption>
@@ -153,40 +147,14 @@
             <section class="modal" id="modal">
                 <figure class="iconClose" id="closeModal">
                 </figure>
-                <div class="modalContainer" id="modalContainer">    
-                    <button class="prevButton"  type="button" title="previous">
-                        <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
-                        <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
-                    </button>
-                    <ul class="modalCarousel" id="modalCarousel" aria-label="carousel">
-                        <li class="card">
-                            <figure class= "gifFigure">
-                                <img class="gifImg" src="" >
-                                <img imgHover>
-                                <figcaption>
-                                    <span class="user">User</span>
-                                    <span class="title">Titulo GIFO</span>
-                                </fig>
-                            </figure>
-                            <div class="gifButtons">
-                                <button class="favouriteButton" type="button" title="favourite">
-                                    <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                </button>
-                                <button class="downloadButton" type="button" title="download">
-                                    <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                                </button>
-                                <button class="maxButton" type="button" title="maximaze">
-                                    <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
-                                </button>
-                            </div>
-                        </li>-->
-                    </ul>
-                    <button class="nextButton"  type="button" title="next">
-                        <!--<img class="buttonSlider light" src="./images/button-slider-right.svg">
-                        <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">-->
-                    </button>
+                <div class="carouselContainer" id="modalContainer">    
+                    <figure class="prevButton">
+                        <div class="prevSlider"></div>
+                    </figure>
+                    <ul class="carousel" id="modalCarousel" aria-label="carousel"></ul>
+                    <figure class="nextButton">
+                        <div class="nextSlider"></div>
+                    </figure>
                 </div>
             </section>
             <section class="favouritesSection" id="favouritesSection">
@@ -194,90 +162,37 @@
                     <img class="favLogo" src="./images/icon-favoritos.svg">
                 </figure>
                 <h2 class="favouritesTitle" id="favouritesTitle">Favoritos</h2>
-                <button class="prevButton"  type="button" title="previous">
-                    <img class="buttonSlider light" src="./images/button-slider-left.svg">
-                    <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
-                    <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">
-                </button>
-                <ul class="favouritesUl" id="favouritesUl">
-                    <!--<li class="card">
-                            <figure class= "gifFigure">
-                                <imgclass="imgFig" src="" >
-                                <img class="imgHover">
-                                <figcaption class="figcaption">
-                                    <span class="username">User</span>
-                                    <span class="title">Titulo GIFO</span>
-                                <figcaption>
-                                <div class="gifButtons'>
-                                    <button class="favButton" type="button" title="favourite">
-                                            <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">
-                                            <img class="favIconHover" src="./images/icon-fav-hover.svg" width="32px" height="32px">
-                                        
-                                        </button>
-                                    <button class="downloadButton" type="button" title="download">
-                                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                                    </button>
-                                    <button class="maxButton" type="button" title="maximaze">
-                                        <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
-                                    </button>
-                                </div>
-                            </figure>
-                    </li>-->
+                <ul class="list" id="favouritesUl">
                 </ul>
-                <button class="showMore" id="showMoreFav" type="button" title="showMore">
-                    <figure class="showMoreFig">
-                        <img class="verIcon light" src="./images/CTA-ver-mas.svg">
-                        <img class="verIcon dark" src="./images/CTA-ver+-modo-noc.svg">
-                    </figure>
-                    <figure class="showMoreFigHover">
-                        <img class="verIcon light" src="./images/CTA-ver-mas-hover.svg">
-                        <img class="verIcon dark" src="./images/CTA-ver+hover-modo-noc.svg">
-                    </figure>
-                </button>
+                <figure class="showMore" id="showMoreFavs" type="button" title="showMore">
+                </figure>
+                <figure class="smile-favs" id="emptyFavs">
+                    <img class="smile-img" src=".\images\icon-fav-sin-contenido.svg">
+                    <figcaption class="smile-caption">"¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!"</figcaption>
+                </figure>
             </section>
-            <section class="trendGifos">
+            <section class="trendGifos" id="trendingSection">
                 <h2 class="trendTitle">Trending GIFOS</h2>
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
                 <div class="carouselContainer">    
-                    <figure class="prevButton" id="prevButton" type="button" title="previous">
+                    <figure class="prevButton" id="prevButton">
                         <div class="prevSlider"></div>
                         <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
                         <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
                         </figure>
                     <ul class="carousel" id="carousel" aria-label="carousel">
-                        <!--<li class="card">
-                            <figure class= "gifFigure">
-                                <img class="gifImg" src="" >
-                                <img imgHover>
-                                <figcaption>
-                                    <span class="user">User</span>
-                                    <span class="title">Titulo GIFO</span>
-                                </fig>
-                            </figure>
-                            <div class="gifButtons">
-                                <button class="favouriteButton" type="button" title="favourite">
-                                    <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                </button>
-                                <button class="downloadButton" type="button" title="download">
-                                    <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                                </button>
-                                <button class="maxButton" type="button" title="maximaze">
-                                    <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
-                                </button>
-                            </div>
-                        </li>-->
                     </ul>
-                    <button class="nextButton" id="nextButton" type="button" title="next">
-                        <img class="buttonSlider light" src="./images/button-slider-right.svg">
+                    <figure class="nextButton" id="nextButton">
+                        <div class="nextSlider"></div>
+                        <!--<img class="buttonSlider light" src="./images/button-slider-right.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">
-                    </button>
+                        <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">-->
+                    </figure>
                 </div>
             </section>
         </main>
-        <footer>
+        <footer id="footer">
             <div class='socialIcons'>
                 <span class="share">Compartir en:</span>
                 <div class="icons">
@@ -305,4 +220,6 @@
             <span class="rights">© GIFOS 2020 All Rights Reserved.</span>
         </footer>
         <script src="./scripts/main.js"></script>
+        <!--<script src="./scripts/modal.js"></script>
+        <script src="./scripts/carousel.js"></script>-->
     </body>
