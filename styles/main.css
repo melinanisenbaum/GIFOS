@@ -109,11 +109,8 @@ body {
 nav input:checked ~ .header {
     display: none;/*no funciona*/
 }
-.createButton {
+.create-button {
     display: none;
-    background: none;
-    border: 0;
-    cursor: pointer;
 }
 .header {
     padding-top: 7px;
@@ -319,10 +316,6 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
 }
 .searchSection .gifFigure, .my-gifos-section .gifFigure {
-    width: 156px;
-    height: 120px;
-}
-.searchSection .gifImg, .my-gifos-section .gifFigure {
     width: 156px;
     height: 120px;
 }
@@ -721,22 +714,6 @@ footer {
     .topnav .line {
         display: none;
     }
-    .createButton {
-        display: block;
-        grid-column-start: 6;
-        grid-column-end: 7;
-        width: 54px;
-        height: 54px;
-        background-image: url("../images/button-crear-gifo.svg");
-        background-size: cover;
-        cursor: pointer;
-    }
-    .createButton:hover {
-        background-image: url("../images/CTA-crear-gifo-hover.svg");
-    }
-    .createButton:active {
-        background-image: url("../images/CTA-crear-gifo-active.svg");
-    }/*es el mismo logo para los 3 css pero si lo dejo solo en el main no funciona*/
     .header {
         padding-top: 76px;
         padding-bottom: 95px;
@@ -799,11 +776,9 @@ footer {
         justify-content: space-between;
     }
     .gifFigure {
-        width: 260px;
-        height: 200px;
         margin-bottom: 31px;
     }
-    .searchSection .gifImg {
+    .searchSection .gifImg, .favouritesSection .gifImg {
         width: 260px;
         height: 200px;
     }
@@ -940,10 +915,6 @@ footer {
         padding-right: 11%;
         padding-left: 11%;
     }
-    .favouritesSection .gifImg {
-        width: 260px;
-        height: 200px;
-    }
     .favouritesSection .imgHover {
         width: 260px;
         height: 200px;
@@ -1038,7 +1009,6 @@ footer {
         outline: none;
         padding-top: 117.2px;
     }
-
     footer {
         height: 116px;
         padding-top: 49.5px;
@@ -1067,3 +1037,134 @@ footer {
         line-height: 15px;
         text-align: right;
     }
+    @media all and (min-width: 1340px) {
+        .create-button {
+            display: block;
+            background: none;
+            border: 0;
+            cursor: pointer;   
+            grid-column-start: 6;
+            grid-column-end: 7;
+            width: 54px;
+            height: 54px;
+            background-image: url("../images/button-crear-gifo.svg");
+            background-size: cover;
+            cursor: pointer;
+        }
+        .create-button:hover {
+            background-image: url("../images/CTA-crear-gifo-hover.svg");
+        }
+        .create-button:active {
+            background-image: url("../images/CTA-crear-gifo-active.svg");
+        }/*es el mismo logo para los 3 css pero si lo dejo solo en el main no funciona*/
+    
+        .create-section {
+            display: block;
+            padding-top: 4px;
+            padding-bottom: 26px;
+            position: relative;
+        }
+        .camera-figure {
+            position: absolute;
+            top: 118.6px;
+            left: 11%;
+            background-image: url("../images/camara.svg");
+            background-repeat: no-repeat;
+            width: 199px; 
+            height: 162px;
+        }
+        .light-img {
+            position: absolute;
+            left: 123px;
+            top: 19px;
+        }
+        .film-figure {
+            position: absolute;
+            right: 11%;
+            top: 382.6px;
+            background-image: url("../images/pelicula.svg");
+            background-repeat: no-repeat;
+            height: 88px;
+            width: 142px;
+        }
+        .video-container {
+            width: 688px;
+            height: 390px;
+            border: 1px solid #572EE5;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+        .corner {
+            width: 27px;
+            height: 25px;
+            position: absolute;
+        }
+        .top {
+            border-top: 1px solid #50E3C2;
+        }
+        .left {
+            border-left: 1px solid #50E3C2;
+        }
+        .right {
+            border-right: 1px solid #50E3C2;
+        }
+        .bottom {
+            border-bottom: 1px solid #50E3C2;
+        }
+        .corner.top.left {
+            left: 20px;
+            top: 20px
+        }
+        .corner.top.right {
+            right: 20px;
+            top: 20px
+        }
+        .corner.bottom.right {
+            right: 20px;
+            bottom: 20px
+        }
+        .corner.bottom.left {
+            left: 20px;
+            bottom: 20px;
+        }
+        .cover-container {
+            display: none;
+        }
+        .step-one-container {
+            display: none;
+            position: relative;
+        }
+        .step-two-container, .step-three-container {
+            display: block;
+        }
+        .create-section .section-title {
+            margin-top: 123px;
+            height: 70px;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+        .subtitle {
+            display: block;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 29px;
+            color: #000000;
+            text-align: center;
+        }
+        .camera-box, .hover-box {
+            width: 480px;
+            height: 320px;
+            position: absolute;
+            top: 35px;
+            left: 104px;
+        }
+        .hover-box {
+            background-color: #572EE5;
+            opacity: 70%;
+            z-index: 1;
+        }
+
