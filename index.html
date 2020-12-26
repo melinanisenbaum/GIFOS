@@ -45,16 +45,9 @@
                     <div class="line"></div>
                 </li>
             </ul>
-            <figure class="create-button" href="">
-                <!--<img class="createImgButton light" src="./images/button-crear-gifo.svg" alt="createButton">
-                <img class="createImgButtonHover light" src="./images/CTA-crear-gifo-hover.svg" alt="createButton">
-                <img class="createImgButtonActive light" src="./images/CTA-crear-gifo-active.svg" alt="createButton">
-                <img class="createImgButton dark" src="./images/CTA-crear-gifo-modo-noc.svg" alt="createButton">
-                <img class="createImgButtonHover dark" src="./images/CTA-crear-gifo-hover-modo-noc.svg" alt="createButton">
-                <img class="createImgButtonActive dark" src="./images/CTA-crear-gifo-active-modo-noc.svg" alt="createButton">-->
-            </figure>
+            <button class="create-button" id="createButton" href="#"></button>
         </nav>
-        <header class="header">
+        <header class="header" id="header">
             <h1 class="mainTitle">Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
             <picture class="ilustraHeader">
                 <img class="ilustraHeaderImg" src="./images/ilustra_header.svg" alt="busca gifos y mas">
@@ -135,8 +128,7 @@
                             </figure>
                     </li>-->
                 </ul>
-                <figure class="showMore" id="showMore" type="button" title="showMore">
-                </figure>
+                <button class="button show-more" id="showMore" type="button" title="showMore">VER MAS</button>
                 <figure class="errorFig" id="errorFigure">
                     <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">
                     <figcaption class="errorCaption">Intenta con otra busqueda</figcaption>
@@ -148,8 +140,8 @@
                 <figure class="iconClose" id="closeModal">
                 </figure>
                 <div class="carouselContainer" id="modalContainer">    
-                    <figure class="prevButton">
-                        <div class="prevSlider"></div>
+                    <figure class="prev-button">
+                        <div class="prev-slider"></div>
                     </figure>
                     <ul class="carousel" id="modalCarousel" aria-label="carousel"></ul>
                     <figure class="nextButton">
@@ -188,24 +180,24 @@
             <section class="trendGifos" id="trendingSection">
                 <h2 class="trendTitle">Trending GIFOS</h2>
                 <span class="look">Mirá los últimos<br>GIFOS de nuestra comunidad.</span>
-                <div class="carouselContainer">    
-                    <figure class="prevButton" id="prevButton">
-                        <div class="prevSlider"></div>
+                <div class="carousel-container">    
+                    <figure class="carousel-button" id="prevButton">
+                        <div class="prev-slider"></div>
                         <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
                         <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
                         </figure>
                     <ul class="carousel" id="carousel" aria-label="carousel">
                     </ul>
-                    <figure class="nextButton" id="nextButton">
-                        <div class="nextSlider"></div>
+                    <figure class="carousel-button" id="nextButton">
+                        <div class="next-slider"></div>
                         <!--<img class="buttonSlider light" src="./images/button-slider-right.svg">
                         <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg">
                         <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">-->
                     </figure>
                 </div>
             </section>
-            <section class="create-section" id="createGifoSection">
+            <section class="create-section" id="createSection">
                 <figure class="camera-figure">
                     <img class="light-img" src=".\images\element-luz-camara.svg">
                 </figure>
@@ -216,43 +208,47 @@
                     <div class="corner top right"></div>
                     <div class="corner bottom left"></div>
                     <div class="corner bottom right"></div>
-                    <div class="cover-container">
+                    <div class="cover-container" id="cover">
                         <h2 class="section-title">Aquí podrás<br>crear tus propios <span class="wordGifos">GIFOS</span></h2>
                         <h3 class="subtitle">¡Crea tu GIFO en sólo 3 pasos!<br>(sólo necesitas una cámara para grabar un video)</h3>
                     </div>
-                    <div class="step-one-container">
+                    <div class="step-one-container" id="stepOne">
                         <h2 class="section-title">¿Nos das acceso<br>a tu cámara?</h2>
                         <h3 class="subtitle">El acceso a tu camara será válido sólo<br>por el tiempo en el que estés creando el GIFO.</h3>
                     </div>
-                    <div class="step-two-container">
-                        <div class="camera-box"></div>
+                    <div class="step-two-container" id="stepTwo">
+                        <video class="camera-box" id="video" autoplay>Your browser does not support the video tag.</video>
                     </div>
                     <div class="step-three-container">
                         <div class="hover-box">
-                            <div class="uploding">
+                            <div class="uploading">
                                 <img class="loader-img" src=".\images\loader.svg">
-                                <span>Estamos subiendo tu GIFO</span>
+                                <span class="section-span">Estamos subiendo tu GIFO</span>
                             </div>
                             <div class="upload">
-                                <button class="downloadButton" type="button" title="download">
+                                <button class="download-button" type="button" title="download">
                                     <img class="downloadIcon" src="./images/icon-download.svg">
                                 </button>
                                 <button class="link-button" type="button" title="link">
                                     <img class="link-icon" src="./images/icon-link-normal.svg">
                                 </button>
-                                <img class="check-img" src=".\images\check.svg">
-                                <span>GIFO subido con éxito</span>
+                                <div class="check-container">
+                                    <img class="check-img" src=".\images\check.svg">
+                                    <span class="section-span">GIFO subido con éxito</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="steps-container">
-                    <div class="step" id="stepOne">1</div>
-                    <div class="step" id="stepTwo">2</div>
-                    <div class="step" id="stepThree">3</div>
+                    <div class="step" id="one">1</div>
+                    <div class="step" id="two">2</div>
+                    <div class="step" id="three">3</div>
                 </div>
-                <div class="timer"></div>
-                <button class="repeat" id="repeatButton">REPETIR CAPTURA</button>
+                <div class="timer" id="timer">00:00:05</div>
+                <button class="repeat-button" id="repeatButton">REPETIR CAPTURA
+                    <div class="line"></div>
+                </button>
                 <div class="create-line"></div>
                 <button class="button" id="startCreateButton">COMENZAR</button>
                 <button class="button" id="startRecordingButton">GRABAR</button>

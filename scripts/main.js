@@ -203,7 +203,6 @@ function renderResult(list, container) {
         const title = document.createElement('span');
         const favButton = document.createElement('button');
         const favIcon = document.createElement('img');
-        const favIconActive = document.createElement('img');
         const downloadButton = document.createElement('button');
         const downloadIcon = document.createElement('img');
         const maxButton = document.createElement('button');
@@ -212,6 +211,7 @@ function renderResult(list, container) {
         li.className = 'card';
         figure.className = 'gifFigure';
         img.className = 'gifImg';
+
         img.src = item.images.original.url;
         imgHover.className = 'imgHover';
         figcaption.className = 'figcaption';
@@ -221,7 +221,7 @@ function renderResult(list, container) {
         title.textContent = item.title;
         buttonsContainer.className = 'gifButtons';
         favButton.className = 'favButton';
-        favIcon.className = 'favIcon';
+        //favIcon.className = 'fav-icon';
         favIcon.src = './images/icon-fav.svg';
         downloadButton.className = 'downloadButton';
         downloadIcon.className = 'downloadIcon';
@@ -248,6 +248,10 @@ function renderResult(list, container) {
         let gifInfo = {
             id: item.id,
             url: item.images.original.url,
+            images: {
+                original: item.images.original
+
+            },
             title: item.title,
             user: item.username,
         };
@@ -291,6 +295,7 @@ function renderResult(list, container) {
                 favIcon.src = './images/icon-fav.svg';
             } else if (_state == 1) {
                 favIcon.src = './images/icon-fav-active.svg';
+                //favButton.classList.add('fav-icon-active');
             }
         }
         //download image
@@ -323,19 +328,16 @@ const noFavouritesYet = document.getElementById('emptyFavs');
 
 favouritesLi.addEventListener('click', showFavourites);
 
-async function showFavourites (event) {
-    event.preventDefault();
+async function showFavourites (e) {
 
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
     myFavourites = JSON.parse(myFavourites);
-
-    console.log(myfavourites)//error
 
     favouritesSection.style.display = 'block';
 
     if (myFavourites.length != 0) {
         header.style.display = 'none',
-        renderResult(myFavourites, favouritesUl);
+        renderResult(myFavourites, favouritesUl);//error
         showMoreButton();
     } else {
         noFavouritesYet.style.display = 'block';
@@ -433,7 +435,6 @@ async function showWordTrends(){
     const p = document.createElement('p');
     p.innerText = firstResults.join(', ');
     p.className = "themes";
-    
 
     wordTrends.appendChild(p);
 }
@@ -454,38 +455,227 @@ async function showTrendings() {
     const url = getTrendingsUrl();
     const response = await fetch(url);
     const results = await response.json();
-    //const object = createArray(object);
     renderResult(results.data, carousel);
+    //setInitialClasses(results.data);
 }
 
 //carousel
+
+/*const itemClassName = 'card';
+    items = document.getElementsByClassName(itemClassName),
+    totalItems = items.length,
+    slide = 0,
+    moving = true;*/
+  
 /*
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
+// Set classes
+function setInitialClasses(items) {
+    // Targets the previous, current, and next items
+    // This assumes there are at least three items.
+    items[items - 1].classList.add('prev');
+    items[0].classList.add('active');
+    items[1].classList.add('active');
+    items[2].classList.add('active');
+    items[3].classList.add('next');
+  }
 
-prevButton.addEventListener('click', prevGif);
-//prevButton.addEventListener('touchstart', scrollLeft);
-nextButton.addEventListener('click', nextGif);
-//nextButton.addEventListener('touchend', scrollLeft);
+  prevButton.addEventListener('click', movePrev);
+  //prevButton.addEventListener('touchstart', scrollLeft);
+  nextButton.addEventListener('click', moveNext);
+  //nextButton.addEventListener('touchend', scrollLeft);  
 
-//const nCarousel = 20
-/*function createArray(object) {
-    const indexes = Array.from(Array(nCarousel).keys())
-    indexes.map(element => {
-        getInfo(element, object, carousel)
-    })
-}*/
-//position = 0;
-//width = 26.74;
-//count = 1;
-//trendList = carousel.querySelectorAll('carousel');
+  // Next navigation handler
+function moveNext() {
+    // Check if moving
+    if (!moving) {
+      // If it's the last slide, reset to 0, else +1
+      if (slide === (totalItems - 1)) {
+        slide = 0;
+      } else {
+        slide++;
+      }
+      // Move carousel to updated slide
+      moveCarouselTo(slide);
+    }
+  }
+  // Previous navigation handler
+  function movePrev() {
+    // Check if moving
+    if (!moving) {
+      // If it's the first slide, set as the last slide, else -1
+      if (slide === 0) {
+        slide = (totalItems - 1);
+      } else {
+        slide--;
+      }
+            
+      // Move carousel to updated slide
+      moveCarouselTo(slide);
+    }
+  }
+  function disableInteraction() {
+    // Set 'moving' to true for the same duration as our transition.
+    // (0.5s = 500ms)
+    
+    moving = true;
+    // setTimeout runs its function once after the given time
+    setTimeout(function(){
+      moving = false
+    }, 500);
+  }
+  function moveCarouselTo(slide) {
+    // Check if carousel is moving, if not, allow interaction
+    if(!moving) {
+      // temporarily disable interactivity
+      disableInteraction();
+      // Update the "old" adjacent slides with "new" ones
+      var newPrevious = slide - 1,
+          newNext = slide + 1,
+          oldPrevious = slide - 2,
+          oldNext = slide + 2;
+      // Test if carousel has more than three items
+      if ((totalItems - 1) > 3) {
+        // Checks and updates if the new slides are out of bounds
+        if (newPrevious <= 0) {
+          oldPrevious = (totalItems - 1);
+        } else if (newNext >= (totalItems - 1)){
+          oldNext = 0;
+        }
+        // Checks and updates if slide is at the beginning/end
+        if (slide === 0) {
+          newPrevious = (totalItems - 1);
+          oldPrevious = (totalItems - 2);
+          oldNext = (slide + 1);
+        } else if (slide === (totalItems -1)) {
+          newPrevious = (slide - 1);
+          newNext = 0;
+          oldNext = 1;
+        }
+        // Now we've worked out where we are and where we're going, 
+        // by adding/removing classes we'll trigger the transitions.
+        // Reset old next/prev elements to default classes
+        items[oldPrevious].className = itemClassName;
+        items[oldNext].className = itemClassName;
+        // Add new classes
+        items[newPrevious].className = itemClassName + " prev";
+        items[slide].className = itemClassName + " active";
+        items[newNext].className = itemClassName + " next";
+      }
+    }
+  }
+  function initCarousel() {
+    setInitialClasses();
+    // Set moving to false so that the carousel becomes interactive
+    moving = false;
+  }
+  initCarousel();
+*/
+  //create-mygifo
 
-//function prevGif() {
-    //position = Math.min(position + width * count, 0);
-    //carousel.style.marginLeft = position + 'vw';
-//}
+const createButton = document.getElementById('createButton');
+const createSection = document.getElementById('createSection');
+const cover = document.getElementById('cover');
+const startCreateButton = document.getElementById('startCreateButton');
 
-//function nextGif() {
-    //position = Math.max(position - width * count, width * (trendList.length - (nCarousel - 3)));
-    //carousel.style.marginLeft = position + 'vw';
-//}
+createButton.addEventListener('click', openCreateSection);
+
+function openCreateSection (event) {
+    event.preventDefault();
+
+    const stepOne = document.getElementById('stepOne');
+
+    createButton.style.backgroundImage = "url('../images/CTA-crear-gifo-active.svg')";
+
+    header.style.display = 'none';
+    favouritesSection.style.display = 'none';
+    trendingSection.style.display = 'none';
+    createSection.style.display = 'block';
+    cover.style.display = 'block';
+    startCreateButton.style.display = 'block';
+
+    startCreateButton.addEventListener('click', openStepOne);
+    
+    function openStepOne(event) {
+        event.preventDefault();
+
+        const one = document.getElementById('one');
+                
+        cover.style.display = 'none';
+        stepOne.style.display = 'block';
+        one.style.backgroundColor = '#572EE5';
+        one.style.color = '#FFFFFF';
+        startCreateButton.style.display = 'none';
+        
+        //Checking Device Support
+        if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+            console.log("Let's get this party started");
+            getStreamAndRecord();
+        } else {
+              alert('This device cannot support this action!');
+        }
+        
+        async function getStreamAndRecord() {//no se como es el permiso desde el navegador
+            stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
+            const stepTwo = document.getElementById('stepTwo');
+            const video = document.getElementById('video');
+            const two = document.getElementById('two');
+            const startRecordingButton = document.getElementById('startRecordingButton');
+            const timer = document.getElementById('timer');
+
+            if (stream.active === true) {
+                stepOne.style.display = 'none';
+                video.style.display = 'block';
+                video.src = stream;
+                one.style.color = '#572EE5';
+                one.style.backgroundColor = '#FFFFFF';
+                two.style.backgroundColor = '#572EE5';
+                two.style.color = '#FFFFFF';
+                startRecordingButton.style.display = 'block';
+                video.play();
+                //timer.style.display = "block";
+                //timer.innerHTML = '00:00:00';
+            }
+
+            startRecordingButton.addEventListener('click', startRecording);
+
+            async function startRecording(event) {
+
+            }
+            //stream.then(function(mediaStream) {
+                
+
+                //video.play();
+                //video.src = window.URL.createObjectURL(mediaStream);
+                
+                //video.onloadedmetadata = function(e) {
+                    
+                // Do something with the video here.
+            //})
+            //.catch(function(err) {
+            //    console.log(err.name);
+            //});
+        }
+        //https://github.com/migue1223/gifos/blob/master/assets/js/crearGifos.js#L6
+                
+
+                    
+
+        //
+    }
+}
+    //const startRecordingButton = document.getElementById('startRecordingButton');
+    //startRecordingButton.style.display = 'block';
+/*function changeCreateIcon(_state) {
+    if (_state == 0) {
+        favIcon.src = './images/icon-fav.svg';
+    } else if (_state == 1) {
+        favIcon.src = './images/icon-fav-active.svg';
+        //favButton.classList.add('fav-icon-active');
+    }
+}
+//acceder a la camara
+
+});
+
+p.catch(function(err) { console.log(err.name); }); // always check for errors at the end.
+*/
