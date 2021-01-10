@@ -15,9 +15,16 @@ body {
 }
 .topnav {
     background: #572EE5;
+    opacity: 90%;
 }
 .topnav li a{
     color: #FFFFFF;
+}
+.nav input:checked ~ .icon-menu .burger-menu {
+    background-image: url("../images/close.svg");
+}
+.nav input:not(:checked) ~ .icon-menu .burger-menu {
+    background-image: url("../images/burger.svg");
 }
 .searchContainer {
     border: 1px solid #572EE5;
@@ -29,14 +36,23 @@ body {
 .mySearch:focus {
     background-color: #FFFFFF;
 }
+.main-lens .svg-lens {
+    fill: #572EE5;
+}
 .iconSearch {
     color: #9CAFC3;
 }
-.iconClose {
+.icon-close {
     background-image: url('../images/close.svg');
 }
-.showMore {
-    /*background-color: #FFFFFF;*/
+.button {
+    border:  1px solid #572EE5;
+    background-color: #FFFFFF;
+    color: #572EE5;
+}
+.button:hover {
+    background-color: #572EE5;
+    color: #FFFFFF;
 }
 .trendGifos {
     background-color: #F3F5F8;
@@ -44,14 +60,9 @@ body {
 .look {
     color: #000000;
 }
+
 @media all and (min-width: 970px) {
-    .searchOnNav {
-        border: 1px solid #572EE5;
-    }
-    .mySearchOnNav {
-        color: #9CAFC3;
-        }
-    .topnav {/*corregir posicion de los li, ojo responsivo se sale por fuera de pantalla*/
+    .topnav {
         background: #FFFFFF;
     } 
     .topnav li a{
@@ -66,6 +77,9 @@ body {
     .createButton:active {
         background-image: url("../images/CTA-crear-gifo-active.svg");
     }
+    .carousel-button {
+        background-color: #F3F5F8;
+    }
     .prevButton {
         background-color: #F3F5F8;
     }
@@ -78,6 +92,24 @@ body {
     .carousel .imgHover {
         background-color: #572EE5;
     }
+
     .nextButton {
         background-color: #F3F5F8;
     }
+@media all and (min-width: 1200px) {
+    .searchOnNav {
+        border: 1px solid #572EE5;
+    }
+    .mySearchOnNav {
+        color: #9CAFC3;
+    }
+    .mySearchOnNav:focus {
+        color: #000000;
+    }
+    .camera-figure {
+        background-image: url("../images/camara.svg");
+    }
+    .film-figure {
+        background-image: url("../images/pelicula.svg");
+    }
+}    

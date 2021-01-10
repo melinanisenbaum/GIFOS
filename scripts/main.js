@@ -1,6 +1,8 @@
+const home = document.getElementById('home');
 const header = document.getElementById('header');
 const form = document.getElementById('search');
 const input = document.getElementById('mySearch');
+const inputOnNav = document.getElementById('mySearchOnNav');
 const lens = document.getElementById('iconSearch');
 const searchSection = document.getElementById('searchSection');
 const searchUl = document.getElementById('searchUl');
@@ -12,8 +14,46 @@ const closeButton = document.getElementById('iconClose');
 const errorFig = document.getElementById('errorFigure');
 const mode = document.getElementById('mode');
 const themeStyle = document.getElementById('themeStyle');
+const nav = document.getElementById('nav');
+const topnav = document.getElementById('topnav');
+const topnavItem = document.getElementsByClassName('link');
+const createSection = document.getElementById('createSection');
+const cover = document.getElementById('cover');
+const searchOnNav = document.getElementById('searchOnNav');
+const checkbox = document.getElementById('checkbox');
 
 const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
+
+//home
+
+home.addEventListener('click', goHome)
+
+function goHome() {
+    header.style.display = 'flex';
+    trendingSection.style.display = 'block';
+    footer.style.display = 'block';
+    favouritesSection.style.display = 'none';
+    myGifosSection.style.display = 'none';
+    createSection.style.display = 'none';
+}
+
+//sticky nav
+
+window.onscroll = function() {onStickyNav()};
+
+const sticky = nav.offsetTop;
+
+function onStickyNav() {
+    if (window.pageYOffset >= sticky && window.matchMedia("(min-width: 1200px)").matches) {
+        nav.classList.add('sticky');
+        createButton.style.display = 'none';
+        searchOnNav.classList.add('_display');
+    } else if (window.pageYOffset === 0){
+        nav.classList.remove('sticky');
+        createButton.style.display = 'block';
+        searchOnNav.classList.remove('_display');
+    }
+}
 
 //modo light/dark
 
@@ -26,6 +66,9 @@ if (localStorage.getItem("theme") != null) {
     setMode();
 }
 function changeMode() {
+    if (window.matchMedia("(max-width: 700px)").matches) {
+        topnav.style.display = 'none';
+    }
     if (theme === 'lightMode') {
         theme = 'darkMode';
     }
@@ -34,6 +77,7 @@ function changeMode() {
     }    
     setMode();
 }
+
 function setMode() {
     if (theme === 'lightMode') {
         themeStyle.href='./styles/lightMode.css';
@@ -45,8 +89,8 @@ function setMode() {
     }    
     localStorage.setItem("theme", theme);
 }
-//Barra de busqueda
 
+//Barra de busqueda
 input.addEventListener('focus', focus);
 input.addEventListener('keyup', keyTimer);
 form.addEventListener('submit', showResult);
@@ -69,7 +113,7 @@ function keyTimer(event){
     clearTimeout(_timer);
 
     if (event.keyCode !== 13) {
-        _timer = setTimeout(function() { showTags()}, 300);
+        _timer = setTimeout(function() { showTags()}, 200);
     }
     else {
         closeTags();
@@ -83,8 +127,6 @@ async function showTags() {
     const response = await fetch(url);
     const results = await response.json();
     const data = results.data;
-    //console.log (data);
-    //console.log(q);
 
     if (results.data.length > 0) {
         tagsLine.style.display = 'block';
@@ -108,7 +150,7 @@ function renderTags(list, tagsContainer) {
         li.className = 'dataTag';
         figure.className = 'iconSearch';
         img.className = 'iconSearchImg';
-        img.src = './images/icon-search.svg';
+        img.src = './images/icon-search-gray.svg';
         span.className = 'tag';
         span.textContent = item.name;
         
@@ -130,11 +172,10 @@ function autocomplete(event) {
 
 function cleanSearch() {
     closeTags();
-    console.log('llegue');
     input.value = '';
-    console.log('lo logre');
     closeButton.classList.remove('focus');
     lens.classList.remove ('focus');
+    lens.style.display = 'block';
 }
 
 const getSearchUrl = (input, limit=12, offset=0) => {
@@ -144,8 +185,9 @@ const getSearchUrl = (input, limit=12, offset=0) => {
 async function showResult(event) {
     event.preventDefault();
 
+    lens.style.display = 'none';
     closeTags();
-    console.log('showResult');
+    searchSection.style.display = 'block';
     const images = searchUl.querySelectorAll('li');
     
     if (images.length > 0) {
@@ -158,11 +200,10 @@ async function showResult(event) {
     const url = getSearchUrl(newKeyword);
     const response = await fetch(url);
     const results = await response.json();
-    console.log(results);
 
     const h2 = document.getElementById('searchTitle');
-       
-    if(results.data.length>0) {
+      
+    if(results.data.length > 0) {
         showLine();
         showTitle(newKeyword, h2);
         renderResult(results.data, searchUl);
@@ -209,8 +250,8 @@ function renderResult(list, container) {
         const maxIcon = document.createElement('img');
         
         li.className = 'card';
-        figure.className = 'gifFigure';
-        img.className = 'gifImg';
+        figure.className = 'gif-figure';
+        img.className = 'gif';
 
         img.src = item.images.original.url;
         imgHover.className = 'imgHover';
@@ -219,9 +260,8 @@ function renderResult(list, container) {
         user.textContent = item.username;
         title.className = 'title';
         title.textContent = item.title;
-        buttonsContainer.className = 'gifButtons';
+        buttonsContainer.className = 'gif-buttons';
         favButton.className = 'favButton';
-        //favIcon.className = 'fav-icon';
         favIcon.src = './images/icon-fav.svg';
         downloadButton.className = 'downloadButton';
         downloadIcon.className = 'downloadIcon';
@@ -250,15 +290,14 @@ function renderResult(list, container) {
             url: item.images.original.url,
             images: {
                 original: item.images.original
-
+        
             },
             title: item.title,
             user: item.username,
         };
 
-        // para agregar a favoritos agregar a favoritos
-        if (screen.width < 970) {
-            li.addEventListener('touchend', getModal)//????????
+        if (window.screen.width < 970) {
+            li.addEventListener('touchend', getModal)
         } else {
             favButton.addEventListener('click', changeFavouriteState);
             downloadButton.addEventListener('click', download);
@@ -268,87 +307,90 @@ function renderResult(list, container) {
         }
 
         async function changeFavouriteState(event) {
-            event.preventDefault();
-          
-            //leer el local Storage
+            event.preventDefault()
+             
             let myFavourites = localStorage.getItem('myFavourites') || '[]';
             myFavourites = JSON.parse(myFavourites);
-
-            // buscamos el id de newGifo en la lista de favoritos
+        
             let newFav = myFavourites.findIndex(function(item) { return item.id === gifInfo.id; });
             if (newFav > -1) {
-                // si está, lo quitamos
                 myFavourites.splice(newFav, 1);
-                console.log('existe');
-                changeIcon(0);
+                changeIcon(0, favIcon);
             } else {
-                // si no está, lo añadimos
                 myFavourites.push(gifInfo);
-                changeIcon(1);
-                }
-            // guardamos la lista de favoritos 
+                changeIcon(1, favIcon);
+            }
+            
             localStorage.setItem('myFavourites', JSON.stringify(myFavourites));
         }
 
-        function changeIcon(_state) {
-            if (_state == 0) {
-                favIcon.src = './images/icon-fav.svg';
-            } else if (_state == 1) {
-                favIcon.src = './images/icon-fav-active.svg';
-                //favButton.classList.add('fav-icon-active');
-            }
-        }
-        //download image
-        async function download (event) {//no funciona
+        async function download (event) {
             event.preventDefault();
-
-            //create new a element
+            
             const a = document.createElement('a');
-            const response = await fetch(item.url)//, init: {
-                //mode: 'no-cors',//no funciona!
-            //});
-            // get image as blob
+            let response = await fetch(item.url)//, init: {//esto da error, esta mal escrito creo
+               // mode: 'no-cors',
+            //};
             const file = await response.blob();
             a.download = item.title;
             a.href = window.URL.createObjectURL(file);
-            //store download url in javascript https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#JavaScript_access
             a.dataset.downloadUrl = ['application/octet-stream', a.download, a.href].join(':');
-            //click on element to start download
             container.appendChild(a);
             a.click();
         }
     })
 } 
+
+function changeIcon(_state, icon) {// el icono se mueve de lugar cuando clikeo
+    if (_state == 0) {
+        icon.src = './images/icon-fav.svg';
+    } else if (_state == 1) {
+        icon.src = './images/icon-fav-active.svg';
+    }
+}
+
 //seccion favoritos
 
 const favouritesLi = document.getElementById('favourites');
 const favouritesSection = document.getElementById('favouritesSection');
 const favouritesUl = document.getElementById('favouritesUl');
 const noFavouritesYet = document.getElementById('emptyFavs');
-
+const moreFavsButton = document.getElementById('showMoreFavs');
 favouritesLi.addEventListener('click', showFavourites);
 
-async function showFavourites (e) {
+async function showFavourites (event) {
+    event.preventDefault();
 
+    if (window.screen < 970) {
+        topnav.style.display = 'none';
+        checkbox.checked = false;//no funciona, quiero que se me cierre el topnav
+    }
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
     myFavourites = JSON.parse(myFavourites);
 
+    header.style.display = 'none';
+    myGifosSection.style.display = 'none';
+    createSection.style.display = 'none';
     favouritesSection.style.display = 'block';
 
     if (myFavourites.length != 0) {
-        header.style.display = 'none',
-        renderResult(myFavourites, favouritesUl);//error
-        showMoreButton();
+        header.style.display = 'none';
+        renderResult(myFavourites, favouritesUl);
+        if (myFavourites.length > 12) {
+            moreFavsButton.style.display = 'block';//como mostrar un limite de 12 y luego otros doce con el boton
+        }
     } else {
         noFavouritesYet.style.display = 'block';
     }
 }
+
 //seccion misGifos
 
 const myGifosLi = document.getElementById('myGifosLi');
 const myGifosSection = document.getElementById('myGifosSection');
 const myGifosList = document.getElementById('myGifosList');
 const emptyMyGifos = document.getElementById('emptyMyGifos');
+const showMoreGifos = document.getElementById('showMoreGifos');
 
 myGifosLi.addEventListener('click', showMyGifos);
 
@@ -358,14 +400,17 @@ async function showMyGifos (event) {
     let myGifos = localStorage.getItem('myGifos') || '[]';
     myGifos = JSON.parse(myGifos);
 
-    console.log(myGifos)//error
-
+    header.style.display = 'none';
+    createSection.style.display = 'none';
+    favouritesSection.style.display = 'none';
     myGifosSection.style.display = 'block';
 
     if (myGifos.length != 0) {
         header.style.display = 'none',
         renderResult(myGifos, myGifosList);
-        showMoreButton();
+        if (myGifos.length > 12) {
+            showMoreGifos.style.display = 'block';
+        }
     } else {
         emptyMyGifos.style.display = 'block';
     }
@@ -378,16 +423,13 @@ const modalCarousel = document.getElementById('modalCarousel');
 const closeModal = document.getElementById('closeModal');
 const footer = document.getElementById('footer');
 
-function getModal(e) {//terminar
+function getModal(e) {
     modal.style.display = 'block';
-    //nav.style.display = 'none';
-    //header.style.display = 'none';
     trendingSection.style.display = 'none';
     footer.style.display = 'none';
-    //funciona pero como hago para que se dirija arriba el scroll cuando abro? 
 
+    window.moveTo(0,0);//no funciona pero como hago para que se dirija arriba el scroll cuando abro?
     renderResult(e.currentTarget.items, modalCarousel);
-    console.log(e.currentTarget.items);
 }
 
 closeModal.addEventListener('click', function() {
@@ -409,6 +451,9 @@ async function showMoreResult(){
     const response = await fetch(url);
     const results = await response.json();  
     renderResult(results.data, searchUl);
+    if (results.data.length < 12) {
+        moreButton.style.display='none';
+    }
 }   
 
 function showErrorFigure(){
@@ -424,20 +469,23 @@ async function showWordTrends(){
     const response = await fetch(url);
     const results = await response.json();
     const firstResults = results.data.slice(0,5);
-    console.log(firstResults);
-        
-    for (let i = 0; i < firstResults.length; i++) {
-        firstResults[i] = firstResults[i].charAt(0).toUpperCase() + firstResults[i].slice(1);
-        //firstResults[i].addEventListener('click', showResults);
-        //terminar
-    }
 
+    //firstResults.split(", "); //esto no me funciona, quiero separar por comas las a
     const p = document.createElement('p');
-    p.innerText = firstResults.join(', ');
+    for (let i = 0; i < firstResults.length; i++) {
+
+        _aux = document.createElement('a');
+        _aux.innerText = firstResults[i].charAt(0).toUpperCase() + firstResults[i].slice(1);
+        _aux.addEventListener("click", autocomplete);
+        p.appendChild(_aux);
+    }
+    
     p.className = "themes";
 
     wordTrends.appendChild(p);
+    
 }
+
 
 showWordTrends()
 
@@ -456,226 +504,231 @@ async function showTrendings() {
     const response = await fetch(url);
     const results = await response.json();
     renderResult(results.data, carousel);
-    //setInitialClasses(results.data);
 }
 
 //carousel
 
-/*const itemClassName = 'card';
-    items = document.getElementsByClassName(itemClassName),
-    totalItems = items.length,
-    slide = 0,
-    moving = true;*/
-  
-/*
-// Set classes
-function setInitialClasses(items) {
-    // Targets the previous, current, and next items
-    // This assumes there are at least three items.
-    items[items - 1].classList.add('prev');
-    items[0].classList.add('active');
-    items[1].classList.add('active');
-    items[2].classList.add('active');
-    items[3].classList.add('next');
-  }
+position = 0;
+width = 26.74;
+count = 1;
+items = carousel.querySelectorAll('carousel');
+const nCarousel = 25;
 
-  prevButton.addEventListener('click', movePrev);
-  //prevButton.addEventListener('touchstart', scrollLeft);
-  nextButton.addEventListener('click', moveNext);
-  //nextButton.addEventListener('touchend', scrollLeft);  
+prevButton.addEventListener('click', () => {
+    position = Math.min(position + width * count, 0);
+    carousel.style.marginLeft = position + 'vw';
+})
 
-  // Next navigation handler
-function moveNext() {
-    // Check if moving
-    if (!moving) {
-      // If it's the last slide, reset to 0, else +1
-      if (slide === (totalItems - 1)) {
-        slide = 0;
-      } else {
-        slide++;
-      }
-      // Move carousel to updated slide
-      moveCarouselTo(slide);
-    }
-  }
-  // Previous navigation handler
-  function movePrev() {
-    // Check if moving
-    if (!moving) {
-      // If it's the first slide, set as the last slide, else -1
-      if (slide === 0) {
-        slide = (totalItems - 1);
-      } else {
-        slide--;
-      }
-            
-      // Move carousel to updated slide
-      moveCarouselTo(slide);
-    }
-  }
-  function disableInteraction() {
-    // Set 'moving' to true for the same duration as our transition.
-    // (0.5s = 500ms)
-    
-    moving = true;
-    // setTimeout runs its function once after the given time
-    setTimeout(function(){
-      moving = false
-    }, 500);
-  }
-  function moveCarouselTo(slide) {
-    // Check if carousel is moving, if not, allow interaction
-    if(!moving) {
-      // temporarily disable interactivity
-      disableInteraction();
-      // Update the "old" adjacent slides with "new" ones
-      var newPrevious = slide - 1,
-          newNext = slide + 1,
-          oldPrevious = slide - 2,
-          oldNext = slide + 2;
-      // Test if carousel has more than three items
-      if ((totalItems - 1) > 3) {
-        // Checks and updates if the new slides are out of bounds
-        if (newPrevious <= 0) {
-          oldPrevious = (totalItems - 1);
-        } else if (newNext >= (totalItems - 1)){
-          oldNext = 0;
-        }
-        // Checks and updates if slide is at the beginning/end
-        if (slide === 0) {
-          newPrevious = (totalItems - 1);
-          oldPrevious = (totalItems - 2);
-          oldNext = (slide + 1);
-        } else if (slide === (totalItems -1)) {
-          newPrevious = (slide - 1);
-          newNext = 0;
-          oldNext = 1;
-        }
-        // Now we've worked out where we are and where we're going, 
-        // by adding/removing classes we'll trigger the transitions.
-        // Reset old next/prev elements to default classes
-        items[oldPrevious].className = itemClassName;
-        items[oldNext].className = itemClassName;
-        // Add new classes
-        items[newPrevious].className = itemClassName + " prev";
-        items[slide].className = itemClassName + " active";
-        items[newNext].className = itemClassName + " next";
-      }
-    }
-  }
-  function initCarousel() {
-    setInitialClasses();
-    // Set moving to false so that the carousel becomes interactive
-    moving = false;
-  }
-  initCarousel();
-*/
-  //create-mygifo
+nextButton.addEventListener('click', () => {
+    position = Math.max(position - width * count, width * (items.length - (nCarousel - 5)));
+    carousel.style.marginLeft = position + 'vw';
+})
+
+//create-mygifo
 
 const createButton = document.getElementById('createButton');
-const createSection = document.getElementById('createSection');
-const cover = document.getElementById('cover');
 const startCreateButton = document.getElementById('startCreateButton');
+const stepOne = document.getElementById('stepOne');
+const stepTwo = document.getElementById('stepTwo');
+const stepThree = document.getElementById('stepThree');
+const video = document.getElementById('video');
+const one = document.getElementById('one');
+const two = document.getElementById('two');
+const three = document.getElementById('three');
+const startRecordingButton = document.getElementById('startRecordingButton');
+const timer = document.getElementById('timer');
+const stopRecordingButton = document.getElementById('stopRecordingButton');
+const repeatButton = document.getElementById('repeatButton');
+const uploadButton = document.getElementById('uploadButton');
+const preview = document.getElementById('preview');
+const uploadingItems = document.getElementById('uploadingItems');
+const successUploading = document.getElementById('successUploading');
+const myGifDownloadButton = document.getElementById('myGifDownloadButton');
+const myGifLinkButton = document.getElementById('myGifLinkButton');
+
 
 createButton.addEventListener('click', openCreateSection);
 
 function openCreateSection (event) {
     event.preventDefault();
+ 
+    if (window.matchMedia("(min-width: 970px)").matches) {
+        createButton.style.backgroundImage = "url('../images/CTA-crear-gifo-active.svg')";
 
-    const stepOne = document.getElementById('stepOne');
+        header.style.display = 'none';
+        favouritesSection.style.display = 'none';
+        trendingSection.style.display = 'none';
+        createSection.style.display = 'block';
+        cover.style.display = 'block';
+        startCreateButton.style.display = 'block';
 
-    createButton.style.backgroundImage = "url('../images/CTA-crear-gifo-active.svg')";
+        startCreateButton.addEventListener('click', openStepOne);
+    }
+}
 
-    header.style.display = 'none';
-    favouritesSection.style.display = 'none';
-    trendingSection.style.display = 'none';
-    createSection.style.display = 'block';
-    cover.style.display = 'block';
-    startCreateButton.style.display = 'block';
+function openStepOne(event) {
+    event.preventDefault();
+                
+    cover.style.display = 'none';
+    stepOne.style.display = 'block';
+    one.style.backgroundColor = '#572EE5';
+    one.style.color = '#FFFFFF';
+    startCreateButton.style.display = 'none';
+        
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+        getStreamAndRecord();
+    } else {
+        alert('This device cannot support this action!');
+    }
+}    
 
-    startCreateButton.addEventListener('click', openStepOne);
+async function getStreamAndRecord() {
+   
+    stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
     
-    function openStepOne(event) {
-        event.preventDefault();
-
-        const one = document.getElementById('one');
-                
-        cover.style.display = 'none';
-        stepOne.style.display = 'block';
-        one.style.backgroundColor = '#572EE5';
-        one.style.color = '#FFFFFF';
-        startCreateButton.style.display = 'none';
-        
-        //Checking Device Support
-        if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-            console.log("Let's get this party started");
-            getStreamAndRecord();
-        } else {
-              alert('This device cannot support this action!');
+    if (stream.active === true) {
+        stepOne.style.display = 'none';
+        stepTwo.style.display = 'block';
+        video.style.display = 'block';
+        video.srcObject = stream;
+        timer.style.display = 'block';
+        one.style.color = '#572EE5';
+        one.style.backgroundColor = '#FFFFFF';
+        two.style.backgroundColor = '#572EE5';
+        two.style.color = '#FFFFFF';
+        startRecordingButton.style.display = 'block';
+        video.play();
         }
-        
-        async function getStreamAndRecord() {//no se como es el permiso desde el navegador
-            stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
-            const stepTwo = document.getElementById('stepTwo');
-            const video = document.getElementById('video');
-            const two = document.getElementById('two');
-            const startRecordingButton = document.getElementById('startRecordingButton');
-            const timer = document.getElementById('timer');
 
-            if (stream.active === true) {
-                stepOne.style.display = 'none';
-                video.style.display = 'block';
-                video.src = stream;
-                one.style.color = '#572EE5';
-                one.style.backgroundColor = '#FFFFFF';
-                two.style.backgroundColor = '#572EE5';
-                two.style.color = '#FFFFFF';
-                startRecordingButton.style.display = 'block';
-                video.play();
-                //timer.style.display = "block";
-                //timer.innerHTML = '00:00:00';
+        startRecordingButton.addEventListener('click', startRecorder);
+    }
+            
+function startRecorder(event) {
+    startRecordingButton.style.display = 'none';
+    stopRecordingButton.style.display = 'block';
+    timer.style.display = "block";
+
+    recorder = RecordRTC(stream, {
+        type: 'gif',
+        frameRate: 1,
+        quality: 10,
+        width: 360,
+        hidden: 240,
+        });
+
+    onGifRecordingStarted(recorder);
+
+    stopRecordingButton.addEventListener('click', stopRecorder)
+}
+
+async function onGifRecordingStarted() {
+    recorder.startRecording();
+    counting();
+}
+
+function counting() {//ver como formatear el timer para que sea 00:00:00
+    let sec = 00;
+    let min = 00;
+    let hour = 00;
+    countdown = setInterval(function () {
+        timer.innerHTML = `${hour}:${min}:${sec}`;
+        sec++;
+        if (sec == 60) {
+            sec = 00;
+            min++;
+            if (min == 60) {
+                min = 00;
+                hour++;
             }
-
-            startRecordingButton.addEventListener('click', startRecording);
-
-            async function startRecording(event) {
-
-            }
-            //stream.then(function(mediaStream) {
-                
-
-                //video.play();
-                //video.src = window.URL.createObjectURL(mediaStream);
-                
-                //video.onloadedmetadata = function(e) {
-                    
-                // Do something with the video here.
-            //})
-            //.catch(function(err) {
-            //    console.log(err.name);
-            //});
         }
-        //https://github.com/migue1223/gifos/blob/master/assets/js/crearGifos.js#L6
-                
+    }, 1000);
+}
 
-                    
+async function stopRecorder() {
 
-        //
+    stopRecordingButton.style.display = 'none';
+    timer.style.display = "none";
+    repeatButton.style.display = 'block';
+    uploadButton.style.display = 'block';
+
+    recorder.stopRecording();
+    clearInterval(countdown);
+    const blob = await recorder.getBlob();
+    let urlCreator = window.URL || window.webkitURL;
+    imageUrl = urlCreator.createObjectURL(blob);
+    preview.src = imageUrl;
+
+    video.style.display = "none";
+    preview.style.display = "block";
+
+    repeatButton.addEventListener('click', repeatCapture);
+    uploadButton.addEventListener('click', uploadMyGif);
+}
+
+function repeatCapture() {
+    preview.style.display = "none";
+    uploadButton.style.display = 'none';
+    repeatButton.style.display = 'none';
+    timer.style.display = 'block';
+
+    getStreamAndRecord();
+}
+
+const uploadUrl = () => {
+    return `https://upload.giphy.com/v1/gifs?api_key=${apiKey}`;
+}
+
+async function uploadMyGif() {
+    two.style.backgroundColor = '#FFFFFF';
+    two.style.color = '#572EE5';
+    three.style.backgroundColor = '#572EE5';
+    three.style.color = '#FFFFFF';
+    three.style.display = 'block';
+    stepThree.style.display = 'block';
+    uploadingItems.style.display = 'block';
+
+    let form = new FormData();
+    form.append("file", recorder.getBlob(), "myGif.gif");
+    form.append("tags", "");
+    
+    const url = uploadUrl();
+    const response = await fetch(url,
+        {
+            method: "POST",
+            body: form,
+        });
+    const results = await response.json();
+
+    if (results.meta.status === 200) {
+        uploadingItems.style.display = 'none';
+        successUploading.style.display = 'block';
+
+        const myGifData = await fetch(`https://api.giphy.com/v1/gifs/${results.data.id}?api_key=${apiKey}`);//no estoy llamando a este gif
+        const dataResponse = await myGifData.json();
+
+        let gifInfo = {
+            id: dataResponse.data.id,
+            title: dataResponse.data.title,
+            username: dataResponse.data.username,
+            images: { original: { url: dataResponse.data.images.original.url } },
+        }
+
+        let myGifos = localStorage.getItem('myGifos') || '[]';
+        myGifos = JSON.parse(myGifos);
+        
+        myGifos.push(gifInfo);
+        localStorage.setItem('myGifos', JSON.stringify(myGifos));
     }
 }
-    //const startRecordingButton = document.getElementById('startRecordingButton');
-    //startRecordingButton.style.display = 'block';
-/*function changeCreateIcon(_state) {
-    if (_state == 0) {
-        favIcon.src = './images/icon-fav.svg';
-    } else if (_state == 1) {
-        favIcon.src = './images/icon-fav-active.svg';
-        //favButton.classList.add('fav-icon-active');
-    }
-}
-//acceder a la camara
 
-});
+myGifDownloadButton.addEventListener('click', downloadMyGif);
 
-p.catch(function(err) { console.log(err.name); }); // always check for errors at the end.
-*/
+function downloadMyGif() {
+    myGifDownloadButton.download = 'mygif';
+    myGifDownloadButton.href = imageUrl;
+    myGifDownloadButton.dataset.downloadUrl = [
+        "application/octet-stream",
+        myGifDownloadButton.download,
+        myGifDownloadButton.href,
+    ].join(":");
+} 

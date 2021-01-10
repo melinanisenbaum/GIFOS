@@ -6,46 +6,35 @@
         <link rel="stylesheet"  type="text/css" id="mainStyle" href="./styles/main.css">
         <link rel="stylesheet"  type="text/css" id="themeStyle" href="./styles/lightMode.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
         <title>GIFOS</title>
     </head>
     <body>
         <nav class="nav" id="nav">
-            <figure class="logo" href="">
-                 <!--<img class="logo-img" alt="logo">
-               <img class="logo mobile light" src="./images/logo-mobile.svg" alt="logo">
-                <img class="logo desktop light" src="./images/logo-desktop.svg" alt="logo">
-                <img class="logo mobile dark" src="./images/logo-mobile-modo-noct.svg" alt="logo">
-                <img class="logo desktop dark" src="./images/logo-desktop-modo-noc.svg" alt="logo">-->
-            </figure>
-            <form  class="searchOnNav">
-                <figure class="iconSearchOnNav">
-                    <img class="light" src="./images/icon-search.svg" alt="search">
-                    <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">  
-                </figure>
-                <input type="search" class="mySearchOnNav" placeholder='Busca GIFOS y mas' name="q">
+            <figure class="logo" id="home"></figure>
+            </a>
+            <form class="searchOnNav" id="searchOnNav">
+                <input type="search" class="mySearchOnNav" id="mySearchOnNav" placeholder='Busca GIFOS y mas' name="q">
             </form>
             <input type="checkbox" class="checkbox" id="checkbox">
-            <label for="checkbox" class="icons">
-                <img class="fa-bars light" src="./images/burger.svg" alt="menu">
-                <img class="fa-bars dark" src="./images/burger-modo-noct.svg" alt="menu">
-                <img class="fa-times light" src="./images/close.svg">
-                <img class="fa-times dark" src="./images/close-modo-noct.svg">
+            <label for="checkbox" class="icon-menu">
+                <figure class="burger-menu"></figure>
             </label>
-            <ul class="topnav">
+            <ul class="topnav" id="topnav">
                 <li>
-                    <a id="mode" href="#">Modo Nocturno</a><!--es href queda vario? se ponen siendo que es dinamico en js?-->
-                    <div class="line"></div>
+                    <a id="mode" class="link" href="#">Modo Nocturno</a>
+                    <div class="topnav-line"></div>
                 </li>
                 <li>
-                    <a id="favourites" href="#">Favoritos</a>
-                    <div class="line"></div>
+                    <a id="favourites" class="link" href="#">Favoritos</a>
+                    <div class="topnav-line"></div>
                 </li>
                 <li>
-                    <a id="myGifosLi" href="#">Mis GIFOS</a>
-                    <div class="line"></div>
+                    <a id="myGifosLi" class="link" href="#">Mis GIFOS</a>
+                    <div class="topnav-line"></div>
                 </li>
             </ul>
-            <button class="create-button" id="createButton" href="#"></button>
+            <button class="create-button" id="createButton"></button>
         </nav>
         <header class="header" id="header">
             <h1 class="mainTitle">Inspírate, busca, guarda, y crea<br class='headerBreak'> los mejores <span class="wordGifos">GIFOS</span></h1>
@@ -53,127 +42,90 @@
                 <img class="ilustraHeaderImg" src="./images/ilustra_header.svg" alt="busca gifos y mas">
             </picture>
             <form id="search">
-                <div class="searchContainer">
+                <div class="search-container">
                     <input id="mySearch" class="mySearch" type="search" placeholder='Busca GIFOS y mas' name="q" autocomplete="off">
-                    <figure class="mainIconSearch" id="iconSearch">
+                    <figure class="main-lens" id="iconSearch">
                         <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>icon-search</title>
-                            <desc>Created with Sketch.</desc>
                             <defs>
                                 <path d="M8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,10.4865245 16.3185332,12.3138839 15.1766205,13.7610573 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3165825,20.0976311 18.6834175,20.0976311 18.2928932,19.7071068 L18.2928932,19.7071068 L13.7610573,15.1766205 C12.3138839,16.3185332 10.4865245,17 8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 Z M8.5,2 C4.91014913,2 2,4.91014913 2,8.5 C2,12.0898509 4.91014913,15 8.5,15 C10.2704128,15 11.8755097,14.2921984 13.0477521,13.1441339 L13.0928932,13.0928932 C13.1090201,13.0767663 13.1255608,13.0613054 13.1424811,13.0465104 C14.2921984,11.8755097 15,10.2704128 15,8.5 C15,4.91014913 12.0898509,2 8.5,2 Z" id="path-1"></path>
                             </defs>
                             <g id="GIFOS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="00-UI-Kit" transform="translate(-637.000000, -518.000000)">
-                                    <g id="-Nav-Desktop-Sticky" transform="translate(0.000000, 479.000000)">
+                                <g transform="translate(-637.000000, -518.000000)">
+                                    <g transform="translate(0.000000, 479.000000)">
                                         <g id="icon-search" transform="translate(637.000000, 39.000000)">
                                             <mask id="mask-2" fill="white">
                                                 <use xlink:href="#path-1"></use>
                                             </mask>
-                                            <use class="lens" fill="#572EE5" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                            <use class="svg-lens" fill="#572EE5" fill-rule="nonzero" xlink:href="#path-1"></use>
                                         </g>
                                     </g>
                                 </g>
                             </g>
                         </svg>
-                        <!--<img class="light" src="./images/icon-search.svg" alt="search">
-                        <img class="dark" src="./images/icon-search-mod-noc.svg" alt="search">-->
                     </figure>
-                    <figure class="iconClose" id="iconClose">
-                        <!--<img class="light" src="./images/close.svg" alt="close">
-                        <img class="dark" src="./images/close-modo-noct.svg" alt="close">
-                        <img class="dark" src="./images/button-close-hover-modo-noc.svg" alt="close">-->
+                    <figure class="icon-close" id="iconClose">
                     </figure>
-                    <div class="line" id="tagsLine"></div>
+                    <div class="tags-line line" id="tagsLine"></div>
                     <ul class="tagsContainer" id="tagsContainer">
-                        <!--<li class="datatag">
-                            <figure class="IconSearch">
-                                <img class="IconSearchImg" src="./images/icon-search.svg" alt="search" width="15.8px" height="15.8px">
-                            </figure>
-                            <span class="tag">
-                        </li>
-                        <li class="datatag">sugerencia</li>
-                        <li class="datatag">sugerencia</li>
-                        <li class="datatag">sugerencia</li>-->
                     </ul>
                 </div>
             </form>
             <div class="wordTrends" id="wordTrends">
                 <h2 class="trending">Trending:</h2>
             </div>
-            <section class="searchSection" id="searchSection">
+            <section class="search-section" id="searchSection">
                 <div class="line" id="searchLine"></div>
-                <h2 class="searchTitle" id="searchTitle"></h2>
+                <h2 class="search-title" id="searchTitle"></h2>
                 <ul class="list" id="searchUl">
-                    <!--<li class="card">
-                            <figure class= "gifFigure">
-                                <img class="imgFig" id.gifImg src="" >
-                                <div class="gifButtons'>
-                                    <button class="favButton" type="button" title="favourite">
-                                            <img class="favIcon" src="./images/icon-fav.svg" width="32px" height="32px">
-                                            <img class="favIconActive" src="./images/icon-fav-active.svg" width="32px" height="32px">                                   
-                                        </button>
-                                    <button class="downloadButton" type="button" title="download">
-                                        <img class="downloadIcon" src="./images/icon-download.svg" width="32px" height="32px">
-                                    </button>
-                                    <button class="maxButton" type="button" title="maximaze">
-                                        <img class="maxIcon" src="./images/icon-max.svg" width="32px" height="32px">
-                                    </button>
-                                <img class="imgHover">
-                                <figcaption class="figcaption">
-                                    <span class="username">User</span>
-                                    <span class="title">Titulo GIFO</span>
-                                <figcaption>
-                                
-                                </div>
-                            </figure>
-                    </li>-->
                 </ul>
                 <button class="button show-more" id="showMore" type="button" title="showMore">VER MAS</button>
                 <figure class="errorFig" id="errorFigure">
-                    <img class="errorImg" src=".\images\icon-busqueda-sin-resultado.svg">
+                    <img class="error-img" src="./images/icon-busqueda-sin-resultado.svg">
                     <figcaption class="errorCaption">Intenta con otra busqueda</figcaption>
                 </figure>
             </section>
         </header>
         <main>
             <section class="modal" id="modal">
-                <figure class="iconClose" id="closeModal">
+                <figure class="icon-close" id="closeModal">
                 </figure>
-                <div class="carouselContainer" id="modalContainer">    
-                    <figure class="prev-button">
+                <div class="carousel-container" id="modalContainer">    
+                    <figure class="carousel-button">
                         <div class="prev-slider"></div>
                     </figure>
-                    <ul class="carousel" id="modalCarousel" aria-label="carousel"></ul>
-                    <figure class="nextButton">
-                        <div class="nextSlider"></div>
+                    <div class="carousel-box">
+                        <ul class="carousel" id="modalCarousel"></ul>
+                    </div>
+                    <figure class="carousel-button">
+                        <div class="next-slider"></div>
                     </figure>
                 </div>
             </section>
-            <section class="favouritesSection" id="favouritesSection">
+            <section class="favourites-section" id="favouritesSection">
                 <figure class="section-logo">
-                    <img class="section-img" src="./images/icon-favoritos.svg">
+                    <img class="section-img" src="./images/icon-favoritos.svg" alt="favoritos">
                 </figure>
                 <h2 class="section-title" id="favouritesTitle">Favoritos</h2>
                 <ul class="list" id="favouritesUl">
                 </ul>
-                <figure class="showMore" id="showMoreFavs" type="button" title="showMore">
+                <figure class="button show-more" id="showMoreFavs" title="showMore">
                 </figure>
                 <figure class="empty-section" id="emptyFavs">
-                    <img class="empty-img" src=".\images\icon-fav-sin-contenido.svg">
-                    <figcaption class="empty-caption">"¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!"</figcaption>
+                    <img class="empty-img" src="./images/icon-fav-sin-contenido.svg">
+                    <figcaption class="empty-caption">"¡Guarda tu primer GIFO en Favoritos<br>para que se muestre aquí!"</figcaption>
                 </figure>
             </section>
             <section class="my-gifos-section" id="myGifosSection">
                 <figure class="section-logo">
-                    <img class="section-img" src="./images/icon-mis-gifos.svg">
+                    <img class="section-img" src="./images/icon-mis-gifos.svg" alt="mis gifos">
                 </figure>
                 <h2 class="section-title" id="myGifosTitle">Mis GIFOS</h2>
                 <ul class="list" id="myGifosList">
                 </ul>
-                <figure class="showMore" id="showMoreGifos">
+                <figure class="button show-more" id="showMoreGifos">
                 </figure>
                 <figure class="empty-section" id="emptyMyGifos">
-                    <img class="empty-img" src=".\images\icon-mis-gifos-sin-contenido.svg">
+                    <img class="empty-img" src="./images/icon-mis-gifos-sin-contenido.svg">
                     <figcaption class="empty-caption">¡Anímate a crear tu primer GIFO!</figcaption>
                 </figure>
             </section>
@@ -183,23 +135,18 @@
                 <div class="carousel-container">    
                     <figure class="carousel-button" id="prevButton">
                         <div class="prev-slider"></div>
-                        <!--<img class="buttonSlider light" src="./images/button-slider-left.svg">
-                        <img class="buttonSliderHover" src="./images/button-slider-left-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-left-md-noct.svg">-->
                         </figure>
-                    <ul class="carousel" id="carousel" aria-label="carousel">
-                    </ul>
+                        <div class="carousel-box">
+                            <ul class="carousel" id="carousel" aria-label="carousel"></ul>
+                        </div>
                     <figure class="carousel-button" id="nextButton">
                         <div class="next-slider"></div>
-                        <!--<img class="buttonSlider light" src="./images/button-slider-right.svg">
-                        <img class="buttonSliderHover" src="./images/button-slider-right-hover.svg">
-                        <img class="buttonSlider dark" src="./images/button-slider-right-md-noct.svg">-->
                     </figure>
                 </div>
             </section>
             <section class="create-section" id="createSection">
                 <figure class="camera-figure">
-                    <img class="light-img" src=".\images\element-luz-camara.svg">
+                    <img class="light-img" src="./images/element-luz-camara.svg" alt="light">
                 </figure>
                 <figure class="film-figure">
                 </figure>
@@ -218,22 +165,23 @@
                     </div>
                     <div class="step-two-container" id="stepTwo">
                         <video class="camera-box" id="video" autoplay>Your browser does not support the video tag.</video>
+                        <img class="preview" id="preview"></img>
                     </div>
-                    <div class="step-three-container">
+                    <div class="step-three-container" id="stepThree">
                         <div class="hover-box">
-                            <div class="uploading">
-                                <img class="loader-img" src=".\images\loader.svg">
+                            <div class="uploading" id="uploadingItems">
+                                <img class="loader-img" src="./images/loader.svg" alt="uploading">
                                 <span class="section-span">Estamos subiendo tu GIFO</span>
                             </div>
-                            <div class="upload">
-                                <button class="download-button" type="button" title="download">
-                                    <img class="downloadIcon" src="./images/icon-download.svg">
+                            <div class="upload" id="successUploading">
+                                <button class="download-button" id="myGifDownloadButton"  type="button" title="download">
+                                    <img class="downloadIcon" src="./images/icon-download.svg" alt="descargar">
                                 </button>
-                                <button class="link-button" type="button" title="link">
-                                    <img class="link-icon" src="./images/icon-link-normal.svg">
+                                <button class="link-button" id="myGifLinkButton" type="button" title="link">
+                                    <img class="link-icon" src="./images/icon-link-normal.svg" alt="link">
                                 </button>
                                 <div class="check-container">
-                                    <img class="check-img" src=".\images\check.svg">
+                                    <img class="check-img" src="./images/check.svg" alt="upload-success">
                                     <span class="section-span">GIFO subido con éxito</span>
                                 </div>
                             </div>
@@ -245,10 +193,9 @@
                     <div class="step" id="two">2</div>
                     <div class="step" id="three">3</div>
                 </div>
-                <div class="timer" id="timer">00:00:05</div>
-                <button class="repeat-button" id="repeatButton">REPETIR CAPTURA
-                    <div class="line"></div>
-                </button>
+                <div class="timer" id="timer">00:00:00</div>
+                <button class="repeat-button" id="repeatButton">REPETIR CAPTURA</button>
+                <div class="cut"></div>
                 <div class="create-line"></div>
                 <button class="button" id="startCreateButton">COMENZAR</button>
                 <button class="button" id="startRecordingButton">GRABAR</button>
@@ -259,31 +206,19 @@
         <footer id="footer">
             <div class='socialIcons'>
                 <span class="share">Compartir en:</span>
-                <div class="icons">
-                    <figure class= "imgContainer">
-                        <a target="_blank" href="https://www.facebook.com/" title="facebook">
-                            <img src="./images/icon_facebook.svg" class="facebook">
-                            <img src="./images/icon_facebook_hover.svg" class="facebookHover">
-                        </a>
-                    </figure>
-                    <figure class= "imgContainer">
-                        <a class= "imgContainer" target="_blank" href="https://twitter.com/" title="twitter">
-                            <img class="twitter light" src="./images/icon-twitter.svg">
-                            <img class="twitterHover"src="./images/icon-twitter-hover.svg">
-                            <img class="twitter dark" src="./images/icon_twitter_noc.svg">
-                        </a>
-                    </figure>
-                    <figure class= "imgContainer">
-                        <a class= "imgContainer" target="_blank" href="https://www.instagram.com/" title="instagram">
-                            <img class="instagram light" src="./images/icon_instagram.svg" alt="instagram">
-                            <img class="instagramHover light" src="./images/icon_instagram-hover.svg" alt="instagram">
-                        </a>
-                    </figure>
+                <div class="icons-container">
+                    <a target="_blank" href="https://www.facebook.com/" title="facebook">
+                        <figure class= "icon facebook"></figure>
+                    </a>
+                    <a target="_blank" href="https://twitter.com/" title="twitter">
+                        <figure class= "icon twitter"></figure>
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/" title="instagram">
+                        <figure class= "icon instagram"></figure>
+                    </a>
                 </div>
             </div>
             <span class="rights">© GIFOS 2020 All Rights Reserved.</span>
         </footer>
         <script src="./scripts/main.js"></script>
-        <!--<script src="./scripts/modal.js"></script>
-        <script src="./scripts/carousel.js"></script>-->
     </body>

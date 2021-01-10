@@ -10,6 +10,16 @@ body {
     background: #37383C;
     color: #FFFFFF;
 }
+.nav {
+    background-color: #37383C;
+    opacity: 100%;
+}
+.nav input:checked ~ .icon-menu .burger-menu {
+    background-image: url("../images/close-modo-noct.svg");
+}
+.nav input:not(:checked) ~ .icon-menu .burger-menu {
+    background-image: url("../images/burger-modo-noct.svg");
+}
 .logo {
     background-image: url("../images/logo-mobile-modo-noct.svg");
 }
@@ -19,47 +29,71 @@ body {
 .topnav li a{
     color: #FFFFFF;
 }
-.searchContainer {
+.search-container {
     border: 1px solid #FFFFFF;
 }
 .mySearch {
-    color: #FFFFFF ;
+    color: #FFFFFF;
     background-color: #37383C;
 }
 .mySearch:focus {
     background-color: #37383C;
+    color: #FFFFFF ;
+}
+.main-lens .svg-lens {
+    fill: #FFFFFF;
 }
 .iconSearch {
     color: #FFFFFF;
 }
-.iconClose {
+.icon-close {
     background-image: url('../images/close-modo-noct.svg');
 }
-.iconClose:hover {
+.icon-close:hover {
     background-image: url('./images/button-close-hover-modo-noc.svg');
 }
-.showMore {
-    /*background-color: #FFFFFF;*/
+.button {
+    border:  1px solid #FFFFFF;
+    background-color: #37383C;
+    color: #FFFFFF;
 }
+.button:hover {
+    background-color: #FFFFFF;
+    color: #37383C;
+}
+
 .trendGifos {
     background-color: #222326;
 }
 .look {
     color: #FFFFFF;
 }
+.facebook {
+    background-image: url("../images/icon_facebook.svg");
+}
+.twitter {
+    background-image: url("../images/icon_twitter_noc.svg");
+}
+.instagram {
+    background-image: url("../images/icon_instagram.svg");
+}
+
 @media all and (min-width: 970px) {
-    .searchOnNav {
-        border: 1px solid #FFFFFF;
+    .logo {
+        background-image: url("../images/logo-desktop-modo-noc.svg");
     }
-    .mySearchOnNav {
-        color: #9CAFC3;
-        }
-    .topnav {/*corregir posicion de los li, ojo responsivo se sale por fuera de pantalla*/
+    .topnav {
         background: #37383C;
     }
     .topnav li a{
         color: #FFFFFF;
     }
+    .nav input:checked ~ .icon-menu .burger-menu {
+        background-image: url("../images/close-modo-noct.svg");
+    }
+    .nav input:not(:checked) ~ .icon-menu .burger-menu {
+        background-image: url("../images/burger-modo-noct.svg");
+    }    
     .createButton {
         background-image: url("../images/CTA-crear-gifo-modo-noc.svg");
     }
@@ -69,16 +103,37 @@ body {
     .createButton:active {
         background-image: url("../images/CTA-crear-gifo-active-modo-noc.svg");
     }
-    .searchSection .imgHover {
-        background-color: #572EE5;
+    .carousel-button {
+        background-color: #222326;
     }
     .prevButton {
         background-color: #222326;
     }
-    .prevSlider {
+    .prev-slider {
         background-image: url('../images/button-slider-left-md-noct.svg') ;
     }
-
+    .prevSlider:hover {
+        background-image: url('../images/button-slider-left-hover.svg') ;
+    }
     .nextButton {
         background-color: #222326;
     }
+    .next-slider {
+        background-image: url('../images/button-slider-right-md-noct.svg') ;
+    }
+}    
+
+@media all and (min-width: 1200px) {
+    .searchOnNav {
+        border: 1px solid #FFFFFF;
+    }
+    .mySearchOnNav {
+        background-color:  #37383C;;
+    }
+    .camera-figure {
+        background-image: url("../images/camara-modo-noc.svg");
+    }
+    .film-figure {
+        background-image: url("../images/pelicula-modo-noc.svg");
+    }
+}    
