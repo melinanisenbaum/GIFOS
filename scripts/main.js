@@ -299,55 +299,54 @@ function renderResult(list, container) {
         if (window.screen.width < 970) {
             li.addEventListener('touchend', getModal)
         } else {
-            favButton.addEventListener('click', changeFavouriteState);
-            downloadButton.addEventListener('click', download);
+            favButton.addEventListener('click', changeFavouriteStateCallback(item, gifInfo, favIcon));
+            downloadButton.addEventListener('click', downloadCallback(item, container));
             maxButton.addEventListener('click', getModal);
             maxButton.items = list;
             maxButton.gifInfo = gifInfo;
         }
-
-        async function changeFavouriteState(event) {
-            event.preventDefault()
-             
-            let myFavourites = localStorage.getItem('myFavourites') || '[]';
-            myFavourites = JSON.parse(myFavourites);
-        
-            let newFav = myFavourites.findIndex(function(item) { return item.id === gifInfo.id; });
-            if (newFav > -1) {
-                myFavourites.splice(newFav, 1);
-                changeIcon(0, favIcon);
-            } else {
-                myFavourites.push(gifInfo);
-                changeIcon(1, favIcon);
-            }
-            
-            localStorage.setItem('myFavourites', JSON.stringify(myFavourites));
-        }
-
-        async function download (event) {
-            event.preventDefault();
-            
-            const a = document.createElement('a');
-            let response = await fetch(item.url)//, init: {//esto da error, esta mal escrito creo
-               // mode: 'no-cors',
-            //};
-            const file = await response.blob();
-            a.download = item.title;
-            a.href = window.URL.createObjectURL(file);
-            a.dataset.downloadUrl = ['application/octet-stream', a.download, a.href].join(':');
-            container.appendChild(a);
-            a.click();
-        }
     })
 } 
 
-function changeIcon(_state, icon) {// el icono se mueve de lugar cuando clikeo
-    if (_state == 0) {
-        icon.src = './images/icon-fav.svg';
+function changeIcon(_state, favIcon) {
+        favIcon.src = './images/icon-fav.svg';
     } else if (_state == 1) {
-        icon.src = './images/icon-fav-active.svg';
+        favIcon.src = './images/icon-fav-active.svg';
     }
 }
+
+const changeFavouriteStateCallback = (item, gifInfo, favIcon) =>  async function changeFavouriteState(event) {
+    event.preventDefault()
+     
+    let myFavourites = localStorage.getItem('myFavourites') || '[]';
+    myFavourites = JSON.parse(myFavourites);
+
+    let newFav = myFavourites.findIndex(function(item) { return item.id === gifInfo.id; });
+    if (newFav > -1) {
+        myFavourites.splice(newFav, 1);
+        changeIcon(0, favIcon);
+    } else {
+        myFavourites.push(gifInfo);
+        changeIcon(1, favIcon);
+    }
+    
+    localStorage.setItem('myFavourites', JSON.stringify(myFavourites));
+}
+
+const downloadCallback = (item, container) => async function download (event) {
+    event.preventDefault();
+    
+    const a = document.createElement('a');
+    let response = await fetch(item.images.original.url);
+    const file = await response.blob();
+    a.download = item.title;
+    a.href = window.URL.createObjectURL(file);
+    a.dataset.downloadUrl = ['application/octet-stream', a.download, a.href].join(':');
+    container.appendChild(a);
+    a.click();
+}
+
+
 
 //seccion favoritos
 
@@ -361,10 +360,9 @@ favouritesLi.addEventListener('click', showFavourites);
 async function showFavourites (event) {
     event.preventDefault();
 
-    if (window.screen < 970) {
-        topnav.style.display = 'none';
-        checkbox.checked = false;//no funciona, quiero que se me cierre el topnav
-    }
+    topnav.style.display = 'none';
+    checkbox.checked = false;
+    
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
     myFavourites = JSON.parse(myFavourites);
 
@@ -377,7 +375,7 @@ async function showFavourites (event) {
         header.style.display = 'none';
         renderResult(myFavourites, favouritesUl);
         if (myFavourites.length > 12) {
-            moreFavsButton.style.display = 'block';//como mostrar un limite de 12 y luego otros doce con el boton
+            moreFavsButton.style.display = 'block';
         }
     } else {
         noFavouritesYet.style.display = 'block';
@@ -416,7 +414,7 @@ async function showMyGifos (event) {
     }
 }
 
-// modal HAY QUE BORRARLO Y VINCULARLO CON EL OTRO ARCHIVO
+// modal
 const modal = document.getElementById('modal');
 const trendingSection = document.getElementById('trendingSection')
 const modalCarousel = document.getElementById('modalCarousel');
@@ -424,12 +422,13 @@ const closeModal = document.getElementById('closeModal');
 const footer = document.getElementById('footer');
 
 function getModal(e) {
-    modal.style.display = 'block';
+    modal.style.display = 'block';//fixed no funciona
     trendingSection.style.display = 'none';
     footer.style.display = 'none';
 
-    window.moveTo(0,0);//no funciona pero como hago para que se dirija arriba el scroll cuando abro?
+    window.moveTo(0,0);//scroll, ver que ventana es
     renderResult(e.currentTarget.items, modalCarousel);
+    //carousel.style.marginLeft = position + 'vw';
 }
 
 closeModal.addEventListener('click', function() {
@@ -470,20 +469,25 @@ async function showWordTrends(){
     const results = await response.json();
     const firstResults = results.data.slice(0,5);
 
-    //firstResults.split(", "); //esto no me funciona, quiero separar por comas las a
     const p = document.createElement('p');
     for (let i = 0; i < firstResults.length; i++) {
 
         _aux = document.createElement('a');
         _aux.innerText = firstResults[i].charAt(0).toUpperCase() + firstResults[i].slice(1);
         _aux.addEventListener("click", autocomplete);
-        p.appendChild(_aux);
-    }
-    
-    p.className = "themes";
 
+        coma = document.createElement('span');
+        coma.innerText = ', ';
+
+        p.appendChild(_aux);
+        
+        if (i < 4) {
+            p.appendChild(coma);
+        }
+    }
+
+    p.className = "themes";
     wordTrends.appendChild(p);
-    
 }
 
 
@@ -626,21 +630,23 @@ async function onGifRecordingStarted() {
     counting();
 }
 
-function counting() {//ver como formatear el timer para que sea 00:00:00
-    let sec = 00;
-    let min = 00;
-    let hour = 00;
+function counting() {
+    let sec = 0;
+    let min = 0;
+    let hour = 0;
     countdown = setInterval(function () {
+        const time = new timer
         timer.innerHTML = `${hour}:${min}:${sec}`;
         sec++;
         if (sec == 60) {
-            sec = 00;
+            sec = 0;
             min++;
             if (min == 60) {
-                min = 00;
+                min = 0;
                 hour++;
             }
         }
+        //new Intl.DateTimeFormat('en-GB', {timeStyle: 'long' }).format(time);
     }, 1000);
 }
 
@@ -703,7 +709,7 @@ async function uploadMyGif() {
         uploadingItems.style.display = 'none';
         successUploading.style.display = 'block';
 
-        const myGifData = await fetch(`https://api.giphy.com/v1/gifs/${results.data.id}?api_key=${apiKey}`);//no estoy llamando a este gif
+        const myGifData = await fetch(`https://api.giphy.com/v1/gifs/${results.data.id}?api_key=${apiKey}`);
         const dataResponse = await myGifData.json();
 
         let gifInfo = {
