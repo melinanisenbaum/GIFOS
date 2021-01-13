@@ -309,6 +309,7 @@ function renderResult(list, container) {
 } 
 
 function changeIcon(_state, favIcon) {
+    if (_state == 0) {
         favIcon.src = './images/icon-fav.svg';
     } else if (_state == 1) {
         favIcon.src = './images/icon-fav-active.svg';
@@ -422,13 +423,12 @@ const closeModal = document.getElementById('closeModal');
 const footer = document.getElementById('footer');
 
 function getModal(e) {
-    modal.style.display = 'block';//fixed no funciona
+    modal.style.display = 'block';
     trendingSection.style.display = 'none';
     footer.style.display = 'none';
 
-    window.moveTo(0,0);//scroll, ver que ventana es
+    modal.moveTo(0,0);
     renderResult(e.currentTarget.items, modalCarousel);
-    //carousel.style.marginLeft = position + 'vw';
 }
 
 closeModal.addEventListener('click', function() {
@@ -646,7 +646,6 @@ function counting() {
                 hour++;
             }
         }
-        //new Intl.DateTimeFormat('en-GB', {timeStyle: 'long' }).format(time);
     }, 1000);
 }
 
