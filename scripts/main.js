@@ -361,7 +361,6 @@ favouritesLi.addEventListener('click', showFavourites);
 async function showFavourites (event) {
     event.preventDefault();
 
-    topnav.style.display = 'none';
     checkbox.checked = false;
     
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
@@ -427,7 +426,6 @@ function getModal(e) {
     trendingSection.style.display = 'none';
     footer.style.display = 'none';
 
-    modal.moveTo(0,0);
     renderResult(e.currentTarget.items, modalCarousel);
 }
 

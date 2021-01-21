@@ -866,10 +866,6 @@ footer {
         top: 412px;
         width: 450px;
     }
-    .favourites-section, .my-gifos-section {
-        display: none;
-        padding: 0px 5% 0 5%;
-    }
     .section-logo {
         display: block;
         margin-right: auto;
