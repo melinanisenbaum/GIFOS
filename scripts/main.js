@@ -22,7 +22,7 @@ const cover = document.getElementById('cover');
 const searchOnNav = document.getElementById('searchOnNav');
 const checkbox = document.getElementById('checkbox');
 
-const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12"; 
+const apiKey= "bUGgXAw5GVOq6EivhmR8bGrhBBCeND12";
 
 //home
 
@@ -74,7 +74,7 @@ function changeMode() {
     }
     else if (theme === 'darkMode') {
         theme = 'lightMode';
-    }    
+    }
     setMode();
 }
 
@@ -86,7 +86,7 @@ function setMode() {
     else if (theme === 'darkMode') {
         themeStyle. href='./styles/darkMode.css';
         mode.innerHTML = 'Modo Diurno';
-    }    
+    }
     localStorage.setItem("theme", theme);
 }
 
@@ -153,7 +153,7 @@ function renderTags(list, tagsContainer) {
         img.src = './images/icon-search-gray.svg';
         span.className = 'tag';
         span.textContent = item.name;
-        
+
         li.appendChild(figure);
         li.appendChild(span)
         figure.appendChild(img);
@@ -189,7 +189,7 @@ async function showResult(event) {
     closeTags();
     searchSection.style.display = 'block';
     const images = searchUl.querySelectorAll('li');
-    
+
     if (images.length > 0) {
         images.forEach (item => item.parentNode.removeChild(item))
         moreButton.style.display='none';
@@ -202,7 +202,7 @@ async function showResult(event) {
     const results = await response.json();
 
     const h2 = document.getElementById('searchTitle');
-      
+
     if(results.data.length > 0) {
         showLine();
         showTitle(newKeyword, h2);
@@ -232,7 +232,8 @@ function showTitle(newKeyword, h2){
     h2.style.display = 'block';
 }
 
-function renderResult(list, container) {
+function renderResult(list, container, selected = 1) {
+    var pos = 0; /* CAMBIO JUAN */
     list.forEach(item => {
         const li = document.createElement('li');
         const figure = document.createElement('figure')
@@ -248,7 +249,7 @@ function renderResult(list, container) {
         const downloadIcon = document.createElement('img');
         const maxButton = document.createElement('button');
         const maxIcon = document.createElement('img');
-        
+
         li.className = 'card';
         figure.className = 'gif-figure';
         img.className = 'gif';
@@ -290,7 +291,7 @@ function renderResult(list, container) {
             url: item.images.original.url,
             images: {
                 original: item.images.original
-        
+
             },
             title: item.title,
             user: item.username,
@@ -304,9 +305,20 @@ function renderResult(list, container) {
             maxButton.addEventListener('click', getModal);
             maxButton.items = list;
             maxButton.gifInfo = gifInfo;
+            maxButton.position = pos; /* CAMBIO JUAN */
         }
+
+        pos++; /* CAMBIO JUAN */
     })
-} 
+
+    /* CAMBIO JUAN */
+    console.log(selected);
+    if (selected != undefined) {
+      _itemWidth = container.getElementsByClassName("card")[0].offsetWidth;
+      container.style.marginLeft = "-" + ((_itemWidth * selected)) + 'px';
+    }
+
+}
 
 function changeIcon(_state, favIcon) {
     if (_state == 0) {
@@ -318,7 +330,7 @@ function changeIcon(_state, favIcon) {
 
 const changeFavouriteStateCallback = (item, gifInfo, favIcon) =>  async function changeFavouriteState(event) {
     event.preventDefault()
-     
+
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
     myFavourites = JSON.parse(myFavourites);
 
@@ -330,13 +342,13 @@ const changeFavouriteStateCallback = (item, gifInfo, favIcon) =>  async function
         myFavourites.push(gifInfo);
         changeIcon(1, favIcon);
     }
-    
+
     localStorage.setItem('myFavourites', JSON.stringify(myFavourites));
 }
 
 const downloadCallback = (item, container) => async function download (event) {
     event.preventDefault();
-    
+
     const a = document.createElement('a');
     let response = await fetch(item.images.original.url);
     const file = await response.blob();
@@ -362,7 +374,7 @@ async function showFavourites (event) {
     event.preventDefault();
 
     checkbox.checked = false;
-    
+
     let myFavourites = localStorage.getItem('myFavourites') || '[]';
     myFavourites = JSON.parse(myFavourites);
 
@@ -423,16 +435,16 @@ const footer = document.getElementById('footer');
 
 function getModal(e) {
     modal.style.display = 'block';
-    trendingSection.style.display = 'none';
-    footer.style.display = 'none';
+//    trendingSection.style.display = 'none';   /* CAMBIO JUAN */
+  //  footer.style.display = 'none';   /* CAMBIO JUAN */
 
-    renderResult(e.currentTarget.items, modalCarousel);
+    renderResult(e.currentTarget.items, modalCarousel, e.currentTarget.position); /* CAMBIO JUAN */
 }
 
 closeModal.addEventListener('click', function() {
     modal.style.display = "none";
-    trendingSection.style.display = 'block';
-    footer.style.display = 'block';
+//    trendingSection.style.display = 'block';  /* CAMBIO JUAN */
+//    footer.style.display = 'block';  /* CAMBIO JUAN */
     })
 
     function showMoreButton() {
@@ -446,12 +458,12 @@ async function showMoreResult(){
     const q = input.value;
     const url = getSearchUrl(q, limit, offset+=12);
     const response = await fetch(url);
-    const results = await response.json();  
+    const results = await response.json();
     renderResult(results.data, searchUl);
     if (results.data.length < 12) {
         moreButton.style.display='none';
     }
-}   
+}
 
 function showErrorFigure(){
     errorFig.style.display="block";
@@ -478,7 +490,7 @@ async function showWordTrends(){
         coma.innerText = ', ';
 
         p.appendChild(_aux);
-        
+
         if (i < 4) {
             p.appendChild(coma);
         }
@@ -553,7 +565,7 @@ createButton.addEventListener('click', openCreateSection);
 
 function openCreateSection (event) {
     event.preventDefault();
- 
+
     if (window.matchMedia("(min-width: 970px)").matches) {
         createButton.style.backgroundImage = "url('../images/CTA-crear-gifo-active.svg')";
 
@@ -570,24 +582,24 @@ function openCreateSection (event) {
 
 function openStepOne(event) {
     event.preventDefault();
-                
+
     cover.style.display = 'none';
     stepOne.style.display = 'block';
     one.style.backgroundColor = '#572EE5';
     one.style.color = '#FFFFFF';
     startCreateButton.style.display = 'none';
-        
+
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
         getStreamAndRecord();
     } else {
         alert('This device cannot support this action!');
     }
-}    
+}
 
 async function getStreamAndRecord() {
-   
+
     stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
-    
+
     if (stream.active === true) {
         stepOne.style.display = 'none';
         stepTwo.style.display = 'block';
@@ -604,7 +616,7 @@ async function getStreamAndRecord() {
 
         startRecordingButton.addEventListener('click', startRecorder);
     }
-            
+
 function startRecorder(event) {
     startRecordingButton.style.display = 'none';
     stopRecordingButton.style.display = 'block';
@@ -693,7 +705,7 @@ async function uploadMyGif() {
     let form = new FormData();
     form.append("file", recorder.getBlob(), "myGif.gif");
     form.append("tags", "");
-    
+
     const url = uploadUrl();
     const response = await fetch(url,
         {
@@ -718,7 +730,7 @@ async function uploadMyGif() {
 
         let myGifos = localStorage.getItem('myGifos') || '[]';
         myGifos = JSON.parse(myGifos);
-        
+
         myGifos.push(gifInfo);
         localStorage.setItem('myGifos', JSON.stringify(myGifos));
     }
@@ -734,4 +746,4 @@ function downloadMyGif() {
         myGifDownloadButton.download,
         myGifDownloadButton.href,
     ].join(":");
-} 
+}

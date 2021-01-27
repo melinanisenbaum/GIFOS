@@ -382,15 +382,15 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .modal {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 999;
     opacity: 1;
     background-color: #FFFFFF;
     height: 100%;
     width: 100vw;
-    padding-top: 156px;
+    padding-top: 106px;
 }
 .modal .icon-close {
     margin: 5px;
@@ -796,7 +796,7 @@ footer {
     }
     .gif-buttons {
         display: none;
-        z-index: 999;
+        z-index: 500;
         height: 32px;
         position: absolute;
         top: 10px;
@@ -822,15 +822,12 @@ footer {
     .maxButton:hover {
         opacity: 1;
     }
-    /*.fav-icon-active {
-        margin-top: -100px;
-    }*/
     .carousel-container {
         justify-content: center;
     }
     .modal {
         height: 968px;
-        padding-top: 160px;
+        padding-top: 110px;
     }
     .modal .carousel-box {
         width: 695px;
